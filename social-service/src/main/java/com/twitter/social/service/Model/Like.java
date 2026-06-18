@@ -17,11 +17,11 @@ public class Like {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer likeId;
+    private Long likeId;
 
-    private Integer userId;
+    private Long userId;
 
-    private Integer tweetId;
+    private Long tweetId;
 
     @CreationTimestamp
     private LocalDateTime likedAt;

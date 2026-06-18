@@ -17,11 +17,11 @@ public class Retweet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer retweetId;
+    private Long retweetId;
 
-    private Integer userId;
+    private Long userId;
 
-    private Integer tweetId;
+    private Long tweetId;
 
     @CreationTimestamp
     private LocalDateTime retweetedAt;

@@ -17,11 +17,11 @@ public class Bookmark {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer bookmarkId;
+    private Long bookmarkId;
 
-    private Integer userId;
+    private Long userId;
 
-    private Integer tweetId;
+    private Long tweetId;
 
     @CreationTimestamp
     private LocalDateTime bookmarkedAt;
