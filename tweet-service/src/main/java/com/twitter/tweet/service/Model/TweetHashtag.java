@@ -16,7 +16,12 @@ public class TweetHashtag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer tweetId;
+    @ManyToOne
+    @JoinColumn(name = "tweet_id")
+    private Tweet tweet;
 
-    private Integer hashtagId;
+    @ManyToOne
+    @JoinColumn(name = "hashtag_id")
+    private Hashtag hashtag;
+
 }

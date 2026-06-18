@@ -22,10 +22,11 @@ public class RefreshToken {
     @Column(unique = true)
     private String token;
 
-    @CreationTimestamp
     private LocalDateTime expiryDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+
 }

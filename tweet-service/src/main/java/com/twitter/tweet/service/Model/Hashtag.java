@@ -3,6 +3,8 @@ package com.twitter.tweet.service.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "hashtags")
 @AllArgsConstructor
@@ -18,4 +20,7 @@ public class Hashtag {
 
     @Column(unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "hashtag")
+    private List<TweetHashtag> tweetHashtags;
 }
