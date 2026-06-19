@@ -1,8 +1,9 @@
-package com.twitter.tweet.service.Model;
+package com.twitter.tweet.service.model;
 
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -16,11 +17,12 @@ public class Hashtag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer hashtagId;
+    private Long hashtagId;
 
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "hashtag")
-    private List<TweetHashtag> tweetHashtags;
+    @Builder.Default
+    @OneToMany(mappedBy = "hashtag" )
+    private List<TweetHashtag> tweetHashtags = new ArrayList<>();
 }

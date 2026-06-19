@@ -1,6 +1,6 @@
-package com.twitter.tweet.service.Model;
+package com.twitter.tweet.service.model;
 
-import com.twitter.tweet.service.Enum.MediaType;
+import com.twitter.tweet.service.enums.MediaType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,14 +15,14 @@ public class TweetMedia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer mediaId;
+    private Long mediaId;
 
     private String mediaUrl;
 
     @Enumerated(EnumType.STRING)
     private MediaType mediaType;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tweet_id")
     private Tweet tweet;
 }

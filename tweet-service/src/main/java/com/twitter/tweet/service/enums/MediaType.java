@@ -1,4 +1,4 @@
-package com.twitter.tweet.service.Enum;
+package com.twitter.tweet.service.enums;
 
 public enum MediaType {
     IMAGE,

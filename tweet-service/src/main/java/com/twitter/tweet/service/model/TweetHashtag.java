@@ -1,4 +1,4 @@
-package com.twitter.tweet.service.Model;
+package com.twitter.tweet.service.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,7 +14,7 @@ public class TweetHashtag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "tweet_id")

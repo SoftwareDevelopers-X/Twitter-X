@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/social-service/pom.xml" />
         <option value="$PROJECT_DIR$/tweet-service/pom.xml" />
         <option value="$PROJECT_DIR$/media-service/pom.xml" />
+        <option value="$PROJECT_DIR$/common-events/pom.xml" />
       </list>
     </option>
   </component>
