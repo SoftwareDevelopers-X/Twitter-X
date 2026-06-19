@@ -1,8 +1,13 @@
 package com.twitter.social.service.service.impl;
 
+import com.twitter.social.service.Enum.NotificationType;
 import com.twitter.social.service.Model.Like;
+import com.twitter.social.service.client.TweetClient;
 import com.twitter.social.service.dto.LikeRequestDto;
+import com.twitter.social.service.dto.NotificationEventDto;
 import com.twitter.social.service.exception.SocialException;
+import com.twitter.social.service.feignDto.TweetResponseDto;
+import com.twitter.social.service.kafkaProducer.NotificationProducer;
 import com.twitter.social.service.repository.LikeRepository;
 import com.twitter.social.service.service.LikeService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +18,10 @@ import org.springframework.stereotype.Service;
 public class LikeServiceImpl implements LikeService {
 
     private final LikeRepository likeRepository;
+
+    private final NotificationProducer notificationProducer;
+
+    private final TweetClient tweetClient;
 
     @Override
     public String likeTweet(LikeRequestDto request) {
@@ -34,6 +43,17 @@ public class LikeServiceImpl implements LikeService {
                 .build();
 
         likeRepository.save(like);
+        TweetResponseDto tweetResponseDto = tweetClient.getTweetOwner(request.getTweetId());
+
+
+        NotificationEventDto event = new NotificationEventDto(
+                request.getUserId(),
+                tweetResponseDto.getUserId(),
+                request.getTweetId(),
+                "liked your tweet",
+                NotificationType.LIKE);
+
+        notificationProducer.send(event);
 
         return "Tweet liked successfully";
     }

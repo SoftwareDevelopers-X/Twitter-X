@@ -1,8 +1,13 @@
 package com.twitter.social.service.service.impl;
 
+import com.twitter.social.service.Enum.NotificationType;
 import com.twitter.social.service.Model.Retweet;
+import com.twitter.social.service.client.TweetClient;
+import com.twitter.social.service.dto.NotificationEventDto;
 import com.twitter.social.service.dto.RetweetRequestDto;
 import com.twitter.social.service.exception.SocialException;
+import com.twitter.social.service.feignDto.TweetResponseDto;
+import com.twitter.social.service.kafkaProducer.NotificationProducer;
 import com.twitter.social.service.repository.RetweetRepository;
 import com.twitter.social.service.service.RetweetService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +18,10 @@ import org.springframework.stereotype.Service;
 public class RetweetServiceImpl implements RetweetService {
 
     private final RetweetRepository retweetRepository;
+
+    private final NotificationProducer notificationProducer;
+
+    private final TweetClient tweetClient;
 
     @Override
     public String retweet(RetweetRequestDto request) {
@@ -30,6 +39,17 @@ public class RetweetServiceImpl implements RetweetService {
                 .build();
 
         retweetRepository.save(retweet);
+
+        TweetResponseDto tweetResponseDto = tweetClient.getTweetOwner(request.getTweetId());
+
+        NotificationEventDto event = new NotificationEventDto(
+                request.getUserId(),
+                tweetResponseDto.getUserId(),
+                request.getTweetId(),
+                "retweeted your tweet",
+                NotificationType.RETWEET);
+
+        notificationProducer.send(event);
 
         return "Tweet retweeted successfully";
     }

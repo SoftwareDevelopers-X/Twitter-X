@@ -18,13 +18,13 @@ public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer notificationId;
+    private Long notificationId;
 
-    private Integer senderUserId;
+    private Long senderUserId;
 
-    private Integer receiverUserId;
+    private Long receiverUserId;
 
-    private Integer tweetId;
+    private Long tweetId;
 
     private String message;
 

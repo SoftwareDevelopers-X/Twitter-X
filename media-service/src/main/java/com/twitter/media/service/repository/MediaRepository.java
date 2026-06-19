@@ -1,4 +1,8 @@
 package com.twitter.media.service.repository;
 
-public class MediaRepository {
+import com.twitter.media.service.Model.MediaFile;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MediaRepository extends JpaRepository<MediaFile, Long> {
+
 }

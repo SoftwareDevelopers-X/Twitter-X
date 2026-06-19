@@ -14,15 +14,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class NotificationEventDto {
 
-    private Integer senderUserId;
+    private Long senderUserId;
 
-    private Integer receiverUserId;
+    private Long receiverUserId;
 
-    private Integer tweetId;
+    private Long tweetId;
 
     private String message;
-
-    private Boolean isRead;
 
     @Enumerated(EnumType.STRING)
     private NotificationType type;

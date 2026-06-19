@@ -7,4 +7,5 @@ public class LikeRequestDto {
 
     private Long userId;
     private Long tweetId;
+    
 }
