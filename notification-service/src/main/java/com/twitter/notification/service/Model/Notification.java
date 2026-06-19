@@ -3,6 +3,7 @@ package com.twitter.notification.service.Model;
 import com.twitter.notification.service.Enum.NotificationType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -17,20 +18,21 @@ public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer notificationId;
+    private Long notificationId;
 
-    private Integer senderUserId;
+    private Long senderUserId;
 
-    private Integer receiverUserId;
+    private Long receiverUserId;
 
-    private Integer tweetId;
+    private Long tweetId;
 
     private String message;
 
-    private boolean isRead;
+    private Boolean isRead;
 
     @Enumerated(EnumType.STRING)
     private NotificationType type;
 
+    @CreationTimestamp
     private LocalDateTime createdAt;
 }

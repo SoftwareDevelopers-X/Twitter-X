@@ -18,9 +18,9 @@ public class MediaFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer mediaId;
+    private Long mediaId;
 
-    private Integer userId;
+    private Long userId;
 
     private String fileName;
 
