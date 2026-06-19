@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tweets")
@@ -22,17 +23,27 @@ public class Tweet {
 
     private Integer userId;
 
-    @Column(length = 500)
+    @Column(columnDefinition = "TEXT")
     private String content;
 
-    private Integer likeCount;
+    @Builder.Default
+    private Integer likeCount = 0;
 
-    private Integer replyCount;
+    @Builder.Default
+    private Integer replyCount = 0;
 
-    private Integer retweetCount;
+    @Builder.Default
+    private Integer retweetCount = 0;
 
-    private Integer viewCount;
+    @Builder.Default
+    private Integer viewCount = 0;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "tweet", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<TweetMedia> mediaList;
+
+    @OneToMany(mappedBy = "tweet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TweetHashtag> tweetHashtags;
 }

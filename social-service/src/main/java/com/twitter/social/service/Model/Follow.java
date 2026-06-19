@@ -17,11 +17,11 @@ public class Follow {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer followId;
+    private Long followId;
 
-    private Integer followerId;
+    private Long followerId;
 
-    private Integer followingId;
+    private Long followingId;
 
     @CreationTimestamp
     private LocalDateTime followedAt;
