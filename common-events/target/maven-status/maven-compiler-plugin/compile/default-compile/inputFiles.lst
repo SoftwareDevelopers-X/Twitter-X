@@ -1,6 +1,0 @@
-/home/md-quayem-ashraf/Desktop/TwitterClone/common-events/src/main/java/com/twitter/events/TweetCreatedEvent.java
-/home/md-quayem-ashraf/Desktop/TwitterClone/common-events/src/main/java/com/twitter/events/TweetDeletedEvent.java
-/home/md-quayem-ashraf/Desktop/TwitterClone/common-events/src/main/java/com/twitter/events/TweetLikedEvent.java
-/home/md-quayem-ashraf/Desktop/TwitterClone/common-events/src/main/java/com/twitter/events/TweetRepliedEvent.java
-/home/md-quayem-ashraf/Desktop/TwitterClone/common-events/src/main/java/com/twitter/events/TweetRetweetedEvent.java
-/home/md-quayem-ashraf/Desktop/TwitterClone/common-events/src/main/java/com/twitter/events/TweetUpdatedEvent.java
