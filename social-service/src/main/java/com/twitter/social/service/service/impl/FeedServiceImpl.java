@@ -24,7 +24,7 @@ public class FeedServiceImpl implements FeedService {
 
     @CircuitBreaker(name = "tweetService", fallbackMethod = "fallbackFeed")
     @Override
-    public List<FeedTweetDto> getFeed(Long userId, Long page, Long size) {
+    public List<FeedTweetDto> getFeed(Long userId, int page, int size) {
 
         try {
 
@@ -66,7 +66,7 @@ public class FeedServiceImpl implements FeedService {
         }
     }
 
-    public List<FeedTweetDto> fallbackFeed(Long userId, Long page, Long size, Exception ex) {
+    public List<FeedTweetDto> fallbackFeed(Long userId, int page, int size, Exception ex) {
 
         String cacheKey = "feed::" + userId;
 
@@ -103,15 +103,15 @@ public class FeedServiceImpl implements FeedService {
         return score;
     }
 
-    private List<FeedTweetDto> paginate(List<FeedTweetDto> list, Long page, Long size) {
+    private List<FeedTweetDto> paginate(List<FeedTweetDto> list, int page, int size) {
 
-        Long start = page * size;
-        Long end = Math.min(start + size, list.size());
+        int start = page * size;
+        int end = Math.min(start + size, list.size());
 
         if (start >= list.size()) {
             return new ArrayList<>();
         }
 
-        return list.subList(Math.toIntExact(start), Math.toIntExact(end));
+        return list.subList(start, end);
     }
 }

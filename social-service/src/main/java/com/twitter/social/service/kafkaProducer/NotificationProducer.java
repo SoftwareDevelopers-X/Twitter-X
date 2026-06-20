@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class NotificationProducer {
 
-    private final KafkaTemplate<String, NotificationEventDto> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public void send(NotificationEventDto event) {
         System.out.println("------------------------------------------------------------------------------------");

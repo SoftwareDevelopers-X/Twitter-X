@@ -17,8 +17,8 @@ public class FeedController {
     @GetMapping("/{userId}")
     public List<FeedTweetDto> getFeed(
             @PathVariable Long userId,
-            @RequestParam(defaultValue = "0") Long page,
-            @RequestParam(defaultValue = "20") Long size
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size
     ) {
         return feedService.getFeed(userId, page, size);
     }

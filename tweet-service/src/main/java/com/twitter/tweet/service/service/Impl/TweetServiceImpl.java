@@ -192,13 +192,12 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public List<TweetResponse> getTrendingTweets(String window) {
-        Set<String> ids = trendingService.getTrendingTweets(window);
-        return ids.stream()
-                .map(Long::parseLong)
-                .map(this::getTweetOrThrow)
+        List<Tweet> tweets = trendingService.getTrendingTweets(window);
+        return tweets.stream()
                 .map(TweetResponseMapper::mapToResponse)
                 .toList();
     }
+
     @Override
     public List<TweetResponse> searchTweets(String keyword) {
         log.info("Searching tweets with keyword {}", keyword);

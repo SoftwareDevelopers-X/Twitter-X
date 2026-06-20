@@ -3,9 +3,15 @@ package com.twitter.notification.service.service;
 import com.twitter.notification.service.Model.Notification;
 import com.twitter.notification.service.dto.NotificationEventDto;
 import com.twitter.notification.service.dto.NotificationResponse;
+import com.twitter.notification.service.exceptions.NotificationNotFoundException;
+import com.twitter.notification.service.mapper.NotificationResponseMapper;
 import com.twitter.notification.service.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +25,6 @@ public class NotificationService {
                 .type(event.getType())
                 .message(event.getMessage())
                 .tweetId(event.getTweetId())
-                .isRead(false)
                 .receiverUserId(event.getReceiverUserId())
                 .build();
 
@@ -29,7 +34,7 @@ public class NotificationService {
     public NotificationResponse getNotification(Long notificationId) {
 
         Notification notification = repository.findById(notificationId)
-                .orElseThrow(() -> new RuntimeException("Notification not found"));
+                .orElseThrow(() -> new NotificationNotFoundException("Notification not found"));
 
         return NotificationResponse.builder()
                 .notificationId(notification.getNotificationId())
@@ -41,6 +46,23 @@ public class NotificationService {
                 .type(notification.getType())
                 .createdAt(notification.getCreatedAt())
                 .build();
+    }
+
+
+    public List<NotificationResponse> getUserNotifications(Long userId) {
+        return repository
+                .findByReceiverUserIdOrderByCreatedAtDesc(userId)
+                .stream()
+                .map(NotificationResponseMapper::mapToResponse)
+                .toList();
+    }
+
+    public NotificationResponse markAsRead(Long notificationId) {
+        Notification notification = repository.findById(notificationId)
+                .orElseThrow(() -> new NotificationNotFoundException("Notification not found"));
+        notification.setIsRead(true);
+        notification = repository.save(notification);
+        return NotificationResponseMapper.mapToResponse(notification);
     }
 
 }
