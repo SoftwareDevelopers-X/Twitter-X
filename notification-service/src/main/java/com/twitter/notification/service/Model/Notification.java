@@ -8,12 +8,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "notifications")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
+@Table(name = "notifications", indexes = {@Index(name = "idx_receiver", columnList = "receiverUserId")})
 public class Notification {
 
     @Id
@@ -28,7 +28,8 @@ public class Notification {
 
     private String message;
 
-    private Boolean isRead;
+    @Builder.Default
+    private Boolean isRead = false;
 
     @Enumerated(EnumType.STRING)
     private NotificationType type;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Component
@@ -22,16 +23,23 @@ public class ViewCountScheduler {
     @Scheduled(fixedRate = 300000)
     @Transactional
     public void flushViewCounts() {
+        Set<String> keys = redisTemplate.keys("tweet:view:*");
+        if (keys == null || keys.isEmpty()) {
+            return;
+        }
+        for (String key : keys) {
+            Long tweetId =
+                    Long.parseLong(
+                            key.replace("tweet:view:", "")
+                    );
 
-        List<Tweet> tweets = tweetRepository.findAll();
-        for (Tweet tweet : tweets) {
-            String key = "tweet:view:" + tweet.getTweetId();
             String views = redisTemplate.opsForValue().get(key);
             if (views != null) {
-                tweet.setViewCount(
-                        tweet.getViewCount()
-                                + Integer.parseInt(views));
-                tweetRepository.save(tweet);
+                Tweet tweet = tweetRepository.findById(tweetId).orElse(null);
+                if (tweet != null) {
+                    tweet.setViewCount(tweet.getViewCount() + Integer.parseInt(views));
+                    tweetRepository.save(tweet);
+                }
                 redisTemplate.delete(key);
             }
         }

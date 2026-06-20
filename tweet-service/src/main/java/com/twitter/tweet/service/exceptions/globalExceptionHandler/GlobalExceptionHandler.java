@@ -1,6 +1,7 @@
 package com.twitter.tweet.service.exceptions.globalExceptionHandler;
 
 import com.twitter.tweet.service.exceptions.customExceptions.HashtagNotFoundException;
+import com.twitter.tweet.service.exceptions.customExceptions.InvalidTrendingWindowException;
 import com.twitter.tweet.service.exceptions.customExceptions.TweetNotFoundException;
 import com.twitter.tweet.service.exceptions.customExceptions.UnauthorizedTweetAccessException;
 import org.springframework.http.HttpStatus;
@@ -24,5 +25,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HashtagNotFoundException.class)
     public ResponseEntity<String> handleHashtagNotFound(HashtagNotFoundException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidTrendingWindowException.class)
+    public ResponseEntity<String> handleInvalidWindow(InvalidTrendingWindowException ex) {
+        return ResponseEntity.badRequest().body(ex.getMessage());
     }
 }

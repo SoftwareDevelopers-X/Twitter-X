@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface FeedService {
 
-    List<FeedTweetDto> getFeed(Long userId, Long page, Long size);
+    List<FeedTweetDto> getFeed(Long userId, int page, int size);
 }
