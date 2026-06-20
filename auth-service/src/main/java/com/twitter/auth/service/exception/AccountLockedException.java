@@ -1,0 +1,9 @@
+package com.twitter.auth.service.exception;
+
+public class AccountLockedException
+        extends RuntimeException {
+
+    public AccountLockedException(String message) {
+        super(message);
+    }
+}
