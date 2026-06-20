@@ -41,10 +41,9 @@ public class User {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-<<<<<<< Updated upstream
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RefreshToken> refreshTokens;
-=======
+
     @Column(nullable = false)
     private int failedAttempts;
 
@@ -56,5 +55,5 @@ public class User {
     private boolean accountNonLocked = true;
 
     private boolean banned = false;
->>>>>>> Stashed changes
+
 }
