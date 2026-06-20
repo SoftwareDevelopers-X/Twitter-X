@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-public class TweetResponseDto {
+public class TweetResponse {
 
     private Long tweetId;
     private Long userId;

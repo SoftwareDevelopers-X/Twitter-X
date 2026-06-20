@@ -12,7 +12,7 @@ public interface RetweetRepository extends JpaRepository<Retweet, Long> {
 
     Optional<Retweet> findByUserIdAndTweetId(Long userId, Long tweetId);
 
-    List<Retweet> findByTweetId(Long tweetId);
+    long countByTweetId(long tweetId);
 
     List<Retweet> findByUserId(Long userId);
 }

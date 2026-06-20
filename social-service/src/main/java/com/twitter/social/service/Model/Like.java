@@ -7,14 +7,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "likes")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
+@Table(name = "likes", uniqueConstraints = {@UniqueConstraint(columnNames = {"userId", "tweetId"})})
 public class Like {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long likeId;

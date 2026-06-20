@@ -7,12 +7,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "retweets")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
+@Table(name = "retweets", uniqueConstraints = {@UniqueConstraint(columnNames = {"userId", "tweetId"})})
 public class Retweet {
 
     @Id

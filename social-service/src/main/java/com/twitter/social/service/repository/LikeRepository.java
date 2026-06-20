@@ -12,7 +12,7 @@ public interface LikeRepository extends JpaRepository<Like, Long> {
 
     Optional<Like> findByUserIdAndTweetId(Long userId, Long tweetId);
 
-    List<Like> findByTweetId(Long tweetId);
+    Long countByTweetId(Long tweetId);
 
     List<Like> findByUserId(Long userId);
 }
