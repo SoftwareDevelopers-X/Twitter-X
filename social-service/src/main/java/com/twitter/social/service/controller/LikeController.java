@@ -32,6 +32,7 @@ public class LikeController {
 
     @GetMapping("/count/{tweetId}")
     public Long getLikeCount(@PathVariable Long tweetId) {
+
         return likeService.getLikeCount(tweetId);
     }
 
