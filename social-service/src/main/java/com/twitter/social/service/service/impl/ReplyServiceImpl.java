@@ -5,9 +5,12 @@ import com.twitter.social.service.Model.Reply;
 import com.twitter.social.service.client.TweetClient;
 import com.twitter.social.service.dto.NotificationEventDto;
 import com.twitter.social.service.dto.ReplyRequestDto;
+import com.twitter.social.service.events.TweetInteractionProducer;
 import com.twitter.social.service.exception.SocialException;
-import com.twitter.social.service.feignDto.TweetResponseDto;
+import com.twitter.social.service.feignDto.TweetResponse;
 import com.twitter.social.service.kafkaProducer.NotificationProducer;
+import com.twitter.social.service.kafkaProducer.TweetRepliedEvent;
+import com.twitter.social.service.kafkaProducer.TweetReplyDeletedEvent;
 import com.twitter.social.service.repository.ReplyRepository;
 import com.twitter.social.service.service.ReplyService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,8 @@ public class ReplyServiceImpl implements ReplyService {
     private final NotificationProducer notificationProducer;
 
     private final TweetClient tweetClient;
+    private final TweetInteractionProducer tweetInteractionProducer;
+
 
     @Override
     public String addReply(ReplyRequestDto request) {
@@ -31,6 +36,8 @@ public class ReplyServiceImpl implements ReplyService {
         if (request.getContent() == null || request.getContent().isEmpty()) {
             throw new SocialException("Reply content cannot be empty");
         }
+
+        TweetResponse tweet = tweetClient.getTweet(request.getTweetId());
 
         Reply reply = Reply.builder()
                 .userId(request.getUserId())
@@ -40,17 +47,20 @@ public class ReplyServiceImpl implements ReplyService {
 
         replyRepository.save(reply);
 
-        TweetResponseDto tweetResponseDto = tweetClient.getTweetOwner(request.getTweetId());
-
         NotificationEventDto event = new NotificationEventDto(
                 request.getUserId(),
-                tweetResponseDto.getUserId(),
+                tweet.getUserId(),
                 request.getTweetId(),
                 "replied to your tweet",
-                NotificationType.RETWEET);
+                NotificationType.REPLY);
 
         notificationProducer.send(event);
 
+        TweetRepliedEvent tweetRepliedEvent = TweetRepliedEvent.builder()
+                        .tweetId(reply.getTweetId())
+                        .userId(reply.getUserId())
+                        .build();
+        tweetInteractionProducer.publishTweetRepliedEvent(tweetRepliedEvent);
         return "Reply added successfully";
     }
 
@@ -62,6 +72,13 @@ public class ReplyServiceImpl implements ReplyService {
                         new SocialException("Reply not found"));
 
         replyRepository.delete(reply);
+
+        TweetReplyDeletedEvent event = TweetReplyDeletedEvent.builder()
+                        .tweetId(reply.getTweetId())
+                        .userId(reply.getUserId())
+                        .build();
+
+        tweetInteractionProducer.publishTweetReplyDeletedEvent(event);
 
         return "Reply deleted successfully";
     }

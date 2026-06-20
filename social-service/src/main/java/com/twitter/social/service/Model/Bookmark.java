@@ -7,12 +7,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "bookmarks")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Builder
+@Table(name = "bookmarks", uniqueConstraints = {@UniqueConstraint(columnNames = {"userId", "tweetId"})})
 public class Bookmark {
 
     @Id

@@ -5,9 +5,12 @@ import com.twitter.social.service.Model.Like;
 import com.twitter.social.service.client.TweetClient;
 import com.twitter.social.service.dto.LikeRequestDto;
 import com.twitter.social.service.dto.NotificationEventDto;
+import com.twitter.social.service.events.TweetInteractionProducer;
 import com.twitter.social.service.exception.SocialException;
-import com.twitter.social.service.feignDto.TweetResponseDto;
+import com.twitter.social.service.feignDto.TweetResponse;
 import com.twitter.social.service.kafkaProducer.NotificationProducer;
+import com.twitter.social.service.kafkaProducer.TweetLikedEvent;
+import com.twitter.social.service.kafkaProducer.TweetUnlikedEvent;
 import com.twitter.social.service.repository.LikeRepository;
 import com.twitter.social.service.service.LikeService;
 import lombok.RequiredArgsConstructor;
@@ -22,20 +25,16 @@ public class LikeServiceImpl implements LikeService {
     private final NotificationProducer notificationProducer;
 
     private final TweetClient tweetClient;
+    private final TweetInteractionProducer tweetInteractionProducer;
 
     @Override
     public String likeTweet(LikeRequestDto request) {
 
-        if (request.getUserId().equals(request.getTweetId())) {
-            throw new SocialException("Invalid like request");
-        }
-
-        if (likeRepository.existsByUserIdAndTweetId(
-                request.getUserId(),
-                request.getTweetId())) {
-
+        if (likeRepository.existsByUserIdAndTweetId(request.getUserId(), request.getTweetId())) {
             throw new SocialException("Tweet already liked");
         }
+        TweetResponse tweet = tweetClient.getTweet(request.getTweetId());
+
 
         Like like = Like.builder()
                 .userId(request.getUserId())
@@ -43,17 +42,20 @@ public class LikeServiceImpl implements LikeService {
                 .build();
 
         likeRepository.save(like);
-        TweetResponseDto tweetResponseDto = tweetClient.getTweetOwner(request.getTweetId());
-
-
-        NotificationEventDto event = new NotificationEventDto(
+              NotificationEventDto event = new NotificationEventDto(
                 request.getUserId(),
-                tweetResponseDto.getUserId(),
+                      tweet.getUserId(),
                 request.getTweetId(),
                 "liked your tweet",
                 NotificationType.LIKE);
 
         notificationProducer.send(event);
+
+        TweetLikedEvent tweetLikedEvent= TweetLikedEvent.builder()
+                        .tweetId(like.getTweetId())
+                        .userId(like.getUserId())
+                        .build();
+        tweetInteractionProducer.publishTweetLikedEvent(tweetLikedEvent);
 
         return "Tweet liked successfully";
     }
@@ -69,12 +71,18 @@ public class LikeServiceImpl implements LikeService {
 
         likeRepository.delete(like);
 
+        TweetUnlikedEvent event = TweetUnlikedEvent.builder()
+                        .tweetId(like.getTweetId())
+                        .userId(like.getUserId())
+                        .build();
+        tweetInteractionProducer.publishTweetUnlikedEvent(event);
+
         return "Tweet unliked successfully";
     }
 
     @Override
     public Long getLikeCount(Long tweetId) {
-        return (long) likeRepository.findByTweetId(tweetId).size();
+        return likeRepository.countByTweetId(tweetId);
     }
 
     @Override

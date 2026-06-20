@@ -5,9 +5,12 @@ import com.twitter.social.service.Model.Retweet;
 import com.twitter.social.service.client.TweetClient;
 import com.twitter.social.service.dto.NotificationEventDto;
 import com.twitter.social.service.dto.RetweetRequestDto;
+import com.twitter.social.service.events.TweetInteractionProducer;
 import com.twitter.social.service.exception.SocialException;
-import com.twitter.social.service.feignDto.TweetResponseDto;
+import com.twitter.social.service.feignDto.TweetResponse;
 import com.twitter.social.service.kafkaProducer.NotificationProducer;
+import com.twitter.social.service.kafkaProducer.TweetRetweetRemovedEvent;
+import com.twitter.social.service.kafkaProducer.TweetRetweetedEvent;
 import com.twitter.social.service.repository.RetweetRepository;
 import com.twitter.social.service.service.RetweetService;
 import lombok.RequiredArgsConstructor;
@@ -22,16 +25,17 @@ public class RetweetServiceImpl implements RetweetService {
     private final NotificationProducer notificationProducer;
 
     private final TweetClient tweetClient;
+    private final TweetInteractionProducer tweetInteractionProducer;
+
 
     @Override
     public String retweet(RetweetRequestDto request) {
 
-        if (retweetRepository.existsByUserIdAndTweetId(
-                request.getUserId(),
-                request.getTweetId())) {
-
+        if (retweetRepository.existsByUserIdAndTweetId(request.getUserId(), request.getTweetId())) {
             throw new SocialException("Already retweeted this tweet");
         }
+
+        TweetResponse tweet = tweetClient.getTweet(request.getTweetId());
 
         Retweet retweet = Retweet.builder()
                 .userId(request.getUserId())
@@ -40,16 +44,20 @@ public class RetweetServiceImpl implements RetweetService {
 
         retweetRepository.save(retweet);
 
-        TweetResponseDto tweetResponseDto = tweetClient.getTweetOwner(request.getTweetId());
-
         NotificationEventDto event = new NotificationEventDto(
                 request.getUserId(),
-                tweetResponseDto.getUserId(),
+                tweet.getUserId(),
                 request.getTweetId(),
                 "retweeted your tweet",
                 NotificationType.RETWEET);
-
         notificationProducer.send(event);
+
+        TweetRetweetedEvent tweetRetweetedEvent= TweetRetweetedEvent.builder()
+                        .tweetId(retweet.getTweetId())
+                        .userId(retweet.getUserId())
+                        .build();
+
+        tweetInteractionProducer.publishTweetRetweetedEvent(tweetRetweetedEvent);
 
         return "Tweet retweeted successfully";
     }
@@ -65,6 +73,11 @@ public class RetweetServiceImpl implements RetweetService {
 
         retweetRepository.delete(retweet);
 
+        TweetRetweetRemovedEvent event = TweetRetweetRemovedEvent.builder()
+                        .tweetId(retweet.getTweetId())
+                        .userId(retweet.getUserId())
+                        .build();
+        tweetInteractionProducer.publishTweetRetweetRemovedEvent(event);
         return "Retweet removed successfully";
     }
 
@@ -75,6 +88,6 @@ public class RetweetServiceImpl implements RetweetService {
 
     @Override
     public Long getRetweetCount(Long tweetId) {
-        return (long) Math.toIntExact((long) retweetRepository.findByTweetId(tweetId).size());
+        return retweetRepository.countByTweetId(tweetId);
     }
 }

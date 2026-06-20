@@ -23,7 +23,7 @@ public class Reply {
 
     private Long tweetId;
 
-    @Column(length = 500)
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     @CreationTimestamp

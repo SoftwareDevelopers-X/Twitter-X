@@ -20,7 +20,7 @@ public class FeedServiceImpl implements FeedService {
     private final FollowService followService;
     private final TweetClient tweetClient;
     private final RedisService redisService;
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
 
     @CircuitBreaker(name = "tweetService", fallbackMethod = "fallbackFeed")
     @Override
@@ -29,11 +29,8 @@ public class FeedServiceImpl implements FeedService {
         try {
 
             String cacheKey = "feed::" + userId;
-
             if (redisService.exists(cacheKey)) {
-
                 String cachedJson = (String) redisService.get(cacheKey);
-
                 List<FeedTweetDto> cached =
                         objectMapper.readValue(
                                 cachedJson,
@@ -55,20 +52,15 @@ public class FeedServiceImpl implements FeedService {
 
             feedTweets.sort((a, b) -> {
                 int scoreCompare = b.getScore().compareTo(a.getScore());
-
                 if (scoreCompare == 0) {
                     return b.getCreatedAt().compareTo(a.getCreatedAt());
                 }
-
                 return scoreCompare;
             });
 
             String json = objectMapper.writeValueAsString(feedTweets);
-
             redisService.set(cacheKey, json, 10);
-
             return paginate(feedTweets, page, size);
-
         } catch (Exception e) {
             throw new RuntimeException("Error generating feed", e);
         }

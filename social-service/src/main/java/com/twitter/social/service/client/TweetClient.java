@@ -1,7 +1,7 @@
 package com.twitter.social.service.client;
 
 import com.twitter.social.service.dto.FeedTweetDto;
-import com.twitter.social.service.feignDto.TweetResponseDto;
+import com.twitter.social.service.feignDto.TweetResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,5 +13,5 @@ public interface TweetClient {
     List<FeedTweetDto> getTweetsByUserIds(@RequestParam List<Long> userIds);
 
     @GetMapping("/api/tweets/{tweetId}")
-    TweetResponseDto getTweetOwner(@PathVariable Long tweetId);
+    TweetResponse getTweet(@PathVariable Long tweetId);
 }
