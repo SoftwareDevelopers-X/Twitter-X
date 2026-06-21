@@ -5,6 +5,7 @@ import com.twitter.events.TweetDeletedEvent;
 import com.twitter.events.TweetUpdatedEvent;
 import com.twitter.tweet.service.repository.elastic.TweetSearchRepository;
 import com.twitter.tweet.service.search.TweetDocument;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ElasticConsumer {
     private final TweetSearchRepository tweetSearchRepository;
+
 
     @KafkaListener(topics = "tweet-created-topic", groupId = "elastic-group")
     public void consumeTweetCreatedEvent(TweetCreatedEvent event) {
@@ -31,6 +33,7 @@ public class ElasticConsumer {
                         .retweetCount(event.getRetweetCount())
                         .viewCount(event.getViewCount())
                         .createdAt(event.getCreatedAt())
+                        .username(event.getUsername())
                         .build();
 
         tweetSearchRepository.save(document);
@@ -47,5 +50,10 @@ public class ElasticConsumer {
     @KafkaListener(topics = "tweet-deleted-topic", groupId = "elastic-group")
     public void consumeTweetDeletedEvent(TweetDeletedEvent event) {
         tweetSearchRepository.deleteById(event.getTweetId());
+    }
+
+    @PostConstruct
+    public void init() {
+        log.info("ElasticConsumer bean initialized");
     }
 }

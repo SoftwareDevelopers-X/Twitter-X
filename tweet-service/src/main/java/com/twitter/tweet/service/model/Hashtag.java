@@ -1,5 +1,6 @@
 package com.twitter.tweet.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class Hashtag {
     private String name;
 
     @Builder.Default
+    @JsonIgnore
     @OneToMany(mappedBy = "hashtag" )
     private List<TweetHashtag> tweetHashtags = new ArrayList<>();
 }

@@ -58,6 +58,11 @@ public class TweetController {
         return ResponseEntity.ok(tweetService.searchTweets(keyword));
     }
 
+    @GetMapping("/suggestions")
+    public List<TweetResponse> getSuggestions(@RequestParam String keyword) {
+        return tweetService.searchSuggestions(keyword);
+    }
+
     @GetMapping
     public ResponseEntity<Page<TweetResponse>> getAllTweets(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(tweetService.getAllTweets(page, size));

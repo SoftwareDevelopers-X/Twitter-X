@@ -32,4 +32,6 @@ public class TweetCreatedEvent {
     private Long viewCount;
 
     private LocalDateTime createdAt;
+
+    private String username;
 }

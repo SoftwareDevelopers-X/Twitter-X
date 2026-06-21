@@ -11,13 +11,11 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
-public class RateLimitServiceImpl
-        implements RateLimitService {
+public class RateLimitServiceImpl implements RateLimitService {
 
     private final RedisTemplate<String, String> redisTemplate;
 
-    private static final String PREFIX =
-            "login-rate-limit:";
+    private static final String PREFIX = "login-rate-limit:";
 
     @Override
     public void validateLoginAttempt(String key) {

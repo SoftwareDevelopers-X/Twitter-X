@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,14 +25,16 @@ public class TweetDocument {
 
     private Long userId;
 
+    @Field(type = FieldType.Text)
     private String content;
 
+    @Field(type = FieldType.Keyword)
     private List<String> hashtags;
+
     private List<String> mediaUrls;
 
+    @Field(type = FieldType.Keyword)
     private String username;
-
-    private String displayName;
 
     private Long likeCount;
 

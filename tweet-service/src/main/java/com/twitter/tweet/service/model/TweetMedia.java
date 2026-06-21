@@ -1,5 +1,6 @@
 package com.twitter.tweet.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.twitter.tweet.service.enums.MediaType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,6 +24,7 @@ public class TweetMedia {
     private MediaType mediaType;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "tweet_id")
     private Tweet tweet;
 }

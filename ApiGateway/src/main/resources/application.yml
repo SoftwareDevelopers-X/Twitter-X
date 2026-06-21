@@ -1,0 +1,42 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: API-GATEWAY
+
+  cloud:
+    gateway:
+      routes:
+
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/api/auth/**,/api/admin/**,/api/test/**,/api/internal/**
+
+        - id: tweet-service
+          uri: lb://TWEET-SERVICE
+          predicates:
+            - Path=/api/tweets/**
+
+        - id: social-service
+          uri: lb://SOCIAL-SERVICE
+          predicates:
+            - Path=/api/bookmarks/**,/api/feed/**,/api/follows/**,/api/likes/**,/api/replies/**,/api/retweets/**,/social
+
+        - id: notification-service
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+            - Path=/api/notification/**
+
+        - id: media-service
+          uri: lb://MEDIA-SERVICE
+          predicates:
+            - Path=/media/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true

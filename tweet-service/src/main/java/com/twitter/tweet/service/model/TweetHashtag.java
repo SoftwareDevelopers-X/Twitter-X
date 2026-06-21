@@ -1,5 +1,6 @@
 package com.twitter.tweet.service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class TweetHashtag {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "tweet_id")
     private Tweet tweet;
 

@@ -25,4 +25,6 @@ public interface TweetService {
     List<TweetResponse> getTrendingTweets(String window);
 
     List<TweetResponse> searchTweets(String keyword);
+
+    List<TweetResponse> searchSuggestions(String keyword);
 }

@@ -15,21 +15,9 @@ public class MediaController {
     private final MediaService mediaService;
 
     @PostMapping("/upload")
-    public ResponseEntity<MediaResponse> upload(
-
-            @RequestParam("file")
-            MultipartFile file,
-
-            @RequestParam("userId")
-            Long userId
-
-    ) throws Exception {
+    public ResponseEntity<MediaResponse> upload(@RequestParam("file") MultipartFile file, @RequestParam("userId") Long userId) throws Exception {
 
         return ResponseEntity.ok(
-                mediaService.upload(
-                        file,
-                        userId
-                )
-        );
+                mediaService.upload(file, userId));
     }
 }

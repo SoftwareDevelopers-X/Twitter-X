@@ -52,7 +52,7 @@ public class AuthServiceImpl implements AuthService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
-                .enabled(false)   // IMPORTANT CHANGE
+                .enabled(true)   // IMPORTANT CHANGE
                 .build();
 
         User saved = userRepository.save(user);
@@ -71,22 +71,14 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public LoginResponse login(
-            LoginRequest request,
-            HttpServletRequest servletRequest
-    ) {
+    public LoginResponse login(LoginRequest request, HttpServletRequest servletRequest) {
 
         // 1. RATE LIMIT CHECK
-        rateLimitService.validateLoginAttempt(
-                request.getEmail()
-        );
+        rateLimitService.validateLoginAttempt(request.getEmail());
 
         // 2. FETCH USER
-        User user = userRepository
-                .findByEmail(request.getEmail())
-                .orElseThrow(() ->
-                        new UserNotFoundException("User not found")
-                );
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         // 3. ACCOUNT LOCK CHECK
         unlockWhenTimeExpired(user);
@@ -100,12 +92,7 @@ public class AuthServiceImpl implements AuthService {
         try {
 
             // 4. AUTHENTICATION
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            request.getEmail(),
-                            request.getPassword()
-                    )
-            );
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
             // 5. RESET FAILED ATTEMPTS (IMPORTANT FIX)
             resetFailedAttempts(user);
@@ -167,7 +154,7 @@ public class AuthServiceImpl implements AuthService {
                 AuditAction.LOGIN_SUCCESS
         );
 
-        // 14. RESPONSE
+//        14. RESPONSE
         return LoginResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken.getToken())
