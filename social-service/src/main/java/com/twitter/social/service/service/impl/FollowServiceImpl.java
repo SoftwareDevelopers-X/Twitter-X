@@ -10,6 +10,7 @@ import com.twitter.social.service.kafkaProducer.NotificationProducer;
 import com.twitter.social.service.repository.FollowRepository;
 import com.twitter.social.service.service.FollowService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
