@@ -38,8 +38,9 @@ public class TweetController {
     }
 
     @DeleteMapping("/{tweetId}")
-    public ResponseEntity<String> deleteTweet(@PathVariable Long tweetId, @RequestHeader("X-User-Id") Long userId) {
-        this.tweetService.deleteTweet(tweetId, userId);
+    public ResponseEntity<String> deleteTweet(@PathVariable Long tweetId, @RequestHeader("X-User-Id") Long userId, @RequestHeader("X-Role") String role) {
+        tweetService.deleteTweet(tweetId, userId, role);
+
         return ResponseEntity.ok("Tweet deleted successfully");
     }
 

@@ -14,7 +14,7 @@ public interface TweetService {
 
     TweetResponse updateTweet(Long tweetId, UpdateTweetRequest request, Long userId);
 
-    void deleteTweet(Long tweetId, Long userId);
+    void deleteTweet(Long tweetId, Long userId, String role);
 
     List<TweetResponse> getUserTweets(Long userId);
 

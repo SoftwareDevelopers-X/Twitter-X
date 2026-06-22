@@ -9,7 +9,7 @@ public interface ReplyService {
 
     String addReply(ReplyRequestDto request);
 
-    String deleteReply(Long replyId);
+    String deleteReply(Long replyId, Long userId, String role);
 
     List<Reply> getRepliesByTweet(Long tweetId);
 

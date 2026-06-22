@@ -29,10 +29,9 @@ public class ReplyController {
     }
 
     @DeleteMapping("/{replyId}")
-    public String deleteReply(@PathVariable Long replyId) {
-        return replyService.deleteReply(replyId);
+    public String deleteReply(@PathVariable Long replyId, @RequestHeader("X-User-Id") Long userId, @RequestHeader("X-Role") String role) {
+        return replyService.deleteReply(replyId, userId, role);
     }
-
     @GetMapping("/tweet/{tweetId}")
     public List<Reply> getRepliesByTweet(@PathVariable Long tweetId) {
         return replyService.getRepliesByTweet(tweetId);

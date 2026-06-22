@@ -21,6 +21,6 @@ public class RouteValidator {
 
         return OPEN_API_ENDPOINTS
                 .stream()
-                .noneMatch(path::contains);
+                .noneMatch(path::startsWith);
     }
 }

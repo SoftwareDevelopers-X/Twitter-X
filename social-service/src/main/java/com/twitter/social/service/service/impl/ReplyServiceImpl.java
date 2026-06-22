@@ -65,21 +65,21 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public String deleteReply(Long replyId) {
-
+    public String deleteReply(Long replyId, Long userId, String role) {
         Reply reply = replyRepository.findById(replyId)
-                .orElseThrow(() ->
-                        new SocialException("Reply not found"));
+                .orElseThrow(() -> new SocialException("Reply not found"));
+
+        if (!reply.getUserId().equals(userId) && !"ADMIN".equalsIgnoreCase(role)) {
+            throw new SocialException("You are not allowed to delete this reply");
+        }
 
         replyRepository.delete(reply);
 
         TweetReplyDeletedEvent event = TweetReplyDeletedEvent.builder()
-                        .tweetId(reply.getTweetId())
-                        .userId(reply.getUserId())
-                        .build();
-
+                .tweetId(reply.getTweetId())
+                .userId(reply.getUserId())
+                .build();
         tweetInteractionProducer.publishTweetReplyDeletedEvent(event);
-
         return "Reply deleted successfully";
     }
 

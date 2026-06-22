@@ -203,12 +203,14 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     @Transactional
-    public void deleteTweet(Long tweetId, Long userId) {
+    public void deleteTweet(Long tweetId, Long userId, String role) {
         log.info("Deleting tweet {} by user {}", tweetId, userId);
         Tweet tweet = getTweetOrThrow(tweetId);
-        if (!tweet.getUserId().equals(userId)) {
+
+        if (!tweet.getUserId().equals(userId) && !"ADMIN".equalsIgnoreCase(role)) {
             throw new UnauthorizedTweetAccessException("You are not allowed to delete this tweet");
         }
+
         tweetRepository.delete(tweet);
         // Remove cached tweet
         redisTemplate.delete("tweet:" + tweetId);
