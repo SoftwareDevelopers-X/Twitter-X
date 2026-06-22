@@ -10,32 +10,39 @@ spring:
 
   cloud:
     gateway:
-      routes:
+      server:
+        webflux:
+          routes:
 
-        - id: auth-service
-          uri: lb://AUTH-SERVICE
-          predicates:
-            - Path=/api/auth/**,/api/admin/**,/api/test/**,/api/internal/**
+            # AUTH SERVICE
+            - id: auth-service
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/api/auth/**,/api/admin/**,/api/internal/**,/api/test/**
 
-        - id: tweet-service
-          uri: lb://TWEET-SERVICE
-          predicates:
-            - Path=/api/tweets/**
+            # TWEET SERVICE
+            - id: tweet-service
+              uri: lb://TWEET-SERVICE
+              predicates:
+                - Path=/api/tweets/**
 
-        - id: social-service
-          uri: lb://SOCIAL-SERVICE
-          predicates:
-            - Path=/api/bookmarks/**,/api/feed/**,/api/follows/**,/api/likes/**,/api/replies/**,/api/retweets/**,/social
+            # SOCIAL SERVICE
+            - id: social-service
+              uri: lb://SOCIAL-SERVICE
+              predicates:
+                - Path=/api/bookmarks/**,/api/feed/**,/api/follows/**,/api/likes/**,/api/replies/**,/api/retweets/**,/social
 
-        - id: notification-service
-          uri: lb://NOTIFICATION-SERVICE
-          predicates:
-            - Path=/api/notification/**
+            # NOTIFICATION SERVICE
+            - id: notification-service
+              uri: lb://NOTIFICATION-SERVICE
+              predicates:
+                - Path=/api/notification/**
 
-        - id: media-service
-          uri: lb://MEDIA-SERVICE
-          predicates:
-            - Path=/media/**
+            # MEDIA SERVICE
+            - id: media-service
+              uri: lb://MEDIA-SERVICE
+              predicates:
+                - Path=/media/**
 
 eureka:
   client:
@@ -43,3 +50,8 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     register-with-eureka: true
     fetch-registry: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: TRACE
