@@ -4,7 +4,7 @@ import com.twitter.events.commonEvents.TweetRepliedEvent;
 import com.twitter.events.commonEvents.TweetReplyDeletedEvent;
 import com.twitter.social.service.Enum.NotificationType;
 import com.twitter.social.service.Model.Reply;
-import com.twitter.social.service.client.TweetClient;
+import com.twitter.social.service.client.TweetServiceClient;
 import com.twitter.social.service.dto.NotificationEventDto;
 import com.twitter.social.service.dto.ReplyRequestDto;
 import com.twitter.social.service.events.TweetInteractionProducer;
@@ -26,7 +26,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     private final NotificationProducer notificationProducer;
 
-    private final TweetClient tweetClient;
+    private final TweetServiceClient tweetServiceClient;
     private final TweetInteractionProducer tweetInteractionProducer;
 
 
@@ -37,7 +37,7 @@ public class ReplyServiceImpl implements ReplyService {
             throw new SocialException("Reply content cannot be empty");
         }
 
-        TweetResponse tweet = tweetClient.getTweet(request.getTweetId());
+        TweetResponse tweet = tweetServiceClient.getTweet(request.getTweetId());
 
         Reply reply = Reply.builder()
                 .userId(request.getUserId())

@@ -1,10 +1,9 @@
 package com.twitter.social.service.service.impl;
 
 import com.twitter.social.service.Model.Bookmark;
-import com.twitter.social.service.client.TweetClient;
+import com.twitter.social.service.client.TweetServiceClient;
 import com.twitter.social.service.dto.BookmarkRequestDto;
 import com.twitter.social.service.exception.SocialException;
-import com.twitter.social.service.feignDto.TweetResponse;
 import com.twitter.social.service.repository.BookmarkRepository;
 import com.twitter.social.service.service.BookmarkService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,7 @@ import java.util.List;
 public class BookmarkServiceImpl implements BookmarkService {
 
     private final BookmarkRepository bookmarkRepository;
-    private final TweetClient tweetClient;
+    private final TweetServiceClient tweetServiceClient;
 
 
     @Override
@@ -27,7 +26,7 @@ public class BookmarkServiceImpl implements BookmarkService {
             throw new SocialException("Tweet already bookmarked");
         }
 
-        tweetClient.getTweet(request.getTweetId());
+        tweetServiceClient.getTweet(request.getTweetId());
 
         Bookmark bookmark = Bookmark.builder()
                 .userId(request.getUserId())

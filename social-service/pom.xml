@@ -107,7 +107,35 @@
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
 
+
+<!--		adding these for media serialization for jackson via feign-->
+
+		<dependency>
+			<groupId>io.github.openfeign.form</groupId>
+			<artifactId>feign-form</artifactId>
+			<version>3.8.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.openfeign.form</groupId>
+			<artifactId>feign-form-spring</artifactId>
+			<version>3.8.0</version>
+		</dependency>
+
+<!--		 adding for caching for redis-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+		</dependency>
+
 	</dependencies>
+
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

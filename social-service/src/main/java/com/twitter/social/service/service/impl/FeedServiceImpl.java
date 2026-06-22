@@ -2,7 +2,7 @@ package com.twitter.social.service.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twitter.social.service.cache.RedisService;
-import com.twitter.social.service.client.TweetClient;
+import com.twitter.social.service.client.TweetServiceClient;
 import com.twitter.social.service.dto.FeedTweetDto;
 import com.twitter.social.service.service.FeedService;
 import com.twitter.social.service.service.FollowService;
@@ -18,7 +18,7 @@ import java.util.List;
 public class FeedServiceImpl implements FeedService {
 
     private final FollowService followService;
-    private final TweetClient tweetClient;
+    private final TweetServiceClient tweetServiceClient;
     private final RedisService redisService;
     private final ObjectMapper objectMapper;
 
@@ -44,7 +44,7 @@ public class FeedServiceImpl implements FeedService {
             List<Long> followingUsers = followService.getFollowing(userId);
 
             List<FeedTweetDto> feedTweets =
-                    tweetClient.getTweetsByUserIds(followingUsers);
+                    tweetServiceClient.getTweetsByUserIds(followingUsers);
 
             for (FeedTweetDto tweet : feedTweets) {
                 tweet.setScore(calculateScore(tweet));

@@ -3,9 +3,9 @@ spring:
     name: TWEET-SERVICE
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/tweet-service
+    url: jdbc:postgresql://localhost:5432/tweetService
     username: postgres
-    password: Password@2026
+    password: "Venkat@2004"
     driver-class-name: org.postgresql.Driver
 
   jpa:

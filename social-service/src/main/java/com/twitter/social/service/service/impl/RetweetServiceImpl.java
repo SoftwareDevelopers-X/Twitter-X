@@ -4,7 +4,7 @@ import com.twitter.events.commonEvents.TweetRetweetRemovedEvent;
 import com.twitter.events.commonEvents.TweetRetweetedEvent;
 import com.twitter.social.service.Enum.NotificationType;
 import com.twitter.social.service.Model.Retweet;
-import com.twitter.social.service.client.TweetClient;
+import com.twitter.social.service.client.TweetServiceClient;
 import com.twitter.social.service.dto.NotificationEventDto;
 import com.twitter.social.service.dto.RetweetRequestDto;
 import com.twitter.social.service.events.TweetInteractionProducer;
@@ -24,7 +24,7 @@ public class RetweetServiceImpl implements RetweetService {
 
     private final NotificationProducer notificationProducer;
 
-    private final TweetClient tweetClient;
+    private final TweetServiceClient tweetServiceClient;
     private final TweetInteractionProducer tweetInteractionProducer;
 
 
@@ -35,7 +35,7 @@ public class RetweetServiceImpl implements RetweetService {
             throw new SocialException("Already retweeted this tweet");
         }
 
-        TweetResponse tweet = tweetClient.getTweet(request.getTweetId());
+        TweetResponse tweet = tweetServiceClient.getTweet(request.getTweetId());
 
         Retweet retweet = Retweet.builder()
                 .userId(request.getUserId())
