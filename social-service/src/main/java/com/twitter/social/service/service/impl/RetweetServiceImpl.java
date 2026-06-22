@@ -1,5 +1,7 @@
 package com.twitter.social.service.service.impl;
 
+import com.twitter.events.commonEvents.TweetRetweetRemovedEvent;
+import com.twitter.events.commonEvents.TweetRetweetedEvent;
 import com.twitter.social.service.Enum.NotificationType;
 import com.twitter.social.service.Model.Retweet;
 import com.twitter.social.service.client.TweetClient;
@@ -9,8 +11,6 @@ import com.twitter.social.service.events.TweetInteractionProducer;
 import com.twitter.social.service.exception.SocialException;
 import com.twitter.social.service.feignDto.TweetResponse;
 import com.twitter.social.service.kafkaProducer.NotificationProducer;
-import com.twitter.social.service.kafkaProducer.TweetRetweetRemovedEvent;
-import com.twitter.social.service.kafkaProducer.TweetRetweetedEvent;
 import com.twitter.social.service.repository.RetweetRepository;
 import com.twitter.social.service.service.RetweetService;
 import lombok.RequiredArgsConstructor;

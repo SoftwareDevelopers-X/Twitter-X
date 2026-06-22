@@ -1,6 +1,6 @@
 package com.twitter.social.service.events;
 
-import com.twitter.social.service.kafkaProducer.*;
+import com.twitter.events.commonEvents.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -12,6 +12,7 @@ public class TweetInteractionProducer {
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public void publishTweetLikedEvent(TweetLikedEvent event) {
+        System.out.println("send Like Event: " + event);
         kafkaTemplate.send("tweet-liked-topic", event);
     }
 

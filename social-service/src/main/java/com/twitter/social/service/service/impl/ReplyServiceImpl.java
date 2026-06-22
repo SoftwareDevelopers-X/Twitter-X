@@ -1,5 +1,7 @@
 package com.twitter.social.service.service.impl;
 
+import com.twitter.events.commonEvents.TweetRepliedEvent;
+import com.twitter.events.commonEvents.TweetReplyDeletedEvent;
 import com.twitter.social.service.Enum.NotificationType;
 import com.twitter.social.service.Model.Reply;
 import com.twitter.social.service.client.TweetClient;
@@ -9,8 +11,6 @@ import com.twitter.social.service.events.TweetInteractionProducer;
 import com.twitter.social.service.exception.SocialException;
 import com.twitter.social.service.feignDto.TweetResponse;
 import com.twitter.social.service.kafkaProducer.NotificationProducer;
-import com.twitter.social.service.kafkaProducer.TweetRepliedEvent;
-import com.twitter.social.service.kafkaProducer.TweetReplyDeletedEvent;
 import com.twitter.social.service.repository.ReplyRepository;
 import com.twitter.social.service.service.ReplyService;
 import lombok.RequiredArgsConstructor;

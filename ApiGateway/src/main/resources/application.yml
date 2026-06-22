@@ -1,6 +1,9 @@
 server:
   port: 8089
 
+jwt:
+  secret: TWljcm9zZXJ2aWNlc1R3aXR0ZXJDbG9uZUF1dGhTZXJ2aWNlU3VwZXJTZWNyZXRLZXkyMDI2UHJvZHVjdGlvbg==
+
 spring:
   application:
     name: API-GATEWAY

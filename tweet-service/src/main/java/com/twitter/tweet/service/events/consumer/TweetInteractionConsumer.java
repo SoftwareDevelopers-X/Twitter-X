@@ -1,10 +1,11 @@
 package com.twitter.tweet.service.events.consumer;
 
 
-import com.twitter.tweet.service.events.socialTweetEvents.*;
+import com.twitter.events.commonEvents.*;
 import com.twitter.tweet.service.model.Tweet;
 import com.twitter.tweet.service.repository.TweetRepository;
 import com.twitter.tweet.service.service.TrendingService;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -18,8 +19,14 @@ public class TweetInteractionConsumer {
     private final TweetRepository tweetRepository;
     private final TrendingService trendingService;
 
+    @PostConstruct
+    public void init() {
+        System.out.println("TweetInteractionConsumer initialized");
+    }
+
     @KafkaListener(topics = "tweet-liked-topic", groupId = "tweet-group")
     public void consumeTweetLikedEvent(TweetLikedEvent event) {
+        System.out.println("EVENT RECEIVED");
         Tweet tweet = tweetRepository.findById(event.getTweetId()).orElseThrow();
         tweet.setLikeCount(tweet.getLikeCount() + 1);
         tweetRepository.save(tweet);

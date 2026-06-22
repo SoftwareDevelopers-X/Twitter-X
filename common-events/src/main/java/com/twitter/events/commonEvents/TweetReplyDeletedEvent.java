@@ -1,4 +1,4 @@
-package com.twitter.tweet.service.events.socialTweetEvents;
+package com.twitter.events.commonEvents;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TweetRepliedEvent {
+public class TweetReplyDeletedEvent {
 
     private Long tweetId;
 

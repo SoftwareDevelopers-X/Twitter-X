@@ -5,7 +5,9 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JacksonJsonDeserializer;
 
 import java.util.HashMap;
@@ -15,39 +17,73 @@ import java.util.Map;
 public class KafkaConsumerConfig {
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Object>
-    kafkaListenerContainerFactory() {
+    public ConsumerFactory<String, Object> consumerFactory() {
 
-        Map<String, Object> props = new HashMap<>();
+        Map<String, Object> config = new HashMap<>();
 
-        props.put(
-                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "localhost:9092");
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "tweet-group");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+                ErrorHandlingDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+                ErrorHandlingDeserializer.class);
 
-        props.put(
-                ConsumerConfig.GROUP_ID_CONFIG,
-                "elastic-group");
-
-        props.put(
-                ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+        config.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS,
                 StringDeserializer.class);
 
-        props.put(
-                ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+        config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS,
                 JacksonJsonDeserializer.class);
 
-        props.put(
-                "spring.json.trusted.packages",
-                "com.twitter.events");
+        config.put(JacksonJsonDeserializer.TRUSTED_PACKAGES, "*");
 
-        DefaultKafkaConsumerFactory<String, Object> factory =
-                new DefaultKafkaConsumerFactory<>(props);
+        // REMOVE THIS LINE
+        // config.put(JacksonJsonDeserializer.USE_TYPE_INFO_HEADERS, false);
 
-        ConcurrentKafkaListenerContainerFactory<String, Object> listenerFactory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-
-        listenerFactory.setConsumerFactory(factory);
-
-        return listenerFactory;
+        return new DefaultKafkaConsumerFactory<>(config);
     }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, Object> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+
+//    @Bean
+//    public ConcurrentKafkaListenerContainerFactory<String, Object>
+//    kafkaListenerContainerFactory() {
+//
+//        Map<String, Object> props = new HashMap<>();
+//
+//        props.put(
+//                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
+//                "localhost:9092");
+//
+//        props.put(
+//                ConsumerConfig.GROUP_ID_CONFIG,
+//                "elastic-group");
+//
+//        props.put(
+//                ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+//                StringDeserializer.class);
+//
+//        props.put(
+//                ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+//                JacksonJsonDeserializer.class);
+//
+//        props.put(
+//                "spring.json.trusted.packages",
+//                "*");
+//
+//        DefaultKafkaConsumerFactory<String, Object> factory =
+//                new DefaultKafkaConsumerFactory<>(props);
+//
+//        ConcurrentKafkaListenerContainerFactory<String, Object> listenerFactory =
+//                new ConcurrentKafkaListenerContainerFactory<>();
+//
+//        listenerFactory.setConsumerFactory(factory);
+//
+//        return listenerFactory;
+//    }
 }

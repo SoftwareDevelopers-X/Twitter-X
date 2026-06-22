@@ -63,8 +63,7 @@ public class SecurityConfig {
                                 "/api/auth/refresh",
                                 "/api/auth/forgot-password",
                                 "/api/auth/reset-password",
-                                 "/api/internal/**",
-                                "/**"
+                                 "/api/internal/**"
                         ).permitAll()
 
                         // ADMIN ENDPOINTS

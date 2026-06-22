@@ -1,4 +1,4 @@
-package com.twitter.social.service.kafkaProducer;
+package com.twitter.events.commonEvents;
 
 import lombok.*;
 

@@ -1,5 +1,7 @@
 package com.twitter.social.service.service.impl;
 
+import com.twitter.events.commonEvents.TweetLikedEvent;
+import com.twitter.events.commonEvents.TweetUnlikedEvent;
 import com.twitter.social.service.Enum.NotificationType;
 import com.twitter.social.service.Model.Like;
 import com.twitter.social.service.client.TweetClient;
@@ -9,8 +11,6 @@ import com.twitter.social.service.events.TweetInteractionProducer;
 import com.twitter.social.service.exception.SocialException;
 import com.twitter.social.service.feignDto.TweetResponse;
 import com.twitter.social.service.kafkaProducer.NotificationProducer;
-import com.twitter.social.service.kafkaProducer.TweetLikedEvent;
-import com.twitter.social.service.kafkaProducer.TweetUnlikedEvent;
 import com.twitter.social.service.repository.LikeRepository;
 import com.twitter.social.service.service.LikeService;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +42,7 @@ public class LikeServiceImpl implements LikeService {
                 .build();
 
         likeRepository.save(like);
+
               NotificationEventDto event = new NotificationEventDto(
                 request.getUserId(),
                       tweet.getUserId(),
@@ -49,7 +50,7 @@ public class LikeServiceImpl implements LikeService {
                 "liked your tweet",
                 NotificationType.LIKE);
 
-        notificationProducer.send(event);
+              notificationProducer.send(event);
 
         TweetLikedEvent tweetLikedEvent= TweetLikedEvent.builder()
                         .tweetId(like.getTweetId())

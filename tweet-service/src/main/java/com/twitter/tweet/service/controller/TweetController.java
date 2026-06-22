@@ -20,7 +20,7 @@ public class TweetController {
     private final TweetService tweetService;
 
     @PostMapping
-    public ResponseEntity<TweetResponse> createTweet(@RequestBody TweetRequest request, @RequestHeader Long userId) {
+    public ResponseEntity<TweetResponse> createTweet(@RequestBody TweetRequest request, @RequestHeader("X-User-Id") Long userId) {
         TweetResponse response = this.tweetService.createTweet(request, userId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -33,12 +33,12 @@ public class TweetController {
 
     @PutMapping("/{tweetId}")
     public ResponseEntity<TweetResponse> updateTweet(@PathVariable Long tweetId, @RequestBody UpdateTweetRequest request,
-            @RequestHeader Long userId) {
+            @RequestHeader("X-User-Id") Long userId) {
         return ResponseEntity.ok(tweetService.updateTweet(tweetId, request, userId));
     }
 
     @DeleteMapping("/{tweetId}")
-    public ResponseEntity<String> deleteTweet(@PathVariable Long tweetId, @RequestHeader Long userId) {
+    public ResponseEntity<String> deleteTweet(@PathVariable Long tweetId, @RequestHeader("X-User-Id") Long userId) {
         this.tweetService.deleteTweet(tweetId, userId);
         return ResponseEntity.ok("Tweet deleted successfully");
     }
