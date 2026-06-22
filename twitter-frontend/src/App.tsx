@@ -1,123 +1,122 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Toaster } from 'react-hot-toast';
-import { useAuthStore } from './store/authStore';
-
-// Components & Layout
-import Layout from './components/Layout';
-
-// Pages
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Home from './pages/Home';
-import Profile from './pages/Profile';
-import TweetDetail from './pages/TweetDetail';
-import Notifications from './pages/Notifications';
-import Bookmarks from './pages/Bookmarks';
-import Search from './pages/Search';
-import Settings from './pages/Settings';
-
-import { Loader2 } from 'lucide-react';
-import './App.css';
-
-// Create a React Query client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: 1,
-    },
-  },
-});
-
-// Guard component for protected routes
-const PrivateRoute: React.FC = () => {
-  const { isAuthenticated, isLoading } = useAuthStore();
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-twitter-blue">
-        <Loader2 className="w-10 h-10 animate-spin" />
-        <span className="text-xs text-twitter-gray-1 mt-4 font-semibold">Connecting to X-Clone...</span>
-      </div>
-    );
-  }
-
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
-};
-
-// Guard component to redirect authenticated users away from auth pages
-const AuthRoute: React.FC = () => {
-  const { isAuthenticated, isLoading } = useAuthStore();
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-twitter-blue">
-        <Loader2 className="w-10 h-10 animate-spin" />
-      </div>
-    );
-  }
-
-  return !isAuthenticated ? <Outlet /> : <Navigate to="/" replace />;
-};
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
+import './App.css'
 
 function App() {
-  const { initAuth } = useAuthStore();
-
-  // Restore session from localStorage on mount
-  useEffect(() => {
-    initAuth();
-  }, [initAuth]);
+  const [count, setCount] = useState(0)
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          {/* Public Auth Routes */}
-          <Route element={<AuthRoute />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
+    <>
+      <section id="center">
+        <div className="hero">
+          <img src={heroImg} className="base" width="170" height="179" alt="" />
+          <img src={reactLogo} className="framework" alt="React logo" />
+          <img src={viteLogo} className="vite" alt="Vite logo" />
+        </div>
+        <div>
+          <h1>Get started</h1>
+          <p>
+            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+          </p>
+        </div>
+        <button
+          type="button"
+          className="counter"
+          onClick={() => setCount((count) => count + 1)}
+        >
+          Count is {count}
+        </button>
+      </section>
 
-          {/* Protected Routes inside App Layout */}
-          <Route element={<PrivateRoute />}>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/profile/:id" element={<Profile />} />
-              <Route path="/tweet/:id" element={<TweetDetail />} />
-              <Route path="/notifications" element={<Notifications />} />
-              <Route path="/bookmarks" element={<Bookmarks />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/settings" element={<Settings />} />
-            </Route>
-          </Route>
+      <div className="ticks"></div>
 
-          {/* Fallback route */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </BrowserRouter>
-      
-      {/* Toast Notifications */}
-      <Toaster 
-        position="bottom-center"
-        toastOptions={{
-          style: {
-            background: '#16181c',
-            color: '#fff',
-            border: '1px solid #2f3336',
-            borderRadius: '9999px',
-            fontSize: '14px',
-            fontWeight: 'bold',
-          },
-        }}
-      />
-      
-      {/* React Query dev tools */}
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  );
+      <section id="next-steps">
+        <div id="docs">
+          <svg className="icon" role="presentation" aria-hidden="true">
+            <use href="/icons.svg#documentation-icon"></use>
+          </svg>
+          <h2>Documentation</h2>
+          <p>Your questions, answered</p>
+          <ul>
+            <li>
+              <a href="https://vite.dev/" target="_blank">
+                <img className="logo" src={viteLogo} alt="" />
+                Explore Vite
+              </a>
+            </li>
+            <li>
+              <a href="https://react.dev/" target="_blank">
+                <img className="button-icon" src={reactLogo} alt="" />
+                Learn more
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="social">
+          <svg className="icon" role="presentation" aria-hidden="true">
+            <use href="/icons.svg#social-icon"></use>
+          </svg>
+          <h2>Connect with us</h2>
+          <p>Join the Vite community</p>
+          <ul>
+            <li>
+              <a href="https://github.com/vitejs/vite" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#github-icon"></use>
+                </svg>
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://chat.vite.dev/" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#discord-icon"></use>
+                </svg>
+                Discord
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/vite_js" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#x-icon"></use>
+                </svg>
+                X.com
+              </a>
+            </li>
+            <li>
+              <a href="https://bsky.app/profile/vite.dev" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#bluesky-icon"></use>
+                </svg>
+                Bluesky
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div className="ticks"></div>
+      <section id="spacer"></section>
+    </>
+  )
 }
 
-export default App;
+export default App
