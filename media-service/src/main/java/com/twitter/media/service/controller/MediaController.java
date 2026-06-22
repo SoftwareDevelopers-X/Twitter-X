@@ -15,8 +15,6 @@ public class MediaController {
     private final MediaService mediaService;
 
     @PostMapping("/upload")
-<<<<<<< HEAD
-=======
     public ResponseEntity<MediaResponse> upload(
             @RequestParam("file") MultipartFile file,
             @RequestParam("userId") Long userId) throws Exception {
@@ -34,6 +32,5 @@ public class MediaController {
     public ResponseEntity<Void> delete(@PathVariable Long mediaId) throws Exception {
         mediaService.delete(mediaId);
         return ResponseEntity.noContent().build();
->>>>>>> d5a0dd8 (Implemented media and social service(profile part) changes)
     }
 }

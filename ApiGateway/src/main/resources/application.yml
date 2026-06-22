@@ -30,7 +30,7 @@ spring:
             - id: social-service
               uri: lb://SOCIAL-SERVICE
               predicates:
-                - Path=/api/bookmarks/**,/api/feed/**,/api/follows/**,/api/likes/**,/api/replies/**,/api/retweets/**,/social
+                - Path=/api/bookmarks/**,/api/feed/**,/api/follows/**,/api/likes/**,/api/replies/**,/api/retweets/**,/api/profile/**,/social
 
             # NOTIFICATION SERVICE
             - id: notification-service

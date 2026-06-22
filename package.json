@@ -1,0 +1,9 @@
+{
+  "name": "twitter-x-root",
+  "version": "1.0.0",
+  "description": "Root workspace configuration for Twitter-X",
+  "scripts": {
+    "start": "npm run --prefix twitter-frontend dev",
+    "build": "npm run --prefix twitter-frontend build"
+  }
+}
