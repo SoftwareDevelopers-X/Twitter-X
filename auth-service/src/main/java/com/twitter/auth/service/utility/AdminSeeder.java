@@ -16,16 +16,18 @@ public class AdminSeeder {
 
     @PostConstruct
     public void init() {
-        if (!userRepository.existsByEmail("ashraf@gmail.com")) {
-            User admin = User.builder()
-                    .username("Ashraf")
-                    .email("ashraf@gmail.com")
-                    .password(passwordEncoder.encode("admin@1234"))
-                    .role(Role.ADMIN)
-                    .build();
 
-            userRepository.save(admin);
-        }
+        User admin = userRepository.findByEmail("ashraf@gmail.com")
+                .orElse(User.builder()
+                        .username("Ashraf")
+                        .email("ashraf@gmail.com")
+                        .role(Role.ADMIN)
+                        .build());
+
+        admin.setPassword(passwordEncoder.encode("admin@1234"));
+        admin.setEnabled(true);
+
+        userRepository.save(admin);
     }
 }
 
