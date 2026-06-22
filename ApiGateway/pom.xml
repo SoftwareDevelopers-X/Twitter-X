@@ -35,6 +35,14 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
+
+<!--		swagger-ui-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
 		<!-- Load Balancer -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
