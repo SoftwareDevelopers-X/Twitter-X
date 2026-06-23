@@ -1,16 +1,15 @@
 package com.twitter.social.service.service.impl;
 
-import com.twitter.social.service.Enum.NotificationType;
+import com.twitter.events.commonEvents.NotificationEventDto;
+import com.twitter.events.commonEvents.NotificationType;
 import com.twitter.social.service.Model.Follow;
 import com.twitter.social.service.cache.RedisService;
 import com.twitter.social.service.dto.FollowRequestDto;
-import com.twitter.social.service.dto.NotificationEventDto;
 import com.twitter.social.service.exception.SocialException;
 import com.twitter.social.service.kafkaProducer.NotificationProducer;
 import com.twitter.social.service.repository.FollowRepository;
 import com.twitter.social.service.service.FollowService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

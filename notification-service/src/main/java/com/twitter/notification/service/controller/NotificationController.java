@@ -1,6 +1,5 @@
 package com.twitter.notification.service.controller;
 
-import com.twitter.notification.service.dto.NotificationEventDto;
 import com.twitter.notification.service.dto.NotificationResponse;
 import com.twitter.notification.service.service.NotificationService;
 import lombok.RequiredArgsConstructor;

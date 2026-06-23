@@ -1,5 +1,4 @@
 package com.twitter.social.service.config;
-import com.twitter.social.service.dto.NotificationEventDto;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;

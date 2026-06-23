@@ -1,6 +1,5 @@
 package com.twitter.notification.service.config;
 
-import com.twitter.notification.service.dto.NotificationEventDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -43,7 +42,7 @@ public class KafkaConfig {
         config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JacksonJsonDeserializer.class);
         config.put(JacksonJsonDeserializer.TRUSTED_PACKAGES, "*");
         config.put(JacksonJsonDeserializer.VALUE_DEFAULT_TYPE,
-                "com.twitter.notification.service.dto.NotificationEventDto");
+                "com.twitter.events.commonEvents.NotificationEventDto");
         return new DefaultKafkaConsumerFactory<>(config);
     }
 

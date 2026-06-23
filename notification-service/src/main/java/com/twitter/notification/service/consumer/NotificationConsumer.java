@@ -1,6 +1,6 @@
 package com.twitter.notification.service.consumer;
 
-import com.twitter.notification.service.dto.NotificationEventDto;
+import com.twitter.events.commonEvents.NotificationEventDto;
 import com.twitter.notification.service.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
