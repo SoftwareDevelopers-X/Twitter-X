@@ -50,13 +50,7 @@ public class FeedServiceImpl implements FeedService {
                 tweet.setScore(calculateScore(tweet));
             }
 
-            feedTweets.sort((a, b) -> {
-                int scoreCompare = b.getScore().compareTo(a.getScore());
-                if (scoreCompare == 0) {
-                    return b.getCreatedAt().compareTo(a.getCreatedAt());
-                }
-                return scoreCompare;
-            });
+            feedTweets.sort((a, b) -> b.getCreatedAt().compareTo(a.getCreatedAt()));
 
             String json = objectMapper.writeValueAsString(feedTweets);
             redisService.set(cacheKey, json, 10);

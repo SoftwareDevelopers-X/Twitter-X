@@ -150,7 +150,7 @@ const RightSidebar: React.FC = () => {
     return trendingHashtags.map(h => ({
       hashtag: h.hashtag.startsWith('#') ? h.hashtag : `#${h.hashtag}`,
       posts: h.posts
-    })).slice(0, 4);
+    }));
   }, [trendingHashtags]);
 
   // Fetch dynamic follow suggestions using registered users only

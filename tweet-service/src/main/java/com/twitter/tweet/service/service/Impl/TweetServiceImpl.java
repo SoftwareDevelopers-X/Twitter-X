@@ -228,7 +228,7 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public List<TweetResponse> getUserTweets(Long userId) {
         log.info("Fetching tweets of user {}", userId);
-        return tweetRepository.findByUserId(userId)
+        return tweetRepository.findByUserIdOrderByCreatedAtDesc(userId)
                 .stream()
                 .map(TweetResponseMapper::mapToResponse)
                 .toList();
@@ -255,7 +255,7 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public Page<TweetResponse> getAllTweets(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, org.springframework.data.domain.Sort.by(org.springframework.data.domain.Sort.Direction.DESC, "createdAt"));
         return tweetRepository.findAll(pageable).map(TweetResponseMapper::mapToResponse);
     }
 
@@ -333,7 +333,7 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public List<TweetResponse> getTweetsByUserIds(List<Long> userIds) {
         log.info("Fetching tweets for user IDs {}", userIds);
-        return tweetRepository.findByUserIdIn(userIds)
+        return tweetRepository.findByUserIdInOrderByCreatedAtDesc(userIds)
                 .stream()
                 .map(TweetResponseMapper::mapToResponse)
                 .toList();
@@ -341,7 +341,7 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public List<com.twitter.tweet.service.dto.response.HashtagResponse> getTrendingHashtags() {
-        List<Object[]> results = hashtagRepository.findTrendingHashtags(PageRequest.of(0, 10));
+        List<Object[]> results = hashtagRepository.findTrendingHashtags(PageRequest.of(0, 20));
         return results.stream()
                 .map(row -> com.twitter.tweet.service.dto.response.HashtagResponse.builder()
                         .hashtag((String) row[0])
