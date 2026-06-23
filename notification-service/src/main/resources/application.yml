@@ -8,5 +8,5 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JacksonJsonDeserializer
       properties:
         spring.json.trusted.packages: "*"
-        spring.json.value.default.type: com.twitter.notification.service.dto.NotificationEventDto
+        spring.json.value.default.type: com.twitter.events.commonEvents.NotificationEventDto
 

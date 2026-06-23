@@ -9,12 +9,12 @@ public class RouteValidator {
 
     public static final List<String> OPEN_API_ENDPOINTS =
             List.of(
-
                     "/api/auth/register",
                     "/api/auth/login",
                     "/api/auth/refresh",
                     "/swagger-ui",
-                    "/v3/api-docs"
+                    "/v3/api-docs",
+                    "/ws/notifications"
             );
 
     public boolean isSecured(String path) {

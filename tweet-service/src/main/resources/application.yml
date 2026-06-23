@@ -3,10 +3,23 @@ spring:
     name: TWEET-SERVICE
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/tweet-service
+    url: jdbc:postgresql://localhost:5433/tweet-service
     username: postgres
     password: "Password@2026"
     driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 5000
+            read-timeout: 5000
 
   jpa:
     hibernate:

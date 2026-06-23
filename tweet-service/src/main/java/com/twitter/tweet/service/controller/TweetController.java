@@ -73,4 +73,14 @@ public class TweetController {
     public ResponseEntity<List<TweetResponse>> getTrendingTweets(@RequestParam(defaultValue = "24h") String window) {
         return ResponseEntity.ok(tweetService.getTrendingTweets(window));
     }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<TweetResponse>> getTweetsByUserIds(@RequestParam List<Long> userIds) {
+        return ResponseEntity.ok(tweetService.getTweetsByUserIds(userIds));
+    }
+
+    @GetMapping("/hashtags/trending")
+    public ResponseEntity<List<com.twitter.tweet.service.dto.response.HashtagResponse>> getTrendingHashtags() {
+        return ResponseEntity.ok(tweetService.getTrendingHashtags());
+    }
 }

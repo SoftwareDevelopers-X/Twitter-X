@@ -32,4 +32,6 @@ public interface ProfileService {
     PagedResponse<TweetDto> getMedia(Long userId, int page, int size);
 
     PagedResponse<TweetDto> getLikedTweets(Long userId, int page, int size);
+
+    java.util.List<ProfileResponse> searchProfiles(String query, Long currentUserId);
 }

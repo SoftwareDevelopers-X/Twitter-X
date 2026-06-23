@@ -131,3 +131,8 @@ export interface ApiResponse<T> {
   data: T;
   timestamp?: number;
 }
+
+export interface HashtagResponse {
+  hashtag: string;
+  posts: number;
+}

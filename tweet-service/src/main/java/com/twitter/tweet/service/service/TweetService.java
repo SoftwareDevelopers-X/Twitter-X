@@ -27,4 +27,8 @@ public interface TweetService {
     List<TweetResponse> searchTweets(String keyword);
 
     List<TweetResponse> searchSuggestions(String keyword);
+
+    List<TweetResponse> getTweetsByUserIds(List<Long> userIds);
+
+    List<com.twitter.tweet.service.dto.response.HashtagResponse> getTrendingHashtags();
 }

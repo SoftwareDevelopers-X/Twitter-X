@@ -38,6 +38,12 @@ spring:
               predicates:
                 - Path=/api/notification/**
 
+            # NOTIFICATION WEBSOCKET
+            - id: notification-websocket
+              uri: lb:ws://NOTIFICATION-SERVICE
+              predicates:
+                - Path=/ws/notifications**
+
             # MEDIA SERVICE
             - id: media-service
               uri: lb://MEDIA-SERVICE

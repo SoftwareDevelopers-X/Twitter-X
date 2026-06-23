@@ -41,8 +41,6 @@ public class KafkaConfig {
         config.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
         config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JacksonJsonDeserializer.class);
         config.put(JacksonJsonDeserializer.TRUSTED_PACKAGES, "*");
-        config.put(JacksonJsonDeserializer.VALUE_DEFAULT_TYPE,
-                "com.twitter.events.commonEvents.NotificationEventDto");
         return new DefaultKafkaConsumerFactory<>(config);
     }
 

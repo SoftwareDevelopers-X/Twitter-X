@@ -4,6 +4,7 @@ import { useAuthStore } from '../store/authStore';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { tweetService, socialService } from '../services/api';
 import { useUser } from '../hooks/useUser';
+import { updateTweetInCache, snapshotTweetsCache } from '../utils/queryCache';
 import { 
   MessageCircle, 
   Repeat2, 
@@ -55,16 +56,39 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
         return socialService.likeTweet(tweet.tweetId, currentUserId);
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['like-status', currentUserId, tweet.tweetId] });
-      queryClient.invalidateQueries({ queryKey: ['tweets'] });
-      queryClient.invalidateQueries({ queryKey: ['feed-tweets'] });
-      queryClient.invalidateQueries({ queryKey: ['tweet-detail', tweet.tweetId] });
-      queryClient.invalidateQueries({ queryKey: ['user-posts'] });
-      queryClient.invalidateQueries({ queryKey: ['liked-posts'] });
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['like-status', currentUserId, tweet.tweetId] });
+      await queryClient.cancelQueries({ queryKey: ['tweets'] });
+      await queryClient.cancelQueries({ queryKey: ['feed-tweets'] });
+      await queryClient.cancelQueries({ queryKey: ['tweet-detail', tweet.tweetId] });
+      await queryClient.cancelQueries({ queryKey: ['user-posts'] });
+      await queryClient.cancelQueries({ queryKey: ['liked-posts'] });
+
+      const previousLikeStatus = queryClient.getQueryData(['like-status', currentUserId, tweet.tweetId]);
+      const previousTweetsSnapshots = snapshotTweetsCache(queryClient, tweet.tweetId);
+
+      const nextLiked = !isLiked;
+      queryClient.setQueryData(['like-status', currentUserId, tweet.tweetId], nextLiked);
+
+      updateTweetInCache(queryClient, tweet.tweetId, (t) => ({
+        ...t,
+        likeCount: Math.max(0, t.likeCount + (isLiked ? -1 : 1))
+      }));
+
+      return { previousLikeStatus, previousTweetsSnapshots };
     },
-    onError: () => {
+    onError: (_err, _variables, context) => {
+      if (context) {
+        queryClient.setQueryData(['like-status', currentUserId, tweet.tweetId], context.previousLikeStatus);
+        context.previousTweetsSnapshots.forEach((snapshot) => {
+          queryClient.setQueryData(snapshot.queryKey, snapshot.data);
+        });
+      }
       toast.error('Failed to update like status');
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['like-status', currentUserId, tweet.tweetId] });
+      queryClient.invalidateQueries({ queryKey: ['tweet-detail', tweet.tweetId] });
     }
   });
 
@@ -84,16 +108,41 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
         return socialService.retweet(tweet.tweetId, currentUserId);
       }
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['retweet-status', currentUserId, tweet.tweetId] });
-      queryClient.invalidateQueries({ queryKey: ['tweets'] });
-      queryClient.invalidateQueries({ queryKey: ['feed-tweets'] });
-      queryClient.invalidateQueries({ queryKey: ['tweet-detail', tweet.tweetId] });
-      queryClient.invalidateQueries({ queryKey: ['user-posts'] });
-      toast.success(isRetweeted ? 'Retweet removed' : 'Retweeted successfully');
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['retweet-status', currentUserId, tweet.tweetId] });
+      await queryClient.cancelQueries({ queryKey: ['tweets'] });
+      await queryClient.cancelQueries({ queryKey: ['feed-tweets'] });
+      await queryClient.cancelQueries({ queryKey: ['tweet-detail', tweet.tweetId] });
+      await queryClient.cancelQueries({ queryKey: ['user-posts'] });
+
+      const previousRetweetStatus = queryClient.getQueryData(['retweet-status', currentUserId, tweet.tweetId]);
+      const previousTweetsSnapshots = snapshotTweetsCache(queryClient, tweet.tweetId);
+
+      const nextRetweeted = !isRetweeted;
+      queryClient.setQueryData(['retweet-status', currentUserId, tweet.tweetId], nextRetweeted);
+
+      updateTweetInCache(queryClient, tweet.tweetId, (t) => ({
+        ...t,
+        retweetCount: Math.max(0, t.retweetCount + (isRetweeted ? -1 : 1))
+      }));
+
+      return { previousRetweetStatus, previousTweetsSnapshots };
     },
-    onError: () => {
+    onError: (_err, _variables, context) => {
+      if (context) {
+        queryClient.setQueryData(['retweet-status', currentUserId, tweet.tweetId], context.previousRetweetStatus);
+        context.previousTweetsSnapshots.forEach((snapshot) => {
+          queryClient.setQueryData(snapshot.queryKey, snapshot.data);
+        });
+      }
       toast.error('Failed to update retweet status');
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['retweet-status', currentUserId, tweet.tweetId] });
+      queryClient.invalidateQueries({ queryKey: ['tweet-detail', tweet.tweetId] });
+    },
+    onSuccess: () => {
+      toast.success(isRetweeted ? 'Retweet removed' : 'Retweeted successfully');
     }
   });
 
@@ -113,13 +162,28 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
         return socialService.bookmarkTweet(tweet.tweetId, currentUserId);
       }
     },
-    onSuccess: () => {
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['bookmark-status', currentUserId, tweet.tweetId] });
+      await queryClient.cancelQueries({ queryKey: ['bookmarks', currentUserId] });
+
+      const previousBookmarkStatus = queryClient.getQueryData(['bookmark-status', currentUserId, tweet.tweetId]);
+
+      queryClient.setQueryData(['bookmark-status', currentUserId, tweet.tweetId], !isBookmarked);
+
+      return { previousBookmarkStatus };
+    },
+    onError: (_err, _variables, context) => {
+      if (context) {
+        queryClient.setQueryData(['bookmark-status', currentUserId, tweet.tweetId], context.previousBookmarkStatus);
+      }
+      toast.error('Failed to update bookmark status');
+    },
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['bookmark-status', currentUserId, tweet.tweetId] });
       queryClient.invalidateQueries({ queryKey: ['bookmarks', currentUserId] });
-      toast.success(isBookmarked ? 'Removed from Bookmarks' : 'Saved to Bookmarks');
     },
-    onError: () => {
-      toast.error('Failed to update bookmark status');
+    onSuccess: () => {
+      toast.success(isBookmarked ? 'Removed from Bookmarks' : 'Saved to Bookmarks');
     }
   });
 
@@ -315,57 +379,57 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
         )}
 
         {/* Interactive Stats Buttons */}
-        <div className="flex justify-between max-w-[420px] mt-4 text-twitter-gray-1" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between w-full max-w-[425px] mt-4 text-twitter-gray-1" onClick={(e) => e.stopPropagation()}>
           
           {/* Reply Button */}
-          <button 
-            onClick={() => setIsReplyOpen(true)}
-            className="flex items-center gap-1.5 text-xs hover:text-twitter-blue group transition-colors duration-200"
-          >
-            <div className="p-2 rounded-full group-hover:bg-twitter-blue/10 transition-colors duration-200">
-              <MessageCircle className="w-4 h-4" />
-            </div>
-            <span>{tweet.replyCount || 0}</span>
-          </button>
+          <div className="flex items-center group text-twitter-gray-1 hover:text-twitter-blue">
+            <button 
+              onClick={() => setIsReplyOpen(true)}
+              className="p-2 rounded-full group-hover:bg-twitter-blue/10 transition-all duration-200 flex items-center justify-center flex-shrink-0"
+            >
+              <MessageCircle className="w-[18px] h-[18px] transition-transform duration-150 active:scale-75" />
+            </button>
+            <span className="text-[13px] ml-1 select-none w-8 text-left transition-colors duration-200 leading-none tabular-nums flex items-center">{tweet.replyCount || 0}</span>
+          </div>
 
           {/* Retweet Button */}
-          <button 
-            onClick={() => retweetMutation.mutate()}
-            className={`flex items-center gap-1.5 text-xs group transition-colors duration-200 ${isRetweeted ? 'text-green-500' : 'hover:text-green-500'}`}
-          >
-            <div className={`p-2 rounded-full transition-colors duration-200 ${isRetweeted ? 'bg-green-500/10' : 'group-hover:bg-green-500/10'}`}>
-              <Repeat2 className="w-4 h-4" />
-            </div>
-            <span>{tweet.retweetCount || 0}</span>
-          </button>
+          <div className={`flex items-center group ${isRetweeted ? 'text-green-500' : 'text-twitter-gray-1 hover:text-green-500'}`}>
+            <button 
+              onClick={() => retweetMutation.mutate()}
+              className="p-2 rounded-full group-hover:bg-green-500/10 transition-all duration-200 flex items-center justify-center flex-shrink-0"
+            >
+              <Repeat2 className="w-[18px] h-[18px] transition-transform duration-150 active:scale-75" />
+            </button>
+            <span className="text-[13px] ml-1 select-none w-8 text-left transition-colors duration-200 leading-none tabular-nums flex items-center">{tweet.retweetCount || 0}</span>
+          </div>
 
           {/* Like Button */}
-          <button 
-            onClick={() => likeMutation.mutate()}
-            className={`flex items-center gap-1.5 text-xs group transition-colors duration-200 ${isLiked ? 'text-pink-600' : 'hover:text-pink-600'}`}
-          >
-            <div className={`p-2 rounded-full transition-colors duration-200 ${isLiked ? 'bg-pink-600/10' : 'group-hover:bg-pink-600/10'}`}>
-              <Heart className={`w-4 h-4 ${isLiked ? 'fill-current' : ''}`} />
-            </div>
-            <span>{tweet.likeCount || 0}</span>
-          </button>
+          <div className={`flex items-center group ${isLiked ? 'text-pink-600' : 'text-twitter-gray-1 hover:text-pink-600'}`}>
+            <button 
+              onClick={() => likeMutation.mutate()}
+              className="p-2 rounded-full group-hover:bg-pink-600/10 transition-all duration-200 flex items-center justify-center flex-shrink-0"
+            >
+              <Heart className={`w-[18px] h-[18px] transition-transform duration-150 active:scale-75 ${isLiked ? 'fill-current' : ''}`} />
+            </button>
+            <span className="text-[13px] ml-1 select-none w-8 text-left transition-colors duration-200 leading-none tabular-nums flex items-center">{tweet.likeCount || 0}</span>
+          </div>
 
           {/* Bookmark Button */}
-          <button 
-            onClick={() => bookmarkMutation.mutate()}
-            className={`flex items-center gap-1.5 text-xs group transition-colors duration-200 ${isBookmarked ? 'text-twitter-blue' : 'hover:text-twitter-blue'}`}
-          >
-            <div className={`p-2 rounded-full transition-colors duration-200 ${isBookmarked ? 'bg-twitter-blue/10' : 'group-hover:bg-twitter-blue/10'}`}>
-              <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current' : ''}`} />
-            </div>
-          </button>
+          <div className={`flex items-center group ${isBookmarked ? 'text-twitter-blue' : 'text-twitter-gray-1 hover:text-twitter-blue'}`}>
+            <button 
+              onClick={() => bookmarkMutation.mutate()}
+              className="p-2 rounded-full group-hover:bg-twitter-blue/10 transition-all duration-200 flex items-center justify-center flex-shrink-0"
+            >
+              <Bookmark className={`w-[18px] h-[18px] transition-transform duration-150 active:scale-75 ${isBookmarked ? 'fill-current' : ''}`} />
+            </button>
+          </div>
 
           {/* Views Counter (Display only) */}
-          <div className="flex items-center gap-1.5 text-xs select-none">
-            <div className="p-2">
-              <Eye className="w-4 h-4" />
+          <div className="flex items-center text-twitter-gray-1">
+            <div className="p-2 flex items-center justify-center flex-shrink-0">
+              <Eye className="w-[18px] h-[18px]" />
             </div>
-            <span>{tweet.viewCount || 0}</span>
+            <span className="text-[13px] ml-1 select-none w-8 text-left leading-none tabular-nums flex items-center">{tweet.viewCount || 0}</span>
           </div>
 
         </div>

@@ -69,25 +69,27 @@ public class TrendingServiceImpl implements TrendingService {
             case "6h" -> TrendingConstants.TRENDING_6H;
             case "24h" -> TrendingConstants.TRENDING_24H;
             case "48h" -> TrendingConstants.TRENDING_48H;
-            default -> throw new InvalidTrendingWindowException(  "Window must be 6h, 24h or 48h");
+            default -> throw new InvalidTrendingWindowException("Window must be 6h, 24h or 48h");
         };
 
         Set<String> ids = redisTemplate.opsForZSet().reverseRange(key, 0, 99);
+        List<Tweet> tweets;
         if (ids == null || ids.isEmpty()) {
-            return List.of();
+            tweets = tweetRepository.findAll();
+        } else {
+            List<Long> tweetIds = ids.stream()
+                            .map(Long::valueOf)
+                            .toList();
+            tweets = tweetRepository.findAllById(tweetIds);
         }
 
-        List<Long> tweetIds = ids.stream()
-                        .map(Long::valueOf)
-                        .toList();
+        java.util.ArrayList<Tweet> modifiableTweets = new java.util.ArrayList<>(tweets);
 
-        List<Tweet> tweets = tweetRepository.findAllById(tweetIds);
-
-        tweets.sort((a, b) -> Double.compare(
+        modifiableTweets.sort((a, b) -> Double.compare(
                         calculateTrendingScore(b),
                         calculateTrendingScore(a)));
 
-        return tweets.stream()
+        return modifiableTweets.stream()
                 .limit(20)
                 .toList();
     }

@@ -4,6 +4,7 @@ package com.twitter.tweet.service.events.consumer;
 import com.twitter.events.commonEvents.*;
 import com.twitter.tweet.service.model.Tweet;
 import com.twitter.tweet.service.repository.TweetRepository;
+import com.twitter.tweet.service.repository.elastic.TweetSearchRepository;
 import com.twitter.tweet.service.service.TrendingService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class TweetInteractionConsumer {
 
     private final TweetRepository tweetRepository;
     private final TrendingService trendingService;
+    private final TweetSearchRepository tweetSearchRepository;
 
     @PostConstruct
     public void init() {
@@ -31,6 +33,10 @@ public class TweetInteractionConsumer {
         tweet.setLikeCount(tweet.getLikeCount() + 1);
         tweetRepository.save(tweet);
         trendingService.increaseLikeScore(event.getTweetId());
+        tweetSearchRepository.findById(event.getTweetId()).ifPresent(doc -> {
+            doc.setLikeCount(tweet.getLikeCount());
+            tweetSearchRepository.save(doc);
+        });
     }
 
     @KafkaListener(topics = "tweet-replied-topic", groupId = "tweet-group")
@@ -39,6 +45,10 @@ public class TweetInteractionConsumer {
         tweet.setReplyCount(tweet.getReplyCount() + 1);
         tweetRepository.save(tweet);
         trendingService.increaseReplyScore(event.getTweetId());
+        tweetSearchRepository.findById(event.getTweetId()).ifPresent(doc -> {
+            doc.setReplyCount(tweet.getReplyCount());
+            tweetSearchRepository.save(doc);
+        });
     }
 
     @KafkaListener(topics = "tweet-retweeted-topic", groupId = "tweet-group")
@@ -47,6 +57,10 @@ public class TweetInteractionConsumer {
         tweet.setRetweetCount(tweet.getRetweetCount() + 1);
         tweetRepository.save(tweet);
         trendingService.increaseRetweetScore(event.getTweetId());
+        tweetSearchRepository.findById(event.getTweetId()).ifPresent(doc -> {
+            doc.setRetweetCount(tweet.getRetweetCount());
+            tweetSearchRepository.save(doc);
+        });
     }
 
     @KafkaListener(topics = "tweet-unliked-topic", groupId = "tweet-group")
@@ -55,6 +69,10 @@ public class TweetInteractionConsumer {
         tweet.setLikeCount(Math.max(0, tweet.getLikeCount() - 1));
         tweetRepository.save(tweet);
         trendingService.decreaseLikeScore(event.getTweetId());
+        tweetSearchRepository.findById(event.getTweetId()).ifPresent(doc -> {
+            doc.setLikeCount(tweet.getLikeCount());
+            tweetSearchRepository.save(doc);
+        });
     }
 
     @KafkaListener(topics = "tweet-reply-deleted-topic", groupId = "tweet-group")
@@ -63,6 +81,10 @@ public class TweetInteractionConsumer {
         tweet.setReplyCount(Math.max(0, tweet.getReplyCount() - 1));
         tweetRepository.save(tweet);
         trendingService.decreaseReplyScore(event.getTweetId());
+        tweetSearchRepository.findById(event.getTweetId()).ifPresent(doc -> {
+            doc.setReplyCount(tweet.getReplyCount());
+            tweetSearchRepository.save(doc);
+        });
     }
 
     @KafkaListener(topics = "tweet-retweet-removed-topic", groupId = "tweet-group")
@@ -71,6 +93,10 @@ public class TweetInteractionConsumer {
         tweet.setRetweetCount(Math.max(0, tweet.getRetweetCount() - 1));
         tweetRepository.save(tweet);
         trendingService.decreaseRetweetScore(event.getTweetId());
+        tweetSearchRepository.findById(event.getTweetId()).ifPresent(doc -> {
+            doc.setRetweetCount(tweet.getRetweetCount());
+            tweetSearchRepository.save(doc);
+        });
     }
 
 }

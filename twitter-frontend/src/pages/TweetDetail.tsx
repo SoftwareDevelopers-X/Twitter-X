@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { tweetService, socialService } from '../services/api';
+import { updateTweetInCache } from '../utils/queryCache';
 import { useAuthStore } from '../store/authStore';
 import { useUser } from '../hooks/useUser';
 import TweetCard from '../components/TweetCard';
@@ -124,6 +125,40 @@ const TweetDetail: React.FC = () => {
       if (!user) throw new Error('Must be logged in');
       return socialService.addReply(tweetId, user.userId, replyContent.trim());
     },
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['tweets'] });
+      await queryClient.cancelQueries({ queryKey: ['tweet-detail', tweetId] });
+
+      const snapshots: Array<{ queryKey: any; data: any }> = [];
+      queryClient.getQueryCache().findAll().forEach((query) => {
+        const data = query.state.data;
+        if (!data) return;
+        const hasTweet = 
+          (data && typeof data === 'object' && 'tweetId' in data && (data as any).tweetId === tweetId) ||
+          (Array.isArray(data) && data.some((t: any) => t && t.tweetId === tweetId)) ||
+          (data && typeof data === 'object' && 'content' in data && Array.isArray((data as any).content) && (data as any).content.some((t: any) => t && t.tweetId === tweetId));
+
+        if (hasTweet) {
+          snapshots.push({ queryKey: query.queryKey, data });
+        }
+      });
+
+      updateTweetInCache(queryClient, tweetId, (t) => ({
+        ...t,
+        replyCount: (t.replyCount || 0) + 1,
+      }));
+
+      return { snapshots };
+    },
+    onError: (err, _variables, context) => {
+      console.error(err);
+      if (context) {
+        context.snapshots.forEach((snapshot) => {
+          queryClient.setQueryData(snapshot.queryKey, snapshot.data);
+        });
+      }
+      toast.error('Failed to submit reply');
+    },
     onSuccess: () => {
       setReplyContent('');
       queryClient.invalidateQueries({ queryKey: ['replies', tweetId] });
@@ -131,9 +166,6 @@ const TweetDetail: React.FC = () => {
       queryClient.invalidateQueries({ queryKey: ['tweets'] });
       toast.success('Reply posted!');
     },
-    onError: () => {
-      toast.error('Failed to submit reply');
-    }
   });
 
   const handlePostReply = () => {

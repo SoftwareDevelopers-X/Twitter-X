@@ -101,9 +101,6 @@ const Home: React.FC = () => {
         )}
       </div>
 
-      {/* Tweet Composer */}
-      {user && <TweetBox />}
-
       {/* Tweets List or Loading state */}
       <div className="flex-grow divide-y divide-twitter-dark-4">
         {isLoading ? (

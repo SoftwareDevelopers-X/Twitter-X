@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, useQueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useAuthStore } from './store/authStore';
+import { updateTweetInCache } from './utils/queryCache';
 
 // Components & Layout
 import Layout from './components/Layout';
@@ -63,6 +64,101 @@ const AuthRoute: React.FC = () => {
   return !isAuthenticated ? <Outlet /> : <Navigate to="/" replace />;
 };
 
+const WebSocketListener: React.FC = () => {
+  const { user, isAuthenticated } = useAuthStore();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (!isAuthenticated || !user?.userId) return;
+
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsUrl = `${protocol}//${window.location.host}/ws/notifications?userId=${user.userId}`;
+    
+    let socket: WebSocket;
+    let reconnectTimeout: any;
+
+    const connect = () => {
+      console.log('Connecting to WebSocket...');
+      socket = new WebSocket(wsUrl);
+
+      socket.onopen = () => {
+        console.log('WebSocket connected successfully');
+      };
+
+      socket.onmessage = (event) => {
+        try {
+          const message = JSON.parse(event.data);
+          const { type, data } = message;
+          console.log('WebSocket event received:', type, data);
+
+          if (type === 'NOTIFICATION') {
+            queryClient.invalidateQueries({ queryKey: ['notifications', user.userId] });
+            toast(data.message, {
+              icon: '🔔',
+            });
+          } else {
+            // If the event was triggered by our own user, ignore it since optimistic updates already applied it
+            if (data.userId && Number(data.userId) === Number(user?.userId)) {
+              return;
+            }
+
+            const tweetId = Number(data.tweetId);
+
+            if (type === 'TWEET_LIKED' || type === 'TWEET_UNLIKED') {
+              queryClient.invalidateQueries({ queryKey: ['tweet-detail', tweetId] });
+              const isLiked = type === 'TWEET_LIKED';
+              updateTweetInCache(queryClient, tweetId, (t) => ({
+                ...t,
+                likeCount: Math.max(0, t.likeCount + (isLiked ? 1 : -1))
+              }));
+            } else if (type === 'TWEET_RETWEETED' || type === 'TWEET_RETWEET_REMOVED') {
+              queryClient.invalidateQueries({ queryKey: ['tweet-detail', tweetId] });
+              const isRetweeted = type === 'TWEET_RETWEETED';
+              updateTweetInCache(queryClient, tweetId, (t) => ({
+                ...t,
+                retweetCount: Math.max(0, t.retweetCount + (isRetweeted ? 1 : -1))
+              }));
+            } else if (type === 'TWEET_REPLIED' || type === 'TWEET_REPLY_DELETED') {
+              queryClient.invalidateQueries({ queryKey: ['tweet-detail', tweetId] });
+              queryClient.invalidateQueries({ queryKey: ['replies', tweetId] });
+              queryClient.invalidateQueries({ queryKey: ['user-replies'] });
+              const isReplied = type === 'TWEET_REPLIED';
+              updateTweetInCache(queryClient, tweetId, (t) => ({
+                ...t,
+                replyCount: Math.max(0, (t.replyCount || 0) + (isReplied ? 1 : -1))
+              }));
+            }
+          }
+        } catch (err) {
+          console.error('Error handling WebSocket message:', err);
+        }
+      };
+
+      socket.onclose = () => {
+        console.log('WebSocket disconnected, reconnecting in 3 seconds...');
+        reconnectTimeout = setTimeout(connect, 3000);
+      };
+
+      socket.onerror = (err) => {
+        console.error('WebSocket error:', err);
+        socket.close();
+      };
+    };
+
+    connect();
+
+    return () => {
+      if (socket) {
+        socket.onclose = null;
+        socket.close();
+      }
+      clearTimeout(reconnectTimeout);
+    };
+  }, [isAuthenticated, user?.userId, queryClient]);
+
+  return null;
+};
+
 function App() {
   const { initAuth } = useAuthStore();
 
@@ -73,6 +169,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <WebSocketListener />
       <BrowserRouter>
         <Routes>
           {/* Public Auth Routes */}

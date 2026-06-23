@@ -38,17 +38,20 @@ public class AuthenticationFilter implements GlobalFilter {
                 .getFirst(HttpHeaders.AUTHORIZATION);
 
         if (authHeader == null) {
-            throw new RuntimeException("Missing Authorization Header");
+            exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
         }
 
         if (!authHeader.startsWith("Bearer ")) {
-            throw new RuntimeException("Invalid Authorization Header");
+            exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
         }
 
         String token = authHeader.substring(7);
 
         if (!jwtUtil.validateToken(token)) {
-            throw new RuntimeException("Invalid or Expired Token");
+            exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.UNAUTHORIZED);
+            return exchange.getResponse().setComplete();
         }
 
         // Forward user information to downstream services

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { tweetService, socialService } from '../services/api';
@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 
 // Helper component for recommended follow items
 const FollowSuggestion: React.FC<{ targetUserId: number; currentUserId: number }> = ({ targetUserId, currentUserId }) => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { data: profile, isLoading } = useUser(targetUserId);
 
@@ -55,18 +56,21 @@ const FollowSuggestion: React.FC<{ targetUserId: number; currentUserId: number }
 
   return (
     <div className="flex items-center justify-between py-2.5 transition-colors duration-200">
-      <div className="flex items-center gap-2.5 cursor-pointer">
+      <div 
+        onClick={() => navigate(`/profile/${profile.userId}`)}
+        className="flex items-center gap-2.5 cursor-pointer flex-grow min-w-0 pr-2"
+      >
         <img
           src={profile.avatarUrl || `https://api.dicebear.com/7.x/adventurer/svg?seed=${profile.username}`}
           alt={profile.username}
-          className="w-10 h-10 rounded-full object-cover bg-twitter-dark-3 border border-twitter-dark-4"
+          className="w-10 h-10 rounded-full object-cover bg-twitter-dark-3 border border-twitter-dark-4 flex-shrink-0"
         />
-        <div className="text-left">
-          <div className="flex items-center gap-1">
-            <span className="font-bold text-white text-sm hover:underline">{profile.displayName || profile.username}</span>
-            {profile.isVerified && <span className="text-twitter-blue text-xs">✓</span>}
+        <div className="text-left min-w-0">
+          <div className="flex items-center gap-1 min-w-0">
+            <span className="font-bold text-white text-sm hover:underline truncate">{profile.displayName || profile.username}</span>
+            {profile.isVerified && <span className="text-twitter-blue text-xs flex-shrink-0">✓</span>}
           </div>
-          <span className="text-twitter-gray-1 text-xs">@{profile.username}</span>
+          <span className="text-twitter-gray-1 text-xs truncate block">@{profile.username}</span>
         </div>
       </div>
       <button
@@ -87,63 +91,144 @@ const RightSidebar: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuthStore();
   const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
-  // Fetch trending tweets to generate trending hashtags
-  const { data: trendingTweets } = useQuery({
-    queryKey: ['trending-tweets'],
-    queryFn: () => tweetService.getTrendingTweets('24h'),
+  // Fetch trending hashtags dynamically from database
+  const { data: trendingHashtags } = useQuery({
+    queryKey: ['trending-hashtags'],
+    queryFn: () => tweetService.getTrendingHashtags(),
   });
+
+  // Debounce logic for suggestions
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSuggestions([]);
+      setIsLoadingSuggestions(false);
+      return;
+    }
+
+    setIsLoadingSuggestions(true);
+    const delayDebounceFn = setTimeout(async () => {
+      try {
+        const response = await tweetService.getSuggestions(searchQuery.trim());
+        setSuggestions(response || []);
+      } catch (error) {
+        console.error('Error fetching suggestions:', error);
+      } finally {
+        setIsLoadingSuggestions(false);
+      }
+    }, 300); // 300ms debounce
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchQuery]);
+
+  // Click outside detection to close suggestions dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setShowSuggestions(false);
     }
   };
 
-  // Extract top trending hashtags from trending tweets, or fallback to mock trends
+  // Map trending hashtags response to trends list
   const trends = React.useMemo(() => {
-    const hashCounts: Record<string, number> = {};
-    trendingTweets?.forEach(tweet => {
-      tweet.hashtags?.forEach(tag => {
-        const cleaned = tag.startsWith('#') ? tag.slice(1) : tag;
-        hashCounts[cleaned] = (hashCounts[cleaned] || 0) + 1;
-      });
-    });
+    if (!trendingHashtags) return [];
+    return trendingHashtags.map(h => ({
+      hashtag: h.hashtag.startsWith('#') ? h.hashtag : `#${h.hashtag}`,
+      posts: h.posts
+    })).slice(0, 4);
+  }, [trendingHashtags]);
 
-    const parsedTrends = Object.entries(hashCounts)
-      .map(([hashtag, count]) => ({ hashtag: `#${hashtag}`, posts: count }))
-      .sort((a, b) => b.posts - a.posts)
-      .slice(0, 4);
+  // Fetch dynamic follow suggestions using registered users only
+  const { data: suggestionsResponse } = useQuery({
+    queryKey: ['follow-suggestions', user?.userId],
+    queryFn: () => socialService.getFollowSuggestions(),
+    enabled: !!user?.userId,
+  });
 
-    if (parsedTrends.length > 0) return parsedTrends;
-
-    // Premium fallbacks
-    return [
-      { hashtag: '#Microservices', posts: 1420 },
-      { hashtag: '#SpringBoot', posts: 840 },
-      { hashtag: '#Kafka', posts: 652 },
-      { hashtag: '#React19', posts: 1205 },
-    ];
-  }, [trendingTweets]);
-
-  // Fallback follow suggestions if no DB profiles exist yet
-  // We try IDs 1, 2, 3, 4 (often registered in local/dev DBs)
-  const suggestedUserIds = [1, 2, 3, 4];
+  const suggestedUserIds = suggestionsResponse?.data || [];
 
   return (
     <div className="py-3 flex flex-col gap-4 h-full">
       {/* Search Bar */}
       <form onSubmit={handleSearchSubmit} className="sticky top-0 bg-black pt-1 pb-2 z-10">
-        <div className="relative group">
+        <div ref={searchRef} className="relative group">
           <input
             type="text"
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowSuggestions(true)}
             className="w-full bg-twitter-dark-3 border border-transparent rounded-full py-2.5 pl-12 pr-4 text-white text-sm placeholder-twitter-gray-1 focus:outline-none focus:bg-black focus:border-twitter-blue focus:ring-1 focus:ring-twitter-blue transition-all duration-200"
           />
           <Search className="w-5 h-5 absolute left-4 top-3 text-twitter-gray-1 group-focus-within:text-twitter-blue transition-colors duration-200" />
+
+          {/* Suggestions Dropdown */}
+          {showSuggestions && searchQuery.trim() && (
+            <div className="absolute left-0 right-0 mt-2 bg-black border border-twitter-dark-4 rounded-2xl shadow-xl z-20 max-h-80 overflow-y-auto divide-y divide-twitter-dark-4">
+              {isLoadingSuggestions ? (
+                <div className="flex items-center justify-center py-4 text-twitter-gray-1 text-sm gap-2">
+                  <span className="animate-spin text-twitter-blue font-bold">◌</span>
+                  Loading...
+                </div>
+              ) : (
+                <>
+                  <div 
+                    onClick={() => {
+                      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+                      setShowSuggestions(false);
+                    }}
+                    className="p-3.5 hover:bg-neutral-900 transition-colors duration-150 cursor-pointer text-left"
+                  >
+                    <span className="text-twitter-gray-1 text-xs">Search for</span>
+                    <p className="font-bold text-white text-sm truncate">"{searchQuery}"</p>
+                  </div>
+                  {suggestions.length > 0 ? (
+                    suggestions.map((tweet) => (
+                      <div 
+                        key={tweet.tweetId}
+                        onClick={() => {
+                          navigate(`/search?q=${encodeURIComponent(tweet.content)}`);
+                          setShowSuggestions(false);
+                        }}
+                        className="p-3.5 hover:bg-neutral-900 transition-colors duration-150 cursor-pointer text-left"
+                      >
+                        <span className="text-twitter-gray-1 text-xs">Tweet Suggestion</span>
+                        <p className="text-white text-sm line-clamp-2 mt-0.5">{tweet.content}</p>
+                        {tweet.hashtags && tweet.hashtags.length > 0 && (
+                          <div className="flex gap-1.5 flex-wrap mt-1">
+                            {tweet.hashtags.map((tag: string, i: number) => (
+                              <span key={i} className="text-twitter-blue text-xs font-semibold">
+                                #{tag.startsWith('#') ? tag.slice(1) : tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))
+                  ) : (
+                    <div className="p-3.5 text-twitter-gray-1 text-xs text-left">
+                      No matching tweets found.
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          )}
         </div>
       </form>
 

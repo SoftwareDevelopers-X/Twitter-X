@@ -136,4 +136,13 @@ public class ProfileController {
         return ResponseEntity.ok(new ApiResponse<>("success", "Liked tweets fetched",
                 profileService.getLikedTweets(userId, page, size)));
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<java.util.List<ProfileResponse>>> searchProfiles(
+            @RequestParam String query,
+            @RequestHeader(value = "X-User-Id", required = false) Long currentUserId
+    ) {
+        java.util.List<ProfileResponse> responses = profileService.searchProfiles(query, currentUserId);
+        return ResponseEntity.ok(new ApiResponse<>("success", "Profiles searched successfully", responses));
+    }
 }

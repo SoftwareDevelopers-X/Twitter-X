@@ -19,4 +19,10 @@ public interface AuthServiceClient {
     @GetMapping("/api/internal/users/{id}")
     UserDto getUserById(@PathVariable("id") Long userId);
 
+    @GetMapping("/api/internal/users/search")
+    java.util.List<UserDto> searchUsers(@org.springframework.web.bind.annotation.RequestParam("query") String query);
+
+    @GetMapping("/api/internal/users/username/{username}")
+    UserDto getUserByUsername(@PathVariable("username") String username);
+
 }

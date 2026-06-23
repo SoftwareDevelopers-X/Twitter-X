@@ -17,7 +17,10 @@ public class NotificationService {
 
     private final NotificationRepository repository;
 
-    public void createNotification(NotificationEventDto event){
+    public NotificationResponse createNotification(NotificationEventDto event){
+        if (event.getSenderUserId() != null && event.getSenderUserId().equals(event.getReceiverUserId())) {
+            return null;
+        }
         Notification notification = Notification.builder()
                 .senderUserId(event.getSenderUserId())
                 .type(event.getType())
@@ -26,7 +29,8 @@ public class NotificationService {
                 .receiverUserId(event.getReceiverUserId())
                 .build();
 
-        repository.save(notification);
+        Notification saved = repository.save(notification);
+        return NotificationResponseMapper.mapToResponse(saved);
     }
 
     public NotificationResponse getNotification(Long notificationId) {

@@ -8,20 +8,23 @@ import com.twitter.social.service.dto.FollowRequestDto;
 import com.twitter.social.service.exception.SocialException;
 import com.twitter.social.service.kafkaProducer.NotificationProducer;
 import com.twitter.social.service.repository.FollowRepository;
+import com.twitter.social.service.repository.ProfileRepository;
 import com.twitter.social.service.service.FollowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class FollowServiceImpl implements FollowService {
 
     private final FollowRepository followRepository;
-
     private final NotificationProducer notificationProducer;
     private final RedisService redisService;
+    private final ProfileRepository profileRepository;
 
 
     @Override
@@ -104,11 +107,28 @@ public class FollowServiceImpl implements FollowService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public boolean isFollowing(Long followerId, Long followingId) {
 
         return followRepository.existsByFollowerIdAndFollowingId(
                 followerId,
                 followingId
         );
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Long> getFollowSuggestions(Long currentUserId) {
+        List<Long> allUserIds = profileRepository.findAll().stream()
+                .map(com.twitter.social.service.Model.Profile::getUserId)
+                .toList();
+
+        List<Long> followingIds = getFollowing(currentUserId);
+
+        return allUserIds.stream()
+                .filter(id -> !id.equals(currentUserId))
+                .filter(id -> !followingIds.contains(id))
+                .limit(5)
+                .toList();
     }
 }

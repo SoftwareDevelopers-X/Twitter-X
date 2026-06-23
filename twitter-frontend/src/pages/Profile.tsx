@@ -20,6 +20,105 @@ import {
 import { formatJoinedDate, formatDateOfBirth } from '../utils/date';
 import toast from 'react-hot-toast';
 
+interface FollowUserItemProps {
+  targetUserId: number;
+  currentUserId: number;
+  onCloseModal: () => void;
+}
+
+const FollowUserItem: React.FC<FollowUserItemProps> = ({ targetUserId, currentUserId, onCloseModal }) => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const { data: targetProfile, isLoading } = useUser(targetUserId);
+
+  const isOwn = currentUserId === targetUserId;
+
+  const followMutation = useMutation({
+    mutationFn: () => {
+      if (targetProfile?.isFollowedByCurrentUser) {
+        return socialService.unfollowUser(currentUserId, targetUserId);
+      } else {
+        return socialService.followUser(currentUserId, targetUserId);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['user-profile', targetUserId] });
+      queryClient.invalidateQueries({ queryKey: ['user-profile', currentUserId] });
+      queryClient.invalidateQueries({ queryKey: ['user-follows-ids'] });
+      toast.success(
+        targetProfile?.isFollowedByCurrentUser
+          ? `Unfollowed @${targetProfile.username}`
+          : `Followed @${targetProfile?.username}`
+      );
+    },
+    onError: () => {
+      toast.error('Failed to change follow status');
+    }
+  });
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-between py-3 px-4 border-b border-twitter-dark-4 animate-pulse">
+        <div className="flex items-center gap-3 w-full">
+          <div className="w-10 h-10 bg-twitter-dark-3 rounded-full flex-shrink-0" />
+          <div className="space-y-2 flex-grow">
+            <div className="h-4 bg-twitter-dark-3 rounded w-1/3" />
+            <div className="h-3 bg-twitter-dark-3 rounded w-1/4" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!targetProfile) return null;
+
+  const handleRowClick = () => {
+    onCloseModal();
+    navigate(`/profile/${targetUserId}`);
+  };
+
+  return (
+    <div className="flex items-start justify-between py-3.5 px-4 hover:bg-white/5 border-b border-twitter-dark-4 transition-colors duration-200">
+      <div 
+        onClick={handleRowClick}
+        className="flex gap-3 cursor-pointer flex-grow text-left min-w-0"
+      >
+        <img
+          src={targetProfile.avatarUrl || `https://api.dicebear.com/7.x/adventurer/svg?seed=${targetProfile.username}`}
+          alt={targetProfile.username}
+          className="w-10 h-10 rounded-full object-cover bg-twitter-dark-3 border border-twitter-dark-4 flex-shrink-0"
+        />
+        <div className="flex flex-col min-w-0 pr-2">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span className="font-extrabold text-white text-[15px] hover:underline truncate leading-snug">
+              {targetProfile.displayName || targetProfile.username}
+            </span>
+            {targetProfile.isVerified && <CheckCircle className="w-4 h-4 text-twitter-blue fill-current flex-shrink-0" />}
+          </div>
+          <span className="text-twitter-gray-1 text-sm truncate leading-snug">@{targetProfile.username}</span>
+          {targetProfile.bio && (
+            <p className="text-white text-[14px] mt-1.5 leading-normal line-clamp-2 pr-2">{targetProfile.bio}</p>
+          )}
+        </div>
+      </div>
+      
+      {!isOwn && (
+        <button
+          onClick={() => followMutation.mutate()}
+          disabled={followMutation.isPending}
+          className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 flex-shrink-0 ${
+            targetProfile.isFollowedByCurrentUser
+              ? 'bg-transparent border border-twitter-dark-4 text-white hover:bg-red-500/10 hover:text-red-500 hover:border-red-500/50'
+              : 'bg-white hover:bg-neutral-200 text-black'
+          }`}
+        >
+          {targetProfile.isFollowedByCurrentUser ? 'Following' : 'Follow'}
+        </button>
+      )}
+    </div>
+  );
+};
+
 const Profile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -38,6 +137,10 @@ const Profile: React.FC = () => {
   const [editLocation, setEditLocation] = useState('');
   const [editWebsite, setEditWebsite] = useState('');
   const [editDob, setEditDob] = useState('');
+
+  // Followers/Following modal state
+  const [isFollowsModalOpen, setIsFollowsModalOpen] = useState(false);
+  const [followsModalType, setFollowsModalType] = useState<'followers' | 'following'>('followers');
   
   const avatarInputRef = useRef<HTMLInputElement>(null);
   const bannerInputRef = useRef<HTMLInputElement>(null);
@@ -135,6 +238,21 @@ const Profile: React.FC = () => {
     onError: () => {
       toast.error('Failed to upload banner');
     }
+  });
+
+  // Query: Followers or Following IDs
+  const { data: followsIds, isLoading: isFollowsIdsLoading } = useQuery({
+    queryKey: ['user-follows-ids', userId, followsModalType],
+    queryFn: async () => {
+      if (followsModalType === 'followers') {
+        const res = await socialService.getFollowers(userId);
+        return res.data;
+      } else {
+        const res = await socialService.getFollowing(userId);
+        return res.data;
+      }
+    },
+    enabled: isFollowsModalOpen && !!userId,
   });
 
   const handleEditClick = () => {
@@ -336,11 +454,23 @@ const Profile: React.FC = () => {
 
         {/* Followers / Following counts */}
         <div className="flex gap-4 text-sm">
-          <div className="hover:underline cursor-pointer">
+          <div 
+            onClick={() => {
+              setFollowsModalType('following');
+              setIsFollowsModalOpen(true);
+            }}
+            className="hover:underline cursor-pointer"
+          >
             <span className="font-bold text-white">{profile.followingCount}</span>
             <span className="text-twitter-gray-1 ml-1">Following</span>
           </div>
-          <div className="hover:underline cursor-pointer">
+          <div 
+            onClick={() => {
+              setFollowsModalType('followers');
+              setIsFollowsModalOpen(true);
+            }}
+            className="hover:underline cursor-pointer"
+          >
             <span className="font-bold text-white">{profile.followersCount}</span>
             <span className="text-twitter-gray-1 ml-1">Followers</span>
           </div>
@@ -501,6 +631,49 @@ const Profile: React.FC = () => {
                 />
               </div>
 
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Followers / Following Modal */}
+      {isFollowsModalOpen && (
+        <div className="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm z-50 flex items-start justify-center pt-[8%] px-4">
+          <div className="bg-black border border-twitter-dark-4 rounded-2xl w-full max-w-[540px] overflow-hidden shadow-2xl animate-fade-in text-left flex flex-col max-h-[500px]">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-twitter-dark-4 flex-shrink-0">
+              <div className="flex items-center gap-3">
+                <button 
+                  onClick={() => setIsFollowsModalOpen(false)}
+                  className="p-1.5 hover:bg-white/10 rounded-full transition-colors duration-200 text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <span className="font-extrabold text-white text-lg capitalize">{followsModalType}</span>
+              </div>
+            </div>
+
+            {/* Modal content / User list */}
+            <div className="overflow-y-auto flex-grow divide-y divide-twitter-dark-4">
+              {isFollowsIdsLoading ? (
+                <div className="flex justify-center items-center py-12 text-twitter-blue">
+                  <Loader2 className="w-8 h-8 animate-spin" />
+                </div>
+              ) : !followsIds || followsIds.length === 0 ? (
+                <div className="py-12 px-6 text-center text-twitter-gray-1">
+                  <p className="font-bold text-base text-white">No {followsModalType} yet</p>
+                  <p className="text-xs mt-1">When someone follows this account or this account follows someone, they will show up here.</p>
+                </div>
+              ) : (
+                followsIds.map((targetId) => (
+                  <FollowUserItem
+                    key={targetId}
+                    targetUserId={targetId}
+                    currentUserId={user?.userId || 0}
+                    onCloseModal={() => setIsFollowsModalOpen(false)}
+                  />
+                ))
+              )}
             </div>
           </div>
         </div>

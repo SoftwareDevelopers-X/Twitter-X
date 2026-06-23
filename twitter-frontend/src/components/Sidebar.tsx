@@ -18,7 +18,7 @@ import { useUser } from '../hooks/useUser';
 
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();
-  const { user, logout } = useAuthStore();
+  const { user, logout, setComposerOpen } = useAuthStore();
   const { data: profile } = useUser(user?.userId);
 
   // Fetch notifications to display unread badge
@@ -86,7 +86,7 @@ const Sidebar: React.FC = () => {
 
         {/* Post Button */}
         <button
-          onClick={() => navigate('/')}
+          onClick={() => setComposerOpen(true)}
           className="mt-4 p-3 xl:py-3 xl:px-8 bg-twitter-blue hover:bg-twitter-blue-hover text-white rounded-full font-bold transition-all duration-200 w-fit xl:w-full flex items-center justify-center gap-2 shadow-lg shadow-twitter-blue/20 active:scale-95"
         >
           <PlusSquare className="w-6 h-6 xl:hidden" />
