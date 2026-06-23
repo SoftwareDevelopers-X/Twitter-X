@@ -1,6 +1,6 @@
 package com.twitter.social.service.kafkaProducer;
 
-import com.twitter.social.service.dto.NotificationEventDto;
+import com.twitter.events.commonEvents.NotificationEventDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.twitter.notification.service.Model;
 
-import com.twitter.notification.service.Enum.NotificationType;
+import com.twitter.events.commonEvents.NotificationType;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

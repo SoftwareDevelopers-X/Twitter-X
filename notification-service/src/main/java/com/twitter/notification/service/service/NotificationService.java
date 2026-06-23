@@ -1,7 +1,7 @@
 package com.twitter.notification.service.service;
 
+import com.twitter.events.commonEvents.NotificationEventDto;
 import com.twitter.notification.service.Model.Notification;
-import com.twitter.notification.service.dto.NotificationEventDto;
 import com.twitter.notification.service.dto.NotificationResponse;
 import com.twitter.notification.service.exceptions.NotificationNotFoundException;
 import com.twitter.notification.service.mapper.NotificationResponseMapper;
@@ -10,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor

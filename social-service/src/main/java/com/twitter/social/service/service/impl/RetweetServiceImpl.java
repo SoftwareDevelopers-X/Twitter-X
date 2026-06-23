@@ -1,11 +1,11 @@
 package com.twitter.social.service.service.impl;
 
+import com.twitter.events.commonEvents.NotificationEventDto;
+import com.twitter.events.commonEvents.NotificationType;
 import com.twitter.events.commonEvents.TweetRetweetRemovedEvent;
 import com.twitter.events.commonEvents.TweetRetweetedEvent;
-import com.twitter.social.service.Enum.NotificationType;
 import com.twitter.social.service.Model.Retweet;
 import com.twitter.social.service.client.TweetServiceClient;
-import com.twitter.social.service.dto.NotificationEventDto;
 import com.twitter.social.service.dto.RetweetRequestDto;
 import com.twitter.social.service.events.TweetInteractionProducer;
 import com.twitter.social.service.exception.SocialException;

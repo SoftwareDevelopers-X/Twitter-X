@@ -1,4 +1,4 @@
-package com.twitter.notification.service.Enum;
+package com.twitter.events.commonEvents;
 
 public enum NotificationType {
     LIKE,

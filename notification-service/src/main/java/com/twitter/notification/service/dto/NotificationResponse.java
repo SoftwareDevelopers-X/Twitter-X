@@ -1,6 +1,6 @@
 package com.twitter.notification.service.dto;
 
-import com.twitter.notification.service.Enum.NotificationType;
+import com.twitter.events.commonEvents.NotificationType;
 import lombok.Builder;
 import lombok.Data;
 

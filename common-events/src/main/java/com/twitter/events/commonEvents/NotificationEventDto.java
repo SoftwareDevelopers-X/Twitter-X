@@ -1,8 +1,4 @@
-package com.twitter.notification.service.dto;
-
-import com.twitter.notification.service.Enum.NotificationType;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+package com.twitter.events.commonEvents;
 import lombok.*;
 
 @Getter
