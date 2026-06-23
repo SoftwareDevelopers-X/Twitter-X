@@ -15,4 +15,6 @@ public class TweetDto {
     private Long viewCount;
     private LocalDateTime createdAt;
     private List<TweetMediaDto> mediaList; // empty list if no media -> drives the Media tab filter
+    private List<String> mediaUrls;
+    private List<String> hashtags;
 }

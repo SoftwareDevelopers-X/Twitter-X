@@ -67,7 +67,7 @@ public class ProfileServiceImpl implements ProfileService {
         return cached;
     }
 
-    @Cacheable(value = "profiles", key = "#userId")
+    @Cacheable(value = "profiles", key = "#userId", unless = "#result == null || #result.username == null")
     public ProfileResponse getCachedProfileCore(Long userId) {
         Profile profile = getOrCreateProfile(userId);
         return buildProfileResponse(profile, null);
@@ -231,7 +231,7 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public PagedResponse<TweetDto> getMedia(Long userId, int page, int size) {
         List<TweetDto> mediaOnly = getAllTweetsCached(userId).stream()
-                .filter(t -> t.getMediaList() != null && !t.getMediaList().isEmpty())
+                .filter(t -> (t.getMediaList() != null && !t.getMediaList().isEmpty()) || (t.getMediaUrls() != null && !t.getMediaUrls().isEmpty()))
                 .collect(Collectors.toList());
         return paginate(mediaOnly, page, size);
     }
@@ -432,5 +432,16 @@ public class ProfileServiceImpl implements ProfileService {
         if (file.getSize() > maxSizeBytes) {
             throw new IllegalArgumentException("File size must not exceed 5MB");
         }
+    }
+
+    @Override
+    public List<ProfileResponse> searchProfiles(String query, Long currentUserId) {
+        List<com.twitter.social.service.feignDto.UserDto> userDtos = authServiceClient.searchUsers(query);
+        return userDtos.stream()
+                .map(userDto -> {
+                    Profile profile = getOrCreateProfile(userDto.getUserId());
+                    return buildProfileResponse(profile, currentUserId);
+                })
+                .collect(Collectors.toList());
     }
 }

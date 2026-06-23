@@ -13,7 +13,8 @@ run_service() {
     local dir=$1
     local name=$2
     echo "🟢 Starting service: $name..."
-    (cd "$dir" && ./mvnw spring-boot:run) &
+    mkdir -p logs
+    (cd "$dir" && MAVEN_OPTS="-Xmx256m" ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Xmx384m") > "logs/${dir}.log" 2>&1 &
 }
 
 # 2. Start Eureka discovery server first (critical dependency)

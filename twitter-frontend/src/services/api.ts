@@ -11,7 +11,8 @@ import {
   Reply,
   FeedTweet,
   Notification,
-  ApiResponse
+  ApiResponse,
+  HashtagResponse
 } from '../types';
 
 // Spring Page interface helper
@@ -256,6 +257,11 @@ export const tweetService = {
     const res = await api.get<Tweet[]>(`/api/tweets/trending?window=${window}`);
     return res.data;
   },
+
+  getTrendingHashtags: async () => {
+    const res = await api.get<HashtagResponse[]>('/api/tweets/hashtags/trending');
+    return res.data;
+  },
 };
 
 // --- SOCIAL SERVICE ---
@@ -333,6 +339,15 @@ export const socialService = {
     return res.data;
   },
 
+  searchProfiles: async (query: string, currentUserId?: number) => {
+    const headers: AxiosRequestConfig['headers'] = {};
+    if (currentUserId) {
+      headers['X-User-Id'] = String(currentUserId);
+    }
+    const res = await api.get<ApiResponse<Profile[]>>(`/api/profile/search?query=${encodeURIComponent(query)}`, { headers });
+    return res.data;
+  },
+
   getReplies: async (userId: number, page = 0, size = 20) => {
     const res = await api.get<ApiResponse<PagedResponse<Reply>>>(`/api/profile/${userId}/replies?page=${page}&size=${size}`);
     return res.data;
@@ -390,6 +405,11 @@ export const socialService = {
 
   isFollowing: async (followerId: number, followingId: number) => {
     const res = await api.get<ApiResponse<boolean>>(`/api/follows/status?followerId=${followerId}&followingId=${followingId}`);
+    return res.data;
+  },
+
+  getFollowSuggestions: async () => {
+    const res = await api.get<ApiResponse<number[]>>('/api/follows/suggestions');
     return res.data;
   },
 

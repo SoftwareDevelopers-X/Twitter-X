@@ -217,6 +217,7 @@ public class TweetServiceImpl implements TweetService {
         // Remove view counter (optional)
         redisTemplate.delete("tweet:view:" + tweetId);
         TweetDeletedEvent event = TweetDeletedEvent.builder()
+
                 .tweetId(tweetId)
                 .build();
         tweetProducer.publishTweetDeletedEvent(event);
@@ -227,7 +228,7 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public List<TweetResponse> getUserTweets(Long userId) {
         log.info("Fetching tweets of user {}", userId);
-        return tweetRepository.findByUserId(userId)
+        return tweetRepository.findByUserIdOrderByCreatedAtDesc(userId)
                 .stream()
                 .map(TweetResponseMapper::mapToResponse)
                 .toList();
@@ -254,7 +255,7 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public Page<TweetResponse> getAllTweets(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, org.springframework.data.domain.Sort.by(org.springframework.data.domain.Sort.Direction.DESC, "createdAt"));
         return tweetRepository.findAll(pageable).map(TweetResponseMapper::mapToResponse);
     }
 
@@ -286,8 +287,12 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public List<TweetResponse> searchTweets(String keyword) {
         log.info("Searching tweets with keyword {}", keyword);
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return List.of();
+        }
+        String wildcardPattern = "*" + keyword.trim() + "*";
         return tweetSearchRepository
-                .searchAll(keyword)
+                .searchAll(wildcardPattern)
                 .stream()
                 .map(this::mapDocumentToResponse)
                 .toList();
@@ -296,8 +301,12 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public List<TweetResponse> searchSuggestions(String keyword) {
         log.info("Fetching suggestions for {}", keyword);
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return List.of();
+        }
+        String wildcardPattern = "*" + keyword.trim() + "*";
         return tweetSearchRepository
-                .searchSuggestions(keyword)
+                .searchSuggestions(wildcardPattern)
                 .stream()
                 .map(this::mapDocumentToResponse)
                 .toList();
@@ -321,4 +330,23 @@ public class TweetServiceImpl implements TweetService {
                 .build();
     }
 
+    @Override
+    public List<TweetResponse> getTweetsByUserIds(List<Long> userIds) {
+        log.info("Fetching tweets for user IDs {}", userIds);
+        return tweetRepository.findByUserIdInOrderByCreatedAtDesc(userIds)
+                .stream()
+                .map(TweetResponseMapper::mapToResponse)
+                .toList();
+    }
+
+    @Override
+    public List<com.twitter.tweet.service.dto.response.HashtagResponse> getTrendingHashtags() {
+        List<Object[]> results = hashtagRepository.findTrendingHashtags(PageRequest.of(0, 20));
+        return results.stream()
+                .map(row -> com.twitter.tweet.service.dto.response.HashtagResponse.builder()
+                        .hashtag((String) row[0])
+                        .posts((Long) row[1])
+                        .build())
+                .toList();
+    }
 }

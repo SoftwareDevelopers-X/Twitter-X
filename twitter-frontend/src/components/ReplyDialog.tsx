@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { socialService } from '../services/api';
+import { updateTweetInCache } from '../utils/queryCache';
 import { useUser } from '../hooks/useUser';
 import { X, Loader2 } from 'lucide-react';
 import { Tweet } from '../types';
@@ -26,19 +27,48 @@ const ReplyDialog: React.FC<ReplyDialogProps> = ({ tweet, isOpen, onClose }) => 
       if (!user) throw new Error('Must be logged in');
       return socialService.addReply(tweet.tweetId, user.userId, content.trim());
     },
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['tweets'] });
+      await queryClient.cancelQueries({ queryKey: ['tweet-detail', tweet.tweetId] });
+
+      const snapshots: Array<{ queryKey: any; data: any }> = [];
+      queryClient.getQueryCache().findAll().forEach((query) => {
+        const data = query.state.data;
+        if (!data) return;
+        const hasTweet = 
+          (data && typeof data === 'object' && 'tweetId' in data && (data as any).tweetId === tweet.tweetId) ||
+          (Array.isArray(data) && data.some((t: any) => t && t.tweetId === tweet.tweetId)) ||
+          (data && typeof data === 'object' && 'content' in data && Array.isArray((data as any).content) && (data as any).content.some((t: any) => t && t.tweetId === tweet.tweetId));
+
+        if (hasTweet) {
+          snapshots.push({ queryKey: query.queryKey, data });
+        }
+      });
+
+      updateTweetInCache(queryClient, tweet.tweetId, (t) => ({
+        ...t,
+        replyCount: (t.replyCount || 0) + 1,
+      }));
+
+      return { snapshots };
+    },
+    onError: (err: any, _variables, context) => {
+      console.error(err);
+      if (context) {
+        context.snapshots.forEach((snapshot) => {
+          queryClient.setQueryData(snapshot.queryKey, snapshot.data);
+        });
+      }
+      toast.error('Failed to post reply');
+    },
     onSuccess: () => {
       setContent('');
       queryClient.invalidateQueries({ queryKey: ['replies', tweet.tweetId] });
       queryClient.invalidateQueries({ queryKey: ['tweet-detail', tweet.tweetId] });
-      queryClient.invalidateQueries({ queryKey: ['tweets'] });
       queryClient.invalidateQueries({ queryKey: ['user-replies', user?.userId] });
       toast.success('Your reply was sent!');
       onClose();
     },
-    onError: (err: any) => {
-      console.error(err);
-      toast.error('Failed to post reply');
-    }
   });
 
   if (!isOpen) return null;
@@ -49,8 +79,14 @@ const ReplyDialog: React.FC<ReplyDialogProps> = ({ tweet, isOpen, onClose }) => 
   };
 
   return (
-    <div className="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm z-50 flex items-start justify-center pt-[10%] px-4">
-      <div className="bg-black border border-twitter-dark-4 rounded-2xl w-full max-w-[600px] overflow-hidden shadow-2xl animate-fade-in text-left">
+    <div 
+      onClick={onClose}
+      className="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm z-50 flex items-start justify-center pt-[10%] px-4"
+    >
+      <div 
+        onClick={(e) => e.stopPropagation()}
+        className="bg-black border border-twitter-dark-4 rounded-2xl w-full max-w-[600px] overflow-hidden shadow-2xl animate-fade-in text-left"
+      >
         
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-twitter-dark-4">

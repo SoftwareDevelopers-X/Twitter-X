@@ -2,6 +2,7 @@ package com.twitter.tweet.service.scheduler;
 
 import com.twitter.tweet.service.model.Tweet;
 import com.twitter.tweet.service.repository.TweetRepository;
+import com.twitter.tweet.service.repository.elastic.TweetSearchRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,6 +20,7 @@ public class ViewCountScheduler {
 
     private final RedisTemplate<String, String> redisTemplate;
     private final TweetRepository tweetRepository;
+    private final TweetSearchRepository tweetSearchRepository;
 
     @Scheduled(fixedRate = 300000)
     @Transactional
@@ -39,6 +41,10 @@ public class ViewCountScheduler {
                 if (tweet != null) {
                     tweet.setViewCount(tweet.getViewCount() + Integer.parseInt(views));
                     tweetRepository.save(tweet);
+                    tweetSearchRepository.findById(tweetId).ifPresent(doc -> {
+                        doc.setViewCount(tweet.getViewCount());
+                        tweetSearchRepository.save(doc);
+                    });
                 }
                 redisTemplate.delete(key);
             }

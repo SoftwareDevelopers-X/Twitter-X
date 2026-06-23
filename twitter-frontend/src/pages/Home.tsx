@@ -39,24 +39,26 @@ const Home: React.FC = () => {
   };
 
   const getTweetsToRender = (): Tweet[] => {
+    let list: Tweet[] = [];
     if (activeTab === 'for-you') {
-      return globalTweetsPage?.content || [];
+      list = globalTweetsPage?.content ? [...globalTweetsPage.content] : [];
+    } else {
+      // Convert FeedTweetDto[] to Tweet[] so TweetCard can render it.
+      // FeedTweetDto has identical ID, content, and counts but misses media/hashtags.
+      list = (feedTweetsList || []).map(ft => ({
+        tweetId: ft.tweetId,
+        userId: ft.userId,
+        content: ft.content,
+        createdAt: ft.createdAt,
+        likeCount: ft.likeCount,
+        retweetCount: ft.retweetCount,
+        replyCount: ft.replyCount,
+        viewCount: 0,
+        mediaUrls: [], // Fallback
+        hashtags: []   // Fallback
+      }));
     }
-    
-    // Convert FeedTweetDto[] to Tweet[] so TweetCard can render it.
-    // FeedTweetDto has identical ID, content, and counts but misses media/hashtags.
-    return (feedTweetsList || []).map(ft => ({
-      tweetId: ft.tweetId,
-      userId: ft.userId,
-      content: ft.content,
-      createdAt: ft.createdAt,
-      likeCount: ft.likeCount,
-      retweetCount: ft.retweetCount,
-      replyCount: ft.replyCount,
-      viewCount: 0,
-      mediaUrls: [], // Fallback
-      hashtags: []   // Fallback
-    }));
+    return list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   };
 
   const isLoading = activeTab === 'for-you' ? isGlobalLoading : isFeedLoading;
@@ -100,9 +102,6 @@ const Home: React.FC = () => {
           </div>
         )}
       </div>
-
-      {/* Tweet Composer */}
-      {user && <TweetBox />}
 
       {/* Tweets List or Loading state */}
       <div className="flex-grow divide-y divide-twitter-dark-4">

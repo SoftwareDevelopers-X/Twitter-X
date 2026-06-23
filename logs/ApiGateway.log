@@ -1,0 +1,380 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.twitter:ApiGateway >-----------------------
+[INFO] Building ApiGateway 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.7:run (default-cli) > test-compile @ ApiGateway >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ ApiGateway ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ ApiGateway ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ ApiGateway ---
+[INFO] skip non existing resourceDirectory /home/kadiyam-likith/Documents/projects/Twitter-X/ApiGateway/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ ApiGateway ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.7:run (default-cli) < test-compile @ ApiGateway <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.7:run (default-cli) @ ApiGateway ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.7)
+
+2026-06-23T20:56:54.861+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] c.t.ApiGateway.ApiGatewayApplication     : Starting ApiGatewayApplication using Java 25.0.3 with PID 42238 (/home/kadiyam-likith/Documents/projects/Twitter-X/ApiGateway/target/classes started by kadiyam-likith in /home/kadiyam-likith/Documents/projects/Twitter-X/ApiGateway)
+2026-06-23T20:56:54.862+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] c.t.ApiGateway.ApiGatewayApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-06-23T20:56:54.893+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-06-23T20:56:55.220+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayReactiveLoadBalancerClientAutoConfiguration#gatewayLoadBalancerClientFilter matched
+2026-06-23T20:56:55.222+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayReactiveLoadBalancerClientAutoConfiguration#loadBalancerServiceInstanceCookieFilter matched
+2026-06-23T20:56:55.225+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] es$NettyServerCustomizerEnabledCondition : Condition TrustedProxies.NettyServerCustomizerEnabledCondition on org.springframework.cloud.gateway.config.GatewayAutoConfiguration$NettyConfiguration#gatewayNettyServerCustomizer did not match due to AllNestedConditions 0 matched 2 did not; NestedCondition on TrustedProxies.NettyServerCustomizerEnabledCondition.OnTrustedProxiesNotEmpty spring.cloud.gateway.server.webflux.trusted-proxies property is not set or is empty.; NestedCondition on TrustedProxies.NettyServerCustomizerEnabledCondition.OnPropertyEnabled @ConditionalOnProperty (spring.cloud.gateway.server.webflux.httpserver.customizer-enabled) did not find property 'spring.cloud.gateway.server.webflux.httpserver.customizer-enabled'
+2026-06-23T20:56:55.233+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration$NettyConfiguration#routingFilter matched
+2026-06-23T20:56:55.233+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration$NettyConfiguration#nettyWriteResponseFilter matched
+2026-06-23T20:56:55.234+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration$NettyConfiguration#reactorNettyWebSocketClient matched
+2026-06-23T20:56:55.234+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration$NettyConfiguration#reactorNettyRequestUpgradeStrategy matched
+2026-06-23T20:56:55.255+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] Proxies$ForwardedTrustedProxiesCondition : Condition TrustedProxies.ForwardedTrustedProxiesCondition on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#forwardedHeadersFilter did not match due to AllNestedConditions 1 matched 1 did not; NestedCondition on TrustedProxies.ForwardedTrustedProxiesCondition.OnTrustedProxiesNotEmpty spring.cloud.gateway.server.webflux.trusted-proxies property is not set or is empty.; NestedCondition on TrustedProxies.ForwardedTrustedProxiesCondition.OnPropertyEnabled @ConditionalOnProperty (spring.cloud.gateway.server.webflux.forwarded.enabled) matched
+2026-06-23T20:56:55.255+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] xies$NotForwardedTrustedProxiesCondition : Condition TrustedProxies.NotForwardedTrustedProxiesCondition on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#removeForwardedHeadersFilter matched due to NoneNestedConditions 0 matched 1 did not; NestedCondition on TrustedProxies.NotForwardedTrustedProxiesCondition.OnForwardedTrustedProxiesCondition AllNestedConditions 1 matched 1 did not; NestedCondition on TrustedProxies.ForwardedTrustedProxiesCondition.OnTrustedProxiesNotEmpty spring.cloud.gateway.server.webflux.trusted-proxies property is not set or is empty.; NestedCondition on TrustedProxies.ForwardedTrustedProxiesCondition.OnPropertyEnabled @ConditionalOnProperty (spring.cloud.gateway.server.webflux.forwarded.enabled) matched
+2026-06-23T20:56:55.256+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] roxies$XForwardedTrustedProxiesCondition : Condition TrustedProxies.XForwardedTrustedProxiesCondition on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#xForwardedHeadersFilter did not match due to AllNestedConditions 1 matched 1 did not; NestedCondition on TrustedProxies.XForwardedTrustedProxiesCondition.OnTrustedProxiesNotEmpty spring.cloud.gateway.server.webflux.trusted-proxies property is not set or is empty.; NestedCondition on TrustedProxies.XForwardedTrustedProxiesCondition.OnPropertyEnabled @ConditionalOnProperty (spring.cloud.gateway.server.webflux.x-forwarded.enabled) matched
+2026-06-23T20:56:55.257+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] ies$NotXForwardedTrustedProxiesCondition : Condition TrustedProxies.NotXForwardedTrustedProxiesCondition on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#removeXForwardedHeadersFilter matched due to NoneNestedConditions 0 matched 1 did not; NestedCondition on TrustedProxies.NotXForwardedTrustedProxiesCondition.OnXForwardedTrustedProxiesCondition AllNestedConditions 1 matched 1 did not; NestedCondition on TrustedProxies.XForwardedTrustedProxiesCondition.OnTrustedProxiesNotEmpty spring.cloud.gateway.server.webflux.trusted-proxies property is not set or is empty.; NestedCondition on TrustedProxies.XForwardedTrustedProxiesCondition.OnPropertyEnabled @ConditionalOnProperty (spring.cloud.gateway.server.webflux.x-forwarded.enabled) matched
+2026-06-23T20:56:55.257+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#adaptCachedBodyGlobalFilter matched
+2026-06-23T20:56:55.257+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#removeCachedBodyFilter matched
+2026-06-23T20:56:55.258+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#routeToRequestUrlFilter matched
+2026-06-23T20:56:55.258+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#forwardRoutingFilter matched
+2026-06-23T20:56:55.258+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#forwardPathFilter matched
+2026-06-23T20:56:55.258+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#webSocketService matched
+2026-06-23T20:56:55.258+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledGlobalFilter        : Condition OnEnabledGlobalFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#websocketRoutingFilter matched
+2026-06-23T20:56:55.258+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#weightCalculatorWebFilter matched
+2026-06-23T20:56:55.259+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#afterRoutePredicateFactory matched
+2026-06-23T20:56:55.259+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#beforeRoutePredicateFactory matched
+2026-06-23T20:56:55.259+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#betweenRoutePredicateFactory matched
+2026-06-23T20:56:55.259+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#cookieRoutePredicateFactory matched
+2026-06-23T20:56:55.259+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#headerRoutePredicateFactory matched
+2026-06-23T20:56:55.259+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#hostRoutePredicateFactory matched
+2026-06-23T20:56:55.259+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#methodRoutePredicateFactory matched
+2026-06-23T20:56:55.259+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#pathRoutePredicateFactory matched
+2026-06-23T20:56:55.259+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#queryRoutePredicateFactory matched
+2026-06-23T20:56:55.260+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#readBodyPredicateFactory matched
+2026-06-23T20:56:55.260+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#remoteAddrRoutePredicateFactory matched
+2026-06-23T20:56:55.260+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#versionRoutePredicateFactory matched
+2026-06-23T20:56:55.260+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#xForwardedRemoteAddrRoutePredicateFactory matched
+2026-06-23T20:56:55.260+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#weightRoutePredicateFactory matched
+2026-06-23T20:56:55.260+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.c.OnEnabledPredicate           : Condition OnEnabledPredicate on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#cloudFoundryRouteServiceRoutePredicateFactory matched
+2026-06-23T20:56:55.261+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#addRequestHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.261+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#addRequestHeadersIfNotPresentGatewayFilterFactory matched
+2026-06-23T20:56:55.261+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#mapRequestHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.261+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#addRequestParameterGatewayFilterFactory matched
+2026-06-23T20:56:55.261+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#addResponseHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.261+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#modifyRequestBodyGatewayFilterFactory matched
+2026-06-23T20:56:55.261+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#dedupeResponseHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.261+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#modifyResponseBodyGatewayFilterFactory matched
+2026-06-23T20:56:55.262+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#cacheRequestBodyGatewayFilterFactory matched
+2026-06-23T20:56:55.262+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#prefixPathGatewayFilterFactory matched
+2026-06-23T20:56:55.262+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#preserveHostHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.262+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#redirectToGatewayFilterFactory matched
+2026-06-23T20:56:55.262+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#removeJsonAttributesResponseBodyGatewayFilterFactory matched
+2026-06-23T20:56:55.262+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#removeRequestHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.262+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#removeRequestParameterGatewayFilterFactory matched
+2026-06-23T20:56:55.262+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#removeResponseHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.266+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#rewritePathGatewayFilterFactory matched
+2026-06-23T20:56:55.266+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#retryGatewayFilterFactory matched
+2026-06-23T20:56:55.267+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#setPathGatewayFilterFactory matched
+2026-06-23T20:56:55.267+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#secureHeadersGatewayFilterFactory matched
+2026-06-23T20:56:55.267+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#setRequestHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.267+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#setRequestHostHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.267+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#setResponseHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.267+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#rewriteResponseHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.267+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#rewriteLocationResponseHeaderGatewayFilterFactory matched
+2026-06-23T20:56:55.267+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#setStatusGatewayFilterFactory matched
+2026-06-23T20:56:55.268+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#saveSessionGatewayFilterFactory matched
+2026-06-23T20:56:55.268+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#stripPrefixGatewayFilterFactory matched
+2026-06-23T20:56:55.268+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#requestHeaderToRequestUriGatewayFilterFactory matched
+2026-06-23T20:56:55.268+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#setRequestUriGatewayFilterFactory matched
+2026-06-23T20:56:55.268+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#requestSizeGatewayFilterFactory matched
+2026-06-23T20:56:55.268+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#requestHeaderSizeGatewayFilterFactory matched
+2026-06-23T20:56:55.269+05:30 TRACE 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.c.conditional.OnEnabledFilter    : Condition OnEnabledFilter on org.springframework.cloud.gateway.config.GatewayAutoConfiguration#rewriteRequestParameterGatewayFilterFactory matched
+2026-06-23T20:56:55.449+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=aa5581ac-2dca-3cd2-8055-23aaf3c572b1
+2026-06-23T20:56:55.957+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.gateway.config.GatewayProperties   : Routes supplied from Gateway Properties: [RouteDefinition{id='auth-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**}}], filters=[], uri=lb://AUTH-SERVICE, order=0, metadata={}, enabled=true}, RouteDefinition{id='tweet-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/tweets/**}}], filters=[], uri=lb://TWEET-SERVICE, order=0, metadata={}, enabled=true}, RouteDefinition{id='social-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social}}], filters=[], uri=lb://SOCIAL-SERVICE, order=0, metadata={}, enabled=true}, RouteDefinition{id='notification-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/api/notification/**}}], filters=[], uri=lb://NOTIFICATION-SERVICE, order=0, metadata={}, enabled=true}, RouteDefinition{id='notification-websocket', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/ws/notifications**}}], filters=[], uri=lb:ws://NOTIFICATION-SERVICE, order=0, metadata={}, enabled=true}, RouteDefinition{id='media-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/media/**}}], filters=[], uri=lb://MEDIA-SERVICE, order=0, metadata={}, enabled=true}]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Version]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2026-06-23T20:56:56.042+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-06-23T20:56:56.215+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestClient.
+2026-06-23T20:56:56.236+05:30  WARN 42238 --- [API-GATEWAY] [  restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-06-23T20:56:56.259+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-06-23T20:56:56.274+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-06-23T20:56:56.276+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-06-23T20:56:56.279+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-06-23T20:56:56.279+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-06-23T20:56:56.279+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-06-23T20:56:56.279+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-06-23T20:56:56.280+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-06-23T20:56:56.280+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-06-23T20:56:56.280+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-06-23T20:56:56.534+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-06-23T20:56:56.535+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-06-23T20:56:56.536+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-06-23T20:56:56.538+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1782228416537 with initial instances count: 0
+2026-06-23T20:56:56.541+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application API-GATEWAY with eureka with status UP
+2026-06-23T20:56:56.541+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1782228416541, current=UP, previous=STARTING]
+2026-06-23T20:56:56.542+05:30  INFO 42238 --- [API-GATEWAY] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/10.10.2.198:API-GATEWAY:8089: registering service...
+2026-06-23T20:56:56.557+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T20:56:56.572+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T20:56:56.572+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T20:56:56.573+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T20:56:56.574+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T20:56:56.575+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T20:56:56.575+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T20:56:56.577+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T20:56:56.577+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T20:56:56.579+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T20:56:56.580+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T20:56:56.581+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::loadLibrary has been called by io.netty.util.internal.NativeLibraryUtil in an unnamed module (file:/home/kadiyam-likith/.m2/repository/io/netty/netty-common/4.2.15.Final/netty-common-4.2.15.Final.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+2026-06-23T20:56:56.647+05:30  INFO 42238 --- [API-GATEWAY] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/10.10.2.198:API-GATEWAY:8089 - registration status: 204
+2026-06-23T20:56:56.653+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] o.s.boot.reactor.netty.NettyWebServer    : Netty started on port 8089 (http)
+2026-06-23T20:56:56.654+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8089
+2026-06-23T20:56:56.668+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T20:56:56.668+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T20:56:56.669+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T20:56:56.669+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T20:56:56.669+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T20:56:56.669+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T20:56:56.669+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T20:56:56.670+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T20:56:56.670+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T20:56:56.670+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T20:56:56.670+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T20:56:56.671+05:30 DEBUG 42238 --- [API-GATEWAY] [  restartedMain] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T20:56:56.672+05:30  INFO 42238 --- [API-GATEWAY] [  restartedMain] c.t.ApiGateway.ApiGatewayApplication     : Started ApiGatewayApplication in 2.134 seconds (process running for 2.462)
+2026-06-23T20:56:56.674+05:30  WARN 42238 --- [API-GATEWAY] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-06-23T20:56:56.674+05:30  WARN 42238 --- [API-GATEWAY] [  restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-06-23T20:57:26.535+05:30  INFO 42238 --- [API-GATEWAY] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-06-23T20:57:26.536+05:30  INFO 42238 --- [API-GATEWAY] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-06-23T20:57:26.536+05:30  INFO 42238 --- [API-GATEWAY] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-06-23T20:57:26.536+05:30  INFO 42238 --- [API-GATEWAY] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-06-23T20:57:26.536+05:30  INFO 42238 --- [API-GATEWAY] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-06-23T20:57:26.536+05:30  INFO 42238 --- [API-GATEWAY] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2026-06-23T20:57:26.536+05:30  INFO 42238 --- [API-GATEWAY] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-06-23T20:57:26.557+05:30  INFO 42238 --- [API-GATEWAY] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-06-23T20:57:26.558+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T20:57:26.559+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T20:57:26.560+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T20:57:26.561+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T20:57:26.561+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T20:57:26.562+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T20:57:26.562+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T20:57:26.563+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T20:57:26.564+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T20:57:26.564+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T20:57:26.565+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T20:57:26.565+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T20:57:56.575+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T20:57:56.576+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T20:57:56.576+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T20:57:56.576+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T20:57:56.576+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T20:57:56.577+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T20:57:56.577+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T20:57:56.577+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T20:57:56.577+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T20:57:56.577+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T20:57:56.578+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T20:57:56.578+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T20:58:26.583+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T20:58:26.584+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T20:58:26.584+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T20:58:26.585+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T20:58:26.585+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T20:58:26.585+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T20:58:26.585+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T20:58:26.585+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T20:58:26.585+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T20:58:26.586+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T20:58:26.586+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T20:58:26.586+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T20:58:56.593+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T20:58:56.594+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T20:58:56.594+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T20:58:56.594+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T20:58:56.594+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T20:58:56.595+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T20:58:56.595+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T20:58:56.595+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T20:58:56.595+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T20:58:56.596+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T20:58:56.596+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T20:58:56.597+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T20:59:26.603+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T20:59:26.603+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T20:59:26.603+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T20:59:26.604+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T20:59:26.604+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T20:59:26.604+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T20:59:26.604+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T20:59:26.604+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T20:59:26.604+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T20:59:26.605+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T20:59:26.605+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T20:59:26.605+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T20:59:56.610+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T20:59:56.611+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T20:59:56.611+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T20:59:56.611+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T20:59:56.611+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T20:59:56.611+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T20:59:56.612+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T20:59:56.612+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T20:59:56.612+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T20:59:56.612+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T20:59:56.612+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T20:59:56.612+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T21:00:26.618+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T21:00:26.619+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T21:00:26.619+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T21:00:26.620+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T21:00:26.620+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T21:00:26.621+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T21:00:26.621+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T21:00:26.621+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T21:00:26.621+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T21:00:26.622+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T21:00:26.622+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T21:00:26.622+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T21:00:56.627+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T21:00:56.628+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T21:00:56.628+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T21:00:56.628+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T21:00:56.628+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T21:00:56.629+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T21:00:56.629+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T21:00:56.629+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T21:00:56.629+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T21:00:56.629+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T21:00:56.629+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T21:00:56.630+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T21:01:26.635+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T21:01:26.636+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T21:01:26.636+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T21:01:26.637+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T21:01:26.637+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T21:01:26.637+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T21:01:26.637+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T21:01:26.638+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T21:01:26.638+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T21:01:26.638+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T21:01:26.638+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T21:01:26.639+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T21:01:56.281+05:30  INFO 42238 --- [API-GATEWAY] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-06-23T21:01:56.644+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T21:01:56.645+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T21:01:56.645+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T21:01:56.645+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T21:01:56.645+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T21:01:56.645+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T21:01:56.645+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T21:01:56.646+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T21:01:56.646+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T21:01:56.646+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T21:01:56.646+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T21:01:56.646+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T21:02:26.650+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T21:02:26.651+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T21:02:26.651+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T21:02:26.651+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T21:02:26.651+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T21:02:26.652+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T21:02:26.652+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T21:02:26.652+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T21:02:26.652+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T21:02:26.652+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T21:02:26.652+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T21:02:26.653+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T21:02:56.658+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T21:02:56.659+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T21:02:56.659+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T21:02:56.659+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T21:02:56.659+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T21:02:56.660+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T21:02:56.660+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T21:02:56.660+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T21:02:56.660+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T21:02:56.661+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T21:02:56.661+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T21:02:56.662+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T21:03:26.667+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T21:03:26.668+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T21:03:26.668+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T21:03:26.668+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T21:03:26.668+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T21:03:26.669+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T21:03:26.669+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T21:03:26.669+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T21:03:26.669+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T21:03:26.669+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T21:03:26.669+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T21:03:26.670+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T21:03:56.674+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T21:03:56.674+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T21:03:56.674+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T21:03:56.675+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T21:03:56.675+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T21:03:56.675+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T21:03:56.675+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T21:03:56.675+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T21:03:56.675+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T21:03:56.676+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T21:03:56.676+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T21:03:56.676+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+2026-06-23T21:04:26.680+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition auth-service applying {_genkey_0=/api/auth/**, _genkey_1=/api/admin/**, _genkey_2=/api/internal/**, _genkey_3=/api/test/**} to Path
+2026-06-23T21:04:26.681+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: auth-service
+2026-06-23T21:04:26.681+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition tweet-service applying {_genkey_0=/api/tweets/**} to Path
+2026-06-23T21:04:26.682+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: tweet-service
+2026-06-23T21:04:26.682+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition social-service applying {_genkey_0=/api/bookmarks/**, _genkey_1=/api/feed/**, _genkey_2=/api/follows/**, _genkey_3=/api/likes/**, _genkey_4=/api/replies/**, _genkey_5=/api/retweets/**, _genkey_6=/api/profile/**, _genkey_7=/social} to Path
+2026-06-23T21:04:26.682+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: social-service
+2026-06-23T21:04:26.682+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/api/notification/**} to Path
+2026-06-23T21:04:26.682+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-23T21:04:26.682+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-websocket applying {_genkey_0=/ws/notifications**} to Path
+2026-06-23T21:04:26.682+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-websocket
+2026-06-23T21:04:26.682+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition media-service applying {_genkey_0=/media/**} to Path
+2026-06-23T21:04:26.683+05:30 DEBUG 42238 --- [API-GATEWAY] [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: media-service
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  07:52 min
+[INFO] Finished at: 2026-06-23T21:04:45+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.7:run (default-cli) on project ApiGateway: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

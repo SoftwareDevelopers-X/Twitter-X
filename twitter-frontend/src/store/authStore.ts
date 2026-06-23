@@ -8,6 +8,8 @@ interface AuthState {
   refreshToken: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  isComposerOpen: boolean;
+  setComposerOpen: (open: boolean) => void;
   login: (data: any) => Promise<void>;
   register: (data: any) => Promise<void>;
   logout: () => Promise<void>;
@@ -44,6 +46,8 @@ export const useAuthStore = create<AuthState>((set, get) => {
     refreshToken: null,
     isAuthenticated: false,
     isLoading: true,
+    isComposerOpen: false,
+    setComposerOpen: (open) => set({ isComposerOpen: open }),
 
     initAuth: async () => {
       set({ isLoading: true });

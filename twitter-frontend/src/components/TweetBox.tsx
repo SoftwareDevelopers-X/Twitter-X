@@ -29,6 +29,7 @@ const TweetBox: React.FC<TweetBoxProps> = ({ placeholder = "What's happening?!",
       queryClient.invalidateQueries({ queryKey: ['tweets'] });
       queryClient.invalidateQueries({ queryKey: ['feed-tweets', user?.userId] });
       queryClient.invalidateQueries({ queryKey: ['user-posts', user?.userId] });
+      queryClient.invalidateQueries({ queryKey: ['trending-hashtags'] });
       toast.success('Your post was sent!');
       if (onSuccess) onSuccess();
     },

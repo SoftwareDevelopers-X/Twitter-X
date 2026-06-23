@@ -1,0 +1,122 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< com.twitter:social-service >---------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.7:run (default-cli) > test-compile @ social-service >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ social-service ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ social-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ social-service ---
+[INFO] skip non existing resourceDirectory /home/kadiyam-likith/Documents/projects/Twitter-X/social-service/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ social-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.0.7:run (default-cli) < test-compile @ social-service <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.7:run (default-cli) @ social-service ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.7)
+
+2026-06-23T20:57:05.528+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] c.t.s.service.SocialServiceApplication   : Starting SocialServiceApplication using Java 25.0.3 with PID 43266 (/home/kadiyam-likith/Documents/projects/Twitter-X/social-service/target/classes started by kadiyam-likith in /home/kadiyam-likith/Documents/projects/Twitter-X/social-service)
+2026-06-23T20:57:05.536+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] c.t.s.service.SocialServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-06-23T20:57:05.691+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-06-23T20:57:05.691+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-06-23T20:57:07.650+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-06-23T20:57:07.655+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-23T20:57:07.842+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 176 ms. Found 6 JPA repository interfaces.
+2026-06-23T20:57:07.870+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-06-23T20:57:07.872+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-06-23T20:57:07.905+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.twitter.social.service.repository.BookmarkRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-23T20:57:07.906+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.twitter.social.service.repository.FollowRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-23T20:57:07.906+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.twitter.social.service.repository.LikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-23T20:57:07.914+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.twitter.social.service.repository.ProfileRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-23T20:57:07.914+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.twitter.social.service.repository.ReplyRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-23T20:57:07.915+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.twitter.social.service.repository.RetweetRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-06-23T20:57:07.915+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26 ms. Found 0 Redis repository interfaces.
+2026-06-23T20:57:08.550+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=45e83fa2-b823-3f85-b849-a98b16684187
+2026-06-23T20:57:09.379+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8084 (http)
+2026-06-23T20:57:09.395+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-23T20:57:09.396+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-06-23T20:57:09.434+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3741 ms
+2026-06-23T20:57:10.315+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-23T20:57:10.355+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.19.Final
+2026-06-23T20:57:10.727+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-23T20:57:10.756+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-23T20:57:10.897+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3b0a36b7
+2026-06-23T20:57:10.898+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-23T20:57:10.969+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5433/social-service]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 17.10
+	Default catalog/schema: social-service/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-23T20:57:11.853+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-23T20:57:11.915+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-23T20:57:12.158+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-23T20:57:12.418+05:30  WARN 43266 --- [SOCIAL-SERVICE] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-23T20:57:12.633+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.c.openfeign.FeignClientFactoryBean   : For 'tweet-service' URL not provided. Will try picking an instance via load-balancing.
+2026-06-23T20:57:13.182+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.c.openfeign.FeignClientFactoryBean   : For 'auth-service' URL not provided. Will try picking an instance via load-balancing.
+2026-06-23T20:57:13.198+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.c.openfeign.FeignClientFactoryBean   : For 'media-service' URL not provided. Will try picking an instance via load-balancing.
+2026-06-23T20:57:13.313+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-06-23T20:57:14.438+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestClient.
+2026-06-23T20:57:14.512+05:30  WARN 43266 --- [SOCIAL-SERVICE] [  restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-06-23T20:57:14.545+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 28 endpoints beneath base path '/actuator'
+2026-06-23T20:57:14.640+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-06-23T20:57:14.666+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-06-23T20:57:14.669+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-06-23T20:57:14.676+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-06-23T20:57:14.677+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-06-23T20:57:14.677+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-06-23T20:57:14.677+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-06-23T20:57:14.677+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-06-23T20:57:14.677+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-06-23T20:57:14.677+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-06-23T20:57:14.964+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-06-23T20:57:14.966+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-06-23T20:57:14.967+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-06-23T20:57:14.968+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1782228434968 with initial instances count: 1
+2026-06-23T20:57:14.976+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application SOCIAL-SERVICE with eureka with status UP
+2026-06-23T20:57:14.977+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1782228434977, current=UP, previous=STARTING]
+2026-06-23T20:57:14.978+05:30  INFO 43266 --- [SOCIAL-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SOCIAL-SERVICE/10.10.2.198:SOCIAL-SERVICE:8084: registering service...
+2026-06-23T20:57:14.986+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8084 (http) with context path '/'
+2026-06-23T20:57:14.987+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8084
+2026-06-23T20:57:15.001+05:30  INFO 43266 --- [SOCIAL-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SOCIAL-SERVICE/10.10.2.198:SOCIAL-SERVICE:8084 - registration status: 204
+2026-06-23T20:57:15.005+05:30  INFO 43266 --- [SOCIAL-SERVICE] [  restartedMain] c.t.s.service.SocialServiceApplication   : Started SocialServiceApplication in 10.355 seconds (process running for 11.348)
+2026-06-23T21:02:14.678+05:30  INFO 43266 --- [SOCIAL-SERVICE] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  08:43 min
+[INFO] Finished at: 2026-06-23T21:05:43+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.7:run (default-cli) on project social-service: Process terminated with exit code: 137 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

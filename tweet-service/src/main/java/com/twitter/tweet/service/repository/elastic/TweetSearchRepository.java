@@ -13,17 +13,37 @@ public interface TweetSearchRepository extends ElasticsearchRepository<TweetDocu
 
     @Query("""
 {
-  "multi_match": {
-    "query": "?0",
-    "fields": [
-      "content",
-      "hashtags",
-      "username"
+  "bool": {
+    "should": [
+      {
+        "wildcard": {
+          "content": {
+            "value": "?0",
+            "case_insensitive": true
+          }
+        }
+      },
+      {
+        "wildcard": {
+          "hashtags": {
+            "value": "?0",
+            "case_insensitive": true
+          }
+        }
+      },
+      {
+        "wildcard": {
+          "username": {
+            "value": "?0",
+            "case_insensitive": true
+          }
+        }
+      }
     ]
   }
 }
 """)
-    List<TweetDocument> searchAll(String keyword);
+    List<TweetDocument> searchAll(String wildcardPattern);
 
     @Query("""
 {
@@ -32,21 +52,24 @@ public interface TweetSearchRepository extends ElasticsearchRepository<TweetDocu
       {
         "wildcard": {
           "content": {
-            "value": "*?0*"
+            "value": "?0",
+            "case_insensitive": true
           }
         }
       },
       {
         "wildcard": {
           "hashtags": {
-            "value": "*?0*"
+            "value": "?0",
+            "case_insensitive": true
           }
         }
       },
       {
         "wildcard": {
           "username": {
-            "value": "*?0*"
+            "value": "?0",
+            "case_insensitive": true
           }
         }
       }
@@ -54,5 +77,5 @@ public interface TweetSearchRepository extends ElasticsearchRepository<TweetDocu
   }
 }
 """)
-    List<TweetDocument> searchSuggestions(String keyword);
+    List<TweetDocument> searchSuggestions(String wildcardPattern);
 }

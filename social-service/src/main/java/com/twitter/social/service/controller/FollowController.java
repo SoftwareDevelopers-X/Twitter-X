@@ -70,4 +70,15 @@ public class FollowController {
                 followService.isFollowing(followerId, followingId)
         );
     }
+
+    @GetMapping("/suggestions")
+    public ApiResponse<List<Long>> getFollowSuggestions(
+            @RequestHeader(value = "X-User-Id", required = false) Long currentUserId) {
+
+        return new ApiResponse<>(
+                "success",
+                "Follow suggestions fetched successfully",
+                followService.getFollowSuggestions(currentUserId)
+        );
+    }
 }
