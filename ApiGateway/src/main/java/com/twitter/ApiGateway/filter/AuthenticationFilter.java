@@ -5,6 +5,7 @@ import com.twitter.ApiGateway.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
-public class AuthenticationFilter implements GlobalFilter {
+public class AuthenticationFilter implements GlobalFilter, Ordered {
 
     private final RouteValidator routeValidator;
     private final JwtUtil jwtUtil;
@@ -32,24 +33,21 @@ public class AuthenticationFilter implements GlobalFilter {
             return chain.filter(exchange);
         }
 
-        // Get Authorization header
+        // Get Authorization header or fallback to 'token' query param
         String authHeader = exchange.getRequest()
                 .getHeaders()
                 .getFirst(HttpHeaders.AUTHORIZATION);
 
-        if (authHeader == null) {
-            exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.UNAUTHORIZED);
-            return exchange.getResponse().setComplete();
+        String token = null;
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            token = authHeader.substring(7);
+        } else {
+            token = exchange.getRequest()
+                    .getQueryParams()
+                    .getFirst("token");
         }
 
-        if (!authHeader.startsWith("Bearer ")) {
-            exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.UNAUTHORIZED);
-            return exchange.getResponse().setComplete();
-        }
-
-        String token = authHeader.substring(7);
-
-        if (!jwtUtil.validateToken(token)) {
+        if (token == null || !jwtUtil.validateToken(token)) {
             exchange.getResponse().setStatusCode(org.springframework.http.HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
         }
@@ -76,5 +74,10 @@ public class AuthenticationFilter implements GlobalFilter {
                         .request(request)
                         .build()
         );
+    }
+
+    @Override
+    public int getOrder() {
+        return -1; // Must run before WebsocketRoutingFilter (2147483646)
     }
 }

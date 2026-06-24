@@ -1,0 +1,69 @@
+# =====================================================================
+# REFERENCE ONLY - this is NOT part of chat-service.
+# Add these route entries to your EXISTING Spring Cloud Gateway project's
+# application.yml, alongside your auth-service / tweet-service / etc. routes.
+#
+# Two routes are needed for chat-service:
+#   1. REST routes  -> normal http://, gateway already does this for your other services
+#   2. WS route     -> lb:ws:// scheme, REQUIRED for STOMP/WebSocket traffic to be
+#                      load-balanced through Eureka correctly. A plain lb:// route
+#                      will NOT upgrade the connection properly for WebSocket.
+# =====================================================================
+
+spring:
+  cloud:
+    gateway:
+      routes:
+
+        # ---- chat-service REST API ----
+        - id: chat-service-rest
+          uri: lb://chat-service
+          predicates:
+            - Path=/chat-service/api/**
+          filters:
+            - StripPrefix=1
+            # JWT validation + X-User-Id header injection happens in your existing
+            # global AuthenticationFilter / GatewayFilter - same one used for
+            # tweet-service, social-service, etc. Nothing chat-specific needed here,
+            # just make sure this route also passes through that filter.
+
+        # ---- chat-service WebSocket (STOMP) ----
+        - id: chat-service-ws
+          uri: lb:ws://chat-service
+          predicates:
+            - Path=/chat-service/ws/**
+          filters:
+            - StripPrefix=1
+            # IMPORTANT: the same JWT-auth filter MUST run here too, so that
+            # X-User-Id is attached to the handshake HTTP request before it's
+            # upgraded to a WebSocket. If your AuthenticationFilter is scoped
+            # only to certain predicates/paths, double check it also matches
+            # /chat-service/ws/** - it's easy to accidentally exclude WS routes.
+
+# ---------------------------------------------------------------------
+# Client connection URL (through gateway), example:
+#
+#   REST:      http://<gateway-host>:<port>/chat-service/api/v1/conversations
+#   WebSocket: ws://<gateway-host>:<port>/chat-service/ws   (SockJS: same path, http(s) scheme)
+#
+# Example with SockJS client (JS):
+#   const socket = new SockJS('http://localhost:8080/chat-service/ws', null, {
+#       transportOptions: {
+#         'xhr-streaming': { headers: { Authorization: 'Bearer ' + jwt } }
+#       }
+#   });
+#
+# NOTE on auth during handshake: SockJS/STOMP JS clients can't always set
+# custom headers on the initial HTTP handshake the same way XHR can (depends
+# on transport). Two common patterns to get the JWT to the gateway for the
+# handshake specifically:
+#   (a) Send the JWT as a query param on connect, e.g. ?token=xxx, and have
+#       your Gateway's AuthenticationFilter also check a query param for the
+#       /chat-service/ws/** route specifically (since browsers don't let JS
+#       set arbitrary headers on the WebSocket upgrade request itself).
+#   (b) Use an httpOnly auth cookie that's automatically sent on the upgrade
+#       request, if your auth-service already issues one.
+# Pick whichever matches how your gateway currently authenticates - this
+# is the one piece that depends on your existing AuthenticationFilter
+# implementation, which I don't have visibility into.
+# ---------------------------------------------------------------------

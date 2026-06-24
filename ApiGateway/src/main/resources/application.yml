@@ -50,6 +50,23 @@ spring:
               predicates:
                 - Path=/media/**
 
+            # CHAT SERVICE WEBSOCKET
+            - id: chat-service-ws
+              uri: lb:ws://CHAT-SERVICE
+              predicates:
+                - Path=/chat-service/ws/**
+                - Header=Upgrade, (?i)websocket
+              filters:
+                - StripPrefix=1
+
+            # CHAT SERVICE REST
+            - id: chat-service-rest
+              uri: lb://CHAT-SERVICE
+              predicates:
+                - Path=/chat-service/api/**, /chat-service/ws/**
+              filters:
+                - StripPrefix=1
+
 eureka:
   client:
     service-url:

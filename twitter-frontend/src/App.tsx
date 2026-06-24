@@ -18,8 +18,10 @@ import Notifications from './pages/Notifications';
 import Bookmarks from './pages/Bookmarks';
 import Search from './pages/Search';
 import Settings from './pages/Settings';
+import Messages from './pages/Messages';
+import { ChatProvider } from './context/ChatContext';
 
-import { Loader2 } from 'lucide-react';
+import { Loader2, Mail } from 'lucide-react';
 import './App.css';
 
 // Create a React Query client
@@ -158,6 +160,78 @@ const WebSocketListener: React.FC = () => {
   return null;
 };
 
+class ChatErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: any, errorInfo: any) {
+    console.error("ChatProvider error caught by boundary:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <Outlet />;
+    }
+    return this.props.children;
+  }
+}
+
+class LocalErrorBoundary extends React.Component<
+  { children: React.ReactNode; fallback: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
+
+const ChatPageErrorBoundary: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return (
+    <LocalErrorBoundary fallback={
+      <div className="flex flex-col items-center justify-center p-8 text-center min-h-[300px] h-full text-white w-full">
+        <Mail className="w-12 h-12 text-twitter-blue mb-4" />
+        <h2 className="text-xl font-bold mb-2">Direct Messages Unavailable</h2>
+        <p className="text-twitter-gray-1 text-sm max-w-sm">
+          There was an issue loading your messages. The rest of X-Clone remains functional.
+        </p>
+      </div>
+    }>
+      {children}
+    </LocalErrorBoundary>
+  );
+};
+
+const ChatLayout: React.FC = () => {
+  return (
+    <ChatErrorBoundary>
+      <ChatProvider>
+        <Outlet />
+      </ChatProvider>
+    </ChatErrorBoundary>
+  );
+};
+
 function App() {
   const { initAuth } = useAuthStore();
 
@@ -179,14 +253,18 @@ function App() {
 
           {/* Protected Routes inside App Layout */}
           <Route element={<PrivateRoute />}>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/profile/:id" element={<Profile />} />
-              <Route path="/tweet/:id" element={<TweetDetail />} />
-              <Route path="/notifications" element={<Notifications />} />
-              <Route path="/bookmarks" element={<Bookmarks />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/settings" element={<Settings />} />
+            <Route element={<ChatLayout />}>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/tweet/:id" element={<TweetDetail />} />
+                <Route path="/notifications" element={<Notifications />} />
+                <Route path="/bookmarks" element={<Bookmarks />} />
+                <Route path="/messages" element={<ChatPageErrorBoundary><Messages /></ChatPageErrorBoundary>} />
+                <Route path="/messages/:conversationId" element={<ChatPageErrorBoundary><Messages /></ChatPageErrorBoundary>} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/settings" element={<Settings />} />
+              </Route>
             </Route>
           </Route>
 

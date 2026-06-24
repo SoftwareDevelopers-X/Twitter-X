@@ -12,19 +12,13 @@
 [INFO] Copying 0 resource from src/main/resources to target/classes
 [INFO] 
 [INFO] --- compiler:3.14.1:compile (default-compile) @ notification-service ---
-[INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 12 source files with javac [debug parameters release 17] to target/classes
-WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::objectFieldOffset has been called by lombok.permit.Permit
-WARNING: Please consider reporting this to the maintainers of class lombok.permit.Permit
-WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Nothing to compile - all classes are up to date.
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ notification-service ---
 [INFO] skip non existing resourceDirectory /home/kadiyam-likith/Documents/projects/Twitter-X/notification-service/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ notification-service ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
+[INFO] Nothing to compile - all classes are up to date.
 [INFO] 
 [INFO] <<< spring-boot:4.0.7:run (default-cli) < test-compile @ notification-service <<<
 [INFO] 
@@ -41,24 +35,24 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 
  :: Spring Boot ::                (v4.0.7)
 
-2026-06-23T20:57:08.197+05:30  INFO 43341 --- [notification-service] [  restartedMain] c.t.n.s.NotificationServiceApplication   : Starting NotificationServiceApplication using Java 25.0.3 with PID 43341 (/home/kadiyam-likith/Documents/projects/Twitter-X/notification-service/target/classes started by kadiyam-likith in /home/kadiyam-likith/Documents/projects/Twitter-X/notification-service)
-2026-06-23T20:57:08.201+05:30  INFO 43341 --- [notification-service] [  restartedMain] c.t.n.s.NotificationServiceApplication   : No active profile set, falling back to 1 default profile: "default"
-2026-06-23T20:57:08.280+05:30  INFO 43341 --- [notification-service] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2026-06-23T20:57:08.280+05:30  INFO 43341 --- [notification-service] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2026-06-23T20:57:08.972+05:30  INFO 43341 --- [notification-service] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-23T20:57:09.101+05:30  INFO 43341 --- [notification-service] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120 ms. Found 1 JPA repository interface.
-2026-06-23T20:57:09.343+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a15b3f16-b456-3330-ab85-337f942ed26d
-2026-06-23T20:57:09.841+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8083 (http)
-2026-06-23T20:57:09.857+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-06-23T20:57:09.858+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-06-23T20:57:09.894+05:30  INFO 43341 --- [notification-service] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1613 ms
-2026-06-23T20:57:10.029+05:30  INFO 43341 --- [notification-service] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
-2026-06-23T20:57:10.056+05:30  INFO 43341 --- [notification-service] [  restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.19.Final
-2026-06-23T20:57:10.428+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-23T20:57:10.459+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-06-23T20:57:10.598+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@708f67ba
-2026-06-23T20:57:10.601+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-06-23T20:57:10.655+05:30  INFO 43341 --- [notification-service] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2026-06-24T19:18:38.947+05:30  INFO 164099 --- [notification-service] [  restartedMain] c.t.n.s.NotificationServiceApplication   : Starting NotificationServiceApplication using Java 25.0.3 with PID 164099 (/home/kadiyam-likith/Documents/projects/Twitter-X/notification-service/target/classes started by kadiyam-likith in /home/kadiyam-likith/Documents/projects/Twitter-X/notification-service)
+2026-06-24T19:18:38.951+05:30  INFO 164099 --- [notification-service] [  restartedMain] c.t.n.s.NotificationServiceApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-06-24T19:18:39.011+05:30  INFO 164099 --- [notification-service] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-06-24T19:18:39.012+05:30  INFO 164099 --- [notification-service] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-06-24T19:18:40.162+05:30  INFO 164099 --- [notification-service] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-24T19:18:40.370+05:30  INFO 164099 --- [notification-service] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 197 ms. Found 1 JPA repository interface.
+2026-06-24T19:18:40.894+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.s.cloud.context.scope.GenericScope     : BeanFactory id=a15b3f16-b456-3330-ab85-337f942ed26d
+2026-06-24T19:18:41.574+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8083 (http)
+2026-06-24T19:18:41.591+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-24T19:18:41.592+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-06-24T19:18:41.634+05:30  INFO 164099 --- [notification-service] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2622 ms
+2026-06-24T19:18:41.864+05:30  INFO 164099 --- [notification-service] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-24T19:18:41.919+05:30  INFO 164099 --- [notification-service] [  restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.19.Final
+2026-06-24T19:18:42.321+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-24T19:18:42.360+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-24T19:18:42.472+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3a8ed0e1
+2026-06-24T19:18:42.474+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-24T19:18:42.556+05:30  INFO 164099 --- [notification-service] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [jdbc:postgresql://localhost:5433/notification-service]
 	Database driver: PostgreSQL JDBC Driver
 	Database dialect: PostgreSQLDialect
@@ -70,33 +64,33 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 	Pool: DataSourceConnectionProvider
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-06-23T20:57:11.376+05:30  INFO 43341 --- [notification-service] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-23T20:57:11.423+05:30  INFO 43341 --- [notification-service] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-23T20:57:11.479+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
-2026-06-23T20:57:11.730+05:30  WARN 43341 --- [notification-service] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-23T20:57:12.078+05:30  INFO 43341 --- [notification-service] [  restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestClient.
-2026-06-23T20:57:12.107+05:30  WARN 43341 --- [notification-service] [  restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2026-06-23T20:57:12.158+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2026-06-23T20:57:12.172+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2026-06-23T20:57:12.174+05:30  INFO 43341 --- [notification-service] [  restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-06-23T20:57:12.179+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2026-06-23T20:57:12.179+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2026-06-23T20:57:12.179+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2026-06-23T20:57:12.179+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2026-06-23T20:57:12.180+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2026-06-23T20:57:12.180+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2026-06-23T20:57:12.180+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2026-06-23T20:57:12.448+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2026-06-23T20:57:12.451+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2026-06-23T20:57:12.454+05:30  INFO 43341 --- [notification-service] [  restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2026-06-23T20:57:12.456+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1782228432455 with initial instances count: 1
-2026-06-23T20:57:12.460+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application NOTIFICATION-SERVICE with eureka with status UP
-2026-06-23T20:57:12.460+05:30  INFO 43341 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1782228432460, current=UP, previous=STARTING]
-2026-06-23T20:57:12.461+05:30  INFO 43341 --- [notification-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083: registering service...
-2026-06-23T20:57:12.471+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8083 (http) with context path '/'
-2026-06-23T20:57:12.472+05:30  INFO 43341 --- [notification-service] [  restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8083
-2026-06-23T20:57:12.493+05:30  INFO 43341 --- [notification-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083 - registration status: 204
-2026-06-23T20:57:12.506+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+2026-06-24T19:18:43.483+05:30  INFO 164099 --- [notification-service] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-24T19:18:43.567+05:30  INFO 164099 --- [notification-service] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-24T19:18:43.672+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-24T19:18:43.987+05:30  WARN 164099 --- [notification-service] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-24T19:18:44.411+05:30  INFO 164099 --- [notification-service] [  restartedMain] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestClient.
+2026-06-24T19:18:44.461+05:30  WARN 164099 --- [notification-service] [  restartedMain] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-06-24T19:18:44.567+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-06-24T19:18:44.584+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-06-24T19:18:44.586+05:30  INFO 164099 --- [notification-service] [  restartedMain] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-06-24T19:18:44.592+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-06-24T19:18:44.593+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-06-24T19:18:44.593+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-06-24T19:18:44.593+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-06-24T19:18:44.593+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-06-24T19:18:44.593+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-06-24T19:18:44.593+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-06-24T19:18:44.889+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-06-24T19:18:44.892+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-06-24T19:18:44.894+05:30  INFO 164099 --- [notification-service] [  restartedMain] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-06-24T19:18:44.896+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1782308924895 with initial instances count: 1
+2026-06-24T19:18:44.900+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application NOTIFICATION-SERVICE with eureka with status UP
+2026-06-24T19:18:44.901+05:30  INFO 164099 --- [notification-service] [  restartedMain] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1782308924901, current=UP, previous=STARTING]
+2026-06-24T19:18:44.902+05:30  INFO 164099 --- [notification-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083: registering service...
+2026-06-24T19:18:44.915+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8083 (http) with context path '/'
+2026-06-24T19:18:44.916+05:30  INFO 164099 --- [notification-service] [  restartedMain] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8083
+2026-06-24T19:18:44.937+05:30  INFO 164099 --- [notification-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083 - registration status: 204
+2026-06-24T19:18:44.979+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.offset.reset = latest
@@ -213,12 +207,12 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-06-23T20:57:12.559+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
-2026-06-23T20:57:12.733+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
-2026-06-23T20:57:12.733+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
-2026-06-23T20:57:12.733+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782228432731
-2026-06-23T20:57:12.738+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Subscribed to topic(s): tweet-reply-deleted-topic
-2026-06-23T20:57:12.748+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+2026-06-24T19:18:45.044+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-06-24T19:18:45.227+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
+2026-06-24T19:18:45.228+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
+2026-06-24T19:18:45.228+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782308925226
+2026-06-24T19:18:45.231+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Subscribed to topic(s): tweet-reply-deleted-topic
+2026-06-24T19:18:45.241+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.offset.reset = latest
@@ -335,12 +329,12 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-06-23T20:57:12.748+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
-2026-06-23T20:57:12.756+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
-2026-06-23T20:57:12.756+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
-2026-06-23T20:57:12.756+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782228432756
-2026-06-23T20:57:12.757+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Subscribed to topic(s): tweet-unliked-topic
-2026-06-23T20:57:12.759+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+2026-06-24T19:18:45.242+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-06-24T19:18:45.254+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
+2026-06-24T19:18:45.255+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
+2026-06-24T19:18:45.255+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782308925254
+2026-06-24T19:18:45.255+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Subscribed to topic(s): tweet-unliked-topic
+2026-06-24T19:18:45.257+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.offset.reset = latest
@@ -457,12 +451,12 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-06-23T20:57:12.759+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
-2026-06-23T20:57:12.766+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
-2026-06-23T20:57:12.766+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
-2026-06-23T20:57:12.766+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782228432766
-2026-06-23T20:57:12.766+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Subscribed to topic(s): tweet-retweeted-topic
-2026-06-23T20:57:12.768+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+2026-06-24T19:18:45.258+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-06-24T19:18:45.268+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
+2026-06-24T19:18:45.268+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
+2026-06-24T19:18:45.268+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782308925267
+2026-06-24T19:18:45.268+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Subscribed to topic(s): tweet-retweeted-topic
+2026-06-24T19:18:45.270+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.offset.reset = latest
@@ -579,12 +573,12 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-06-23T20:57:12.769+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
-2026-06-23T20:57:12.778+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
-2026-06-23T20:57:12.779+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
-2026-06-23T20:57:12.779+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782228432778
-2026-06-23T20:57:12.779+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Subscribed to topic(s): tweet-retweet-removed-topic
-2026-06-23T20:57:12.784+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+2026-06-24T19:18:45.270+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-06-24T19:18:45.276+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
+2026-06-24T19:18:45.276+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
+2026-06-24T19:18:45.276+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782308925276
+2026-06-24T19:18:45.276+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Subscribed to topic(s): tweet-retweet-removed-topic
+2026-06-24T19:18:45.278+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.offset.reset = latest
@@ -701,12 +695,12 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-06-23T20:57:12.785+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
-2026-06-23T20:57:12.791+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
-2026-06-23T20:57:12.791+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
-2026-06-23T20:57:12.791+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782228432791
-2026-06-23T20:57:12.791+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Subscribed to topic(s): tweet-replied-topic
-2026-06-23T20:57:12.793+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+2026-06-24T19:18:45.278+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-06-24T19:18:45.283+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
+2026-06-24T19:18:45.283+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
+2026-06-24T19:18:45.283+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782308925283
+2026-06-24T19:18:45.284+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Subscribed to topic(s): tweet-replied-topic
+2026-06-24T19:18:45.285+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.offset.reset = latest
@@ -823,12 +817,12 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-06-23T20:57:12.794+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
-2026-06-23T20:57:12.802+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
-2026-06-23T20:57:12.802+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
-2026-06-23T20:57:12.802+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782228432801
-2026-06-23T20:57:12.802+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Subscribed to topic(s): notification-topic
-2026-06-23T20:57:12.804+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+2026-06-24T19:18:45.286+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-06-24T19:18:45.290+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
+2026-06-24T19:18:45.290+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
+2026-06-24T19:18:45.290+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782308925290
+2026-06-24T19:18:45.290+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Subscribed to topic(s): notification-topic
+2026-06-24T19:18:45.292+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.offset.reset = latest
@@ -945,102 +939,412 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 	ssl.truststore.type = JKS
 	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
 
-2026-06-23T20:57:12.805+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
-2026-06-23T20:57:12.810+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
-2026-06-23T20:57:12.810+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
-2026-06-23T20:57:12.810+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782228432809
-2026-06-23T20:57:12.810+05:30  INFO 43341 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Subscribed to topic(s): tweet-liked-topic
-2026-06-23T20:57:12.821+05:30  INFO 43341 --- [notification-service] [  restartedMain] c.t.n.s.NotificationServiceApplication   : Started NotificationServiceApplication in 5.228 seconds (process running for 5.999)
-2026-06-23T20:57:13.026+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
-2026-06-23T20:57:13.026+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
-2026-06-23T20:57:13.026+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
-2026-06-23T20:57:13.026+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
-2026-06-23T20:57:13.026+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
-2026-06-23T20:57:13.026+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
-2026-06-23T20:57:13.026+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
-2026-06-23T20:57:13.028+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
-2026-06-23T20:57:13.028+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
-2026-06-23T20:57:13.028+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
-2026-06-23T20:57:13.028+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
-2026-06-23T20:57:13.028+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
-2026-06-23T20:57:13.028+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
-2026-06-23T20:57:13.028+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
-2026-06-23T20:57:13.031+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.031+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] (Re-)joining group
-2026-06-23T20:57:13.031+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.031+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.032+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.032+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.032+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-5-6cd9e435-c3f7-4e33-8ce7-8a2a0bff2ed0
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-group-6-07411478-31ed-4a4f-a78a-2738e215b3ff
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-7-6924387f-dda8-4f63-8e1f-78209e652e72
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] (Re-)joining group
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-2-7708bdda-8c50-47cf-bdc8-d343b6706a24
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-3-e03375d2-96a8-4a71-bacf-f15a52f32ea1
-2026-06-23T20:57:13.046+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-4-afae355d-732e-4f3e-af95-0e7ce890103e
-2026-06-23T20:57:13.047+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.047+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:13.047+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-1-7d796467-05e1-4505-82dc-cbb14b7991b5
-2026-06-23T20:57:13.047+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] (Re-)joining group
-2026-06-23T20:57:16.049+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Successfully joined group with generation Generation{generationId=11, memberId='consumer-notification-group-6-07411478-31ed-4a4f-a78a-2738e215b3ff', protocol='range'}
-2026-06-23T20:57:16.056+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Finished assignment for group at generation 11: {consumer-notification-group-6-07411478-31ed-4a4f-a78a-2738e215b3ff=Assignment(partitions=[notification-topic-0])}
-2026-06-23T20:57:16.063+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Successfully synced group in generation Generation{generationId=11, memberId='consumer-notification-group-6-07411478-31ed-4a4f-a78a-2738e215b3ff', protocol='range'}
-2026-06-23T20:57:16.063+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Notifying assignor about the new Assignment(partitions=[notification-topic-0])
-2026-06-23T20:57:16.065+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Adding newly assigned partitions: [notification-topic-0]
-2026-06-23T20:57:16.075+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition notification-topic-0 to the committed offset FetchPosition{offset=22, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=0}}
-2026-06-23T20:57:16.077+05:30  INFO 43341 --- [notification-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-group: partitions assigned: [notification-topic-0]
-2026-06-23T20:57:19.049+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=11, memberId='consumer-notification-interaction-group-3-e03375d2-96a8-4a71-bacf-f15a52f32ea1', protocol='range'}
-2026-06-23T20:57:19.049+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=11, memberId='consumer-notification-interaction-group-7-6924387f-dda8-4f63-8e1f-78209e652e72', protocol='range'}
-2026-06-23T20:57:19.049+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=11, memberId='consumer-notification-interaction-group-5-6cd9e435-c3f7-4e33-8ce7-8a2a0bff2ed0', protocol='range'}
-2026-06-23T20:57:19.049+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=11, memberId='consumer-notification-interaction-group-1-7d796467-05e1-4505-82dc-cbb14b7991b5', protocol='range'}
-2026-06-23T20:57:19.049+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=11, memberId='consumer-notification-interaction-group-2-7708bdda-8c50-47cf-bdc8-d343b6706a24', protocol='range'}
-2026-06-23T20:57:19.049+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=11, memberId='consumer-notification-interaction-group-4-afae355d-732e-4f3e-af95-0e7ce890103e', protocol='range'}
-2026-06-23T20:57:19.053+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Finished assignment for group at generation 11: {consumer-notification-interaction-group-3-e03375d2-96a8-4a71-bacf-f15a52f32ea1=Assignment(partitions=[tweet-retweeted-topic-0]), consumer-notification-interaction-group-4-afae355d-732e-4f3e-af95-0e7ce890103e=Assignment(partitions=[tweet-retweet-removed-topic-0]), consumer-notification-interaction-group-1-7d796467-05e1-4505-82dc-cbb14b7991b5=Assignment(partitions=[tweet-reply-deleted-topic-0]), consumer-notification-interaction-group-5-6cd9e435-c3f7-4e33-8ce7-8a2a0bff2ed0=Assignment(partitions=[tweet-replied-topic-0]), consumer-notification-interaction-group-7-6924387f-dda8-4f63-8e1f-78209e652e72=Assignment(partitions=[tweet-liked-topic-0]), consumer-notification-interaction-group-2-7708bdda-8c50-47cf-bdc8-d343b6706a24=Assignment(partitions=[tweet-unliked-topic-0])}
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=11, memberId='consumer-notification-interaction-group-7-6924387f-dda8-4f63-8e1f-78209e652e72', protocol='range'}
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=11, memberId='consumer-notification-interaction-group-3-e03375d2-96a8-4a71-bacf-f15a52f32ea1', protocol='range'}
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=11, memberId='consumer-notification-interaction-group-4-afae355d-732e-4f3e-af95-0e7ce890103e', protocol='range'}
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=11, memberId='consumer-notification-interaction-group-2-7708bdda-8c50-47cf-bdc8-d343b6706a24', protocol='range'}
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=11, memberId='consumer-notification-interaction-group-5-6cd9e435-c3f7-4e33-8ce7-8a2a0bff2ed0', protocol='range'}
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-liked-topic-0])
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=11, memberId='consumer-notification-interaction-group-1-7d796467-05e1-4505-82dc-cbb14b7991b5', protocol='range'}
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-replied-topic-0])
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-liked-topic-0]
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-retweeted-topic-0])
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-retweet-removed-topic-0])
-2026-06-23T20:57:19.058+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-unliked-topic-0])
-2026-06-23T20:57:19.059+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-replied-topic-0]
-2026-06-23T20:57:19.059+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-retweet-removed-topic-0]
-2026-06-23T20:57:19.059+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-retweeted-topic-0]
-2026-06-23T20:57:19.059+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-unliked-topic-0]
-2026-06-23T20:57:19.059+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-reply-deleted-topic-0])
-2026-06-23T20:57:19.059+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-reply-deleted-topic-0]
-2026-06-23T20:57:19.061+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-retweet-removed-topic-0 to the committed offset FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=0}}
-2026-06-23T20:57:19.061+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-liked-topic-0 to the committed offset FetchPosition{offset=10, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=0}}
-2026-06-23T20:57:19.061+05:30  INFO 43341 --- [notification-service] [ntainer#4-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-retweet-removed-topic-0]
-2026-06-23T20:57:19.061+05:30  INFO 43341 --- [notification-service] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-liked-topic-0]
-2026-06-23T20:57:19.061+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-reply-deleted-topic-0 to the committed offset FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=0}}
-2026-06-23T20:57:19.061+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-retweeted-topic-0 to the committed offset FetchPosition{offset=4, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=0}}
-2026-06-23T20:57:19.062+05:30  INFO 43341 --- [notification-service] [ntainer#3-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-retweeted-topic-0]
-2026-06-23T20:57:19.061+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-replied-topic-0 to the committed offset FetchPosition{offset=2, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=0}}
-2026-06-23T20:57:19.062+05:30  INFO 43341 --- [notification-service] [ntainer#5-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-replied-topic-0]
-2026-06-23T20:57:19.061+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-unliked-topic-0 to the committed offset FetchPosition{offset=1, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=0}}
-2026-06-23T20:57:19.063+05:30  INFO 43341 --- [notification-service] [ntainer#2-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-unliked-topic-0]
-2026-06-23T20:57:19.062+05:30  INFO 43341 --- [notification-service] [ntainer#6-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-reply-deleted-topic-0]
-2026-06-23T21:02:12.181+05:30  INFO 43341 --- [notification-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  08:51 min
-[INFO] Finished at: 2026-06-23T21:05:52+05:30
-[INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.0.7:run (default-cli) on project notification-service: Process terminated with exit code: 137 -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+2026-06-24T19:18:45.293+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-06-24T19:18:45.297+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.2
+2026-06-24T19:18:45.297+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: c82fd9b934b4c1e6
+2026-06-24T19:18:45.297+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1782308925297
+2026-06-24T19:18:45.297+05:30  INFO 164099 --- [notification-service] [  restartedMain] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Subscribed to topic(s): tweet-liked-topic
+2026-06-24T19:18:45.307+05:30  INFO 164099 --- [notification-service] [  restartedMain] c.t.n.s.NotificationServiceApplication   : Started NotificationServiceApplication in 6.97 seconds (process running for 8.135)
+2026-06-24T19:18:45.649+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
+2026-06-24T19:18:45.649+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
+2026-06-24T19:18:45.649+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
+2026-06-24T19:18:45.649+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
+2026-06-24T19:18:45.649+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
+2026-06-24T19:18:45.649+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
+2026-06-24T19:18:45.649+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Cluster ID: 5L6g3nShT-eMCtK--X86sw
+2026-06-24T19:18:45.651+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
+2026-06-24T19:18:45.651+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
+2026-06-24T19:18:45.651+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
+2026-06-24T19:18:45.651+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
+2026-06-24T19:18:45.651+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
+2026-06-24T19:18:45.652+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
+2026-06-24T19:18:45.653+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false)
+2026-06-24T19:18:45.654+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] (Re-)joining group
+2026-06-24T19:18:45.654+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.655+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.655+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.656+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.656+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.656+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.672+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-1-377c0ded-e103-4e13-a05e-91e9f49a0950
+2026-06-24T19:18:45.672+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-group-6-7f89dca6-847d-4ca5-a11a-dc19a17448e2
+2026-06-24T19:18:45.672+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-4-eb3b7cf3-8b52-4c88-b76e-b3a5cd0abe3c
+2026-06-24T19:18:45.672+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.672+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] (Re-)joining group
+2026-06-24T19:18:45.672+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.673+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-5-687a4a77-18db-46ae-a652-8a904165f989
+2026-06-24T19:18:45.673+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-3-268e844f-4999-4240-a0df-a5c470148962
+2026-06-24T19:18:45.673+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-2-d934742f-58a5-4d1b-adae-a600583073c1
+2026-06-24T19:18:45.673+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.673+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.673+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:45.674+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-interaction-group-7-3504f89a-047a-48cd-9aec-d5388885eb0d
+2026-06-24T19:18:45.674+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] (Re-)joining group
+2026-06-24T19:18:48.676+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Successfully joined group with generation Generation{generationId=39, memberId='consumer-notification-group-6-7f89dca6-847d-4ca5-a11a-dc19a17448e2', protocol='range'}
+2026-06-24T19:18:48.684+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Finished assignment for group at generation 39: {consumer-notification-group-6-7f89dca6-847d-4ca5-a11a-dc19a17448e2=Assignment(partitions=[notification-topic-0])}
+2026-06-24T19:18:48.689+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Successfully synced group in generation Generation{generationId=39, memberId='consumer-notification-group-6-7f89dca6-847d-4ca5-a11a-dc19a17448e2', protocol='range'}
+2026-06-24T19:18:48.689+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Notifying assignor about the new Assignment(partitions=[notification-topic-0])
+2026-06-24T19:18:48.691+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Adding newly assigned partitions: [notification-topic-0]
+2026-06-24T19:18:48.699+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition notification-topic-0 to the committed offset FetchPosition{offset=126, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=10}}
+2026-06-24T19:18:48.701+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-group: partitions assigned: [notification-topic-0]
+2026-06-24T19:18:51.673+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=39, memberId='consumer-notification-interaction-group-7-3504f89a-047a-48cd-9aec-d5388885eb0d', protocol='range'}
+2026-06-24T19:18:51.673+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=39, memberId='consumer-notification-interaction-group-5-687a4a77-18db-46ae-a652-8a904165f989', protocol='range'}
+2026-06-24T19:18:51.673+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=39, memberId='consumer-notification-interaction-group-2-d934742f-58a5-4d1b-adae-a600583073c1', protocol='range'}
+2026-06-24T19:18:51.673+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=39, memberId='consumer-notification-interaction-group-3-268e844f-4999-4240-a0df-a5c470148962', protocol='range'}
+2026-06-24T19:18:51.673+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=39, memberId='consumer-notification-interaction-group-1-377c0ded-e103-4e13-a05e-91e9f49a0950', protocol='range'}
+2026-06-24T19:18:51.673+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Successfully joined group with generation Generation{generationId=39, memberId='consumer-notification-interaction-group-4-eb3b7cf3-8b52-4c88-b76e-b3a5cd0abe3c', protocol='range'}
+2026-06-24T19:18:51.677+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Finished assignment for group at generation 39: {consumer-notification-interaction-group-7-3504f89a-047a-48cd-9aec-d5388885eb0d=Assignment(partitions=[tweet-liked-topic-0]), consumer-notification-interaction-group-4-eb3b7cf3-8b52-4c88-b76e-b3a5cd0abe3c=Assignment(partitions=[tweet-retweet-removed-topic-0]), consumer-notification-interaction-group-3-268e844f-4999-4240-a0df-a5c470148962=Assignment(partitions=[tweet-retweeted-topic-0]), consumer-notification-interaction-group-5-687a4a77-18db-46ae-a652-8a904165f989=Assignment(partitions=[tweet-replied-topic-0]), consumer-notification-interaction-group-1-377c0ded-e103-4e13-a05e-91e9f49a0950=Assignment(partitions=[tweet-reply-deleted-topic-0]), consumer-notification-interaction-group-2-d934742f-58a5-4d1b-adae-a600583073c1=Assignment(partitions=[tweet-unliked-topic-0])}
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=39, memberId='consumer-notification-interaction-group-7-3504f89a-047a-48cd-9aec-d5388885eb0d', protocol='range'}
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=39, memberId='consumer-notification-interaction-group-2-d934742f-58a5-4d1b-adae-a600583073c1', protocol='range'}
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=39, memberId='consumer-notification-interaction-group-1-377c0ded-e103-4e13-a05e-91e9f49a0950', protocol='range'}
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=39, memberId='consumer-notification-interaction-group-4-eb3b7cf3-8b52-4c88-b76e-b3a5cd0abe3c', protocol='range'}
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-retweet-removed-topic-0])
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-reply-deleted-topic-0])
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-retweet-removed-topic-0]
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-unliked-topic-0])
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-reply-deleted-topic-0]
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-unliked-topic-0]
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=39, memberId='consumer-notification-interaction-group-5-687a4a77-18db-46ae-a652-8a904165f989', protocol='range'}
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-replied-topic-0])
+2026-06-24T19:18:51.679+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-replied-topic-0]
+2026-06-24T19:18:51.680+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-liked-topic-0])
+2026-06-24T19:18:51.680+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-liked-topic-0]
+2026-06-24T19:18:51.680+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-reply-deleted-topic-0 to the committed offset FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=10}}
+2026-06-24T19:18:51.680+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-unliked-topic-0 to the committed offset FetchPosition{offset=8, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=10}}
+2026-06-24T19:18:51.680+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-retweet-removed-topic-0 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=10}}
+2026-06-24T19:18:51.680+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-reply-deleted-topic-0]
+2026-06-24T19:18:51.680+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-unliked-topic-0]
+2026-06-24T19:18:51.680+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-retweet-removed-topic-0]
+2026-06-24T19:18:51.681+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-liked-topic-0 to the committed offset FetchPosition{offset=49, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=10}}
+2026-06-24T19:18:51.681+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-liked-topic-0]
+2026-06-24T19:18:51.681+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-replied-topic-0 to the committed offset FetchPosition{offset=24, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=10}}
+2026-06-24T19:18:51.682+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-replied-topic-0]
+2026-06-24T19:18:51.683+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Successfully synced group in generation Generation{generationId=39, memberId='consumer-notification-interaction-group-3-268e844f-4999-4240-a0df-a5c470148962', protocol='range'}
+2026-06-24T19:18:51.683+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Notifying assignor about the new Assignment(partitions=[tweet-retweeted-topic-0])
+2026-06-24T19:18:51.683+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Adding newly assigned partitions: [tweet-retweeted-topic-0]
+2026-06-24T19:18:51.685+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition tweet-retweeted-topic-0 to the committed offset FetchPosition{offset=35, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null isFenced: false)], epoch=10}}
+2026-06-24T19:18:51.685+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions assigned: [tweet-retweeted-topic-0]
+2026-06-24T19:19:33.398+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-24T19:19:33.398+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-24T19:19:33.399+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-06-24T19:19:33.430+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-2] c.t.n.s.w.NotificationWebSocketHandler   : WebSocket connection established for userId: 5
+2026-06-24T19:19:33.959+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-3] c.t.n.s.w.NotificationWebSocketHandler   : WebSocket connection established for userId: 1
+2026-06-24T19:20:23.016+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-7] c.t.n.s.w.NotificationWebSocketHandler   : WebSocket connection closed for userId: 5
+2026-06-24T19:20:23.215+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-9] c.t.n.s.w.NotificationWebSocketHandler   : WebSocket connection closed for userId: 1
+2026-06-24T19:20:23.235+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-2] c.t.n.s.w.NotificationWebSocketHandler   : WebSocket connection established for userId: 1
+2026-06-24T19:20:25.203+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-1] c.t.n.s.w.NotificationWebSocketHandler   : WebSocket connection established for userId: 5
+2026-06-24T19:23:44.596+05:30  INFO 164099 --- [notification-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-06-24T19:28:44.598+05:30  INFO 164099 --- [notification-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-06-24T19:29:52.772+05:30  INFO 164099 --- [notification-service] [nio-8083-exec-2] c.t.n.s.w.NotificationWebSocketHandler   : WebSocket connection closed for userId: 1
+2026-06-24T19:29:52.773+05:30  INFO 164099 --- [notification-service] [io-8083-exec-10] c.t.n.s.w.NotificationWebSocketHandler   : WebSocket connection closed for userId: 5
+2026-06-24T19:29:52.811+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application NOTIFICATION-SERVICE with eureka with status DOWN
+2026-06-24T19:29:52.812+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1782309592812, current=DOWN, previous=UP]
+2026-06-24T19:29:52.815+05:30  INFO 164099 --- [notification-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083: registering service...
+2026-06-24T19:29:52.823+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Revoke previously assigned partitions [tweet-reply-deleted-topic-0]
+2026-06-24T19:29:52.826+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Revoke previously assigned partitions [tweet-replied-topic-0]
+2026-06-24T19:29:52.827+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions revoked: [tweet-replied-topic-0]
+2026-06-24T19:29:52.827+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions revoked: [tweet-reply-deleted-topic-0]
+2026-06-24T19:29:52.827+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Revoke previously assigned partitions [notification-topic-0]
+2026-06-24T19:29:52.827+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-group: partitions revoked: [notification-topic-0]
+2026-06-24T19:29:52.827+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Member consumer-notification-interaction-group-5-687a4a77-18db-46ae-a652-8a904165f989 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-06-24T19:29:52.827+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Member consumer-notification-group-6-7f89dca6-847d-4ca5-a11a-dc19a17448e2 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-06-24T19:29:52.827+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Member consumer-notification-interaction-group-1-377c0ded-e103-4e13-a05e-91e9f49a0950 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-06-24T19:29:52.828+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.828+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.828+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Unsubscribed all topics or patterns and assigned partitions
+2026-06-24T19:29:52.828+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.828+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.828+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Unsubscribed all topics or patterns and assigned partitions
+2026-06-24T19:29:52.828+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.828+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.828+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Unsubscribed all topics or patterns and assigned partitions
+2026-06-24T19:29:52.830+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Revoke previously assigned partitions [tweet-unliked-topic-0]
+2026-06-24T19:29:52.830+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions revoked: [tweet-unliked-topic-0]
+2026-06-24T19:29:52.830+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Member consumer-notification-interaction-group-2-d934742f-58a5-4d1b-adae-a600583073c1 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-06-24T19:29:52.830+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.831+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.831+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Unsubscribed all topics or patterns and assigned partitions
+2026-06-24T19:29:52.831+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.831+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.831+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-group-6, groupId=notification-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.831+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-5, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.831+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.831+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-1, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.831+05:30  INFO 164099 --- [notification-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083 - registration status: 204
+2026-06-24T19:29:52.832+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Revoke previously assigned partitions [tweet-retweet-removed-topic-0]
+2026-06-24T19:29:52.832+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions revoked: [tweet-retweet-removed-topic-0]
+2026-06-24T19:29:52.832+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Member consumer-notification-interaction-group-4-eb3b7cf3-8b52-4c88-b76e-b3a5cd0abe3c sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-06-24T19:29:52.833+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.833+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.833+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Unsubscribed all topics or patterns and assigned partitions
+2026-06-24T19:29:52.833+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.833+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.833+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-2, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.833+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-4, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.834+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Revoke previously assigned partitions [tweet-retweeted-topic-0]
+2026-06-24T19:29:52.834+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions revoked: [tweet-retweeted-topic-0]
+2026-06-24T19:29:52.834+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Member consumer-notification-interaction-group-3-268e844f-4999-4240-a0df-a5c470148962 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-06-24T19:29:52.834+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.834+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-06-24T19:29:52.835+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.835+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-06-24T19:29:52.835+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-06-24T19:29:52.835+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-06-24T19:29:52.835+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-06-24T19:29:52.835+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-06-24T19:29:52.835+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-06-24T19:29:52.835+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-06-24T19:29:52.837+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-06-24T19:29:52.838+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-06-24T19:29:52.838+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-06-24T19:29:52.838+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-06-24T19:29:52.835+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Unsubscribed all topics or patterns and assigned partitions
+2026-06-24T19:29:52.840+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Revoke previously assigned partitions [tweet-liked-topic-0]
+2026-06-24T19:29:52.841+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: partitions revoked: [tweet-liked-topic-0]
+2026-06-24T19:29:52.841+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Member consumer-notification-interaction-group-7-3504f89a-047a-48cd-9aec-d5388885eb0d sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-06-24T19:29:52.842+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.842+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.842+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Unsubscribed all topics or patterns and assigned partitions
+2026-06-24T19:29:52.844+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.844+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-7, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.847+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.847+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-interaction-group-3, groupId=notification-interaction-group] Request joining group due to: consumer pro-actively leaving the group
+2026-06-24T19:29:52.851+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-06-24T19:29:52.852+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-06-24T19:29:52.852+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-06-24T19:29:52.852+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-06-24T19:29:52.852+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-06-24T19:29:52.852+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-interaction-group-4 unregistered
+2026-06-24T19:29:52.853+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-06-24T19:29:52.853+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-06-24T19:29:52.853+05:30  INFO 164099 --- [notification-service] [ntainer#4-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: Consumer stopped
+2026-06-24T19:29:52.853+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-06-24T19:29:52.853+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-06-24T19:29:52.853+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-06-24T19:29:52.853+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-06-24T19:29:52.852+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-06-24T19:29:52.858+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-interaction-group-1 unregistered
+2026-06-24T19:29:52.858+05:30  INFO 164099 --- [notification-service] [ntainer#6-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: Consumer stopped
+2026-06-24T19:29:52.865+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-interaction-group-2 unregistered
+2026-06-24T19:29:52.865+05:30  INFO 164099 --- [notification-service] [ntainer#2-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: Consumer stopped
+2026-06-24T19:29:52.867+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-interaction-group-7 unregistered
+2026-06-24T19:29:52.867+05:30  INFO 164099 --- [notification-service] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: Consumer stopped
+2026-06-24T19:29:52.868+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-interaction-group-3 unregistered
+2026-06-24T19:29:52.869+05:30  INFO 164099 --- [notification-service] [ntainer#3-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: Consumer stopped
+2026-06-24T19:29:52.869+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-interaction-group-5 unregistered
+2026-06-24T19:29:52.869+05:30  INFO 164099 --- [notification-service] [ntainer#5-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-interaction-group: Consumer stopped
+2026-06-24T19:29:53.008+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-06-24T19:29:53.008+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-06-24T19:29:53.008+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-06-24T19:29:53.008+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-06-24T19:29:53.009+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-group-6 unregistered
+2026-06-24T19:29:53.010+05:30  INFO 164099 --- [notification-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-group: Consumer stopped
+2026-06-24T19:29:53.011+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-24T19:29:53.014+05:30  INFO 164099 --- [notification-service] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-06-24T19:29:53.020+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-24T19:29:53.025+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-24T19:29:53.027+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-24T19:29:53.027+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2026-06-24T19:29:56.028+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2026-06-24T19:29:56.031+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083": Connect to http://localhost:8761 failed: Connection refused
+
+org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083": Connect to http://localhost:8761 failed: Connection refused
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.createResourceAccessException(DefaultRestClient.java:779) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchangeInternal(DefaultRestClient.java:624) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchange(DefaultRestClient.java:572) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.RestClient$RequestHeadersSpec.exchange(RestClient.java:747) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.executeAndExtract(DefaultRestClient.java:924) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.toBodilessEntity(DefaultRestClient.java:888) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.cloud.netflix.eureka.http.RestClientEurekaHttpClient.cancel(RestClientEurekaHttpClient.java:73) ~[spring-cloud-netflix-eureka-client-5.0.2.jar:5.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:90) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:934) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:915) ~[eureka-client-2.0.6.jar:2.0.6]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:453) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:411) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:237) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:200) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:193) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:387) ~[spring-cloud-context-5.0.2.jar:5.0.2]
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:134) ~[spring-cloud-context-5.0.2.jar:5.0.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:209) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:795) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:745) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1507) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:704) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1500) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1246) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1207) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:176) ~[spring-boot-web-server-4.0.7.jar:4.0.7]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1153) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-4.0.7.jar:4.0.7]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-4.0.7.jar:4.0.7]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[na:na]
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 failed: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:639) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:543) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:594) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:284) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:659) ~[na:na]
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:226) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:497) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:195) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:168) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:112) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:185) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:87) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:80) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeWithRequestAndBody(AbstractBufferingClientHttpRequest.java:89) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.InterceptingClientHttpRequest$EndOfChainRequestExecution.execute(InterceptingClientHttpRequest.java:102) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.cloud.netflix.eureka.http.RestClientTransportClientFactory.lambda$newClient$2(RestClientTransportClientFactory.java:98) ~[spring-cloud-netflix-eureka-client-5.0.2.jar:5.0.2]
+	at org.springframework.http.client.ClientHttpRequestInterceptor.lambda$apply$0(ClientHttpRequestInterceptor.java:89) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:73) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:50) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:80) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchangeInternal(DefaultRestClient.java:614) ~[spring-web-7.0.8.jar:7.0.8]
+	... 39 common frames omitted
+
+2026-06-24T19:29:56.035+05:30  WARN 164099 --- [notification-service] [ionShutdownHook] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083": Connect to http://localhost:8761 failed: Connection refused
+2026-06-24T19:29:56.038+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083": Connect to http://localhost:8761 failed: Connection refused
+
+org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083": Connect to http://localhost:8761 failed: Connection refused
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.createResourceAccessException(DefaultRestClient.java:779) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchangeInternal(DefaultRestClient.java:624) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchange(DefaultRestClient.java:572) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.RestClient$RequestHeadersSpec.exchange(RestClient.java:747) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.executeAndExtract(DefaultRestClient.java:924) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultResponseSpec.toBodilessEntity(DefaultRestClient.java:888) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.cloud.netflix.eureka.http.RestClientEurekaHttpClient.cancel(RestClientEurekaHttpClient.java:73) ~[spring-cloud-netflix-eureka-client-5.0.2.jar:5.0.2]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:120) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:79) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:934) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:915) ~[eureka-client-2.0.6.jar:2.0.6]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:453) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:411) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:237) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:200) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:193) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:387) ~[spring-cloud-context-5.0.2.jar:5.0.2]
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:134) ~[spring-cloud-context-5.0.2.jar:5.0.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:209) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:795) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:745) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1507) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:704) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1500) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1246) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1207) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:176) ~[spring-boot-web-server-4.0.7.jar:4.0.7]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1153) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-4.0.7.jar:4.0.7]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-4.0.7.jar:4.0.7]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[na:na]
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 failed: Connection refused
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:639) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:543) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:594) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:284) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:659) ~[na:na]
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:226) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:497) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:195) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:168) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:112) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:185) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183) ~[httpclient5-5.5.2.jar:5.5.2]
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:87) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:80) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeWithRequestAndBody(AbstractBufferingClientHttpRequest.java:89) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.InterceptingClientHttpRequest$EndOfChainRequestExecution.execute(InterceptingClientHttpRequest.java:102) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.cloud.netflix.eureka.http.RestClientTransportClientFactory.lambda$newClient$2(RestClientTransportClientFactory.java:98) ~[spring-cloud-netflix-eureka-client-5.0.2.jar:5.0.2]
+	at org.springframework.http.client.ClientHttpRequestInterceptor.lambda$apply$0(ClientHttpRequestInterceptor.java:89) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:73) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:50) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:80) ~[spring-web-7.0.8.jar:7.0.8]
+	at org.springframework.web.client.DefaultRestClient$DefaultRequestBodyUriSpec.exchangeInternal(DefaultRestClient.java:614) ~[spring-web-7.0.8.jar:7.0.8]
+	... 40 common frames omitted
+
+2026-06-24T19:29:56.039+05:30  WARN 164099 --- [notification-service] [ionShutdownHook] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083": Connect to http://localhost:8761 failed: Connection refused
+2026-06-24T19:29:56.039+05:30 ERROR 164099 --- [notification-service] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_NOTIFICATION-SERVICE/10.10.2.198:notification-service:8083 - de-registration failedCannot execute request on any known server
+
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:934) ~[eureka-client-2.0.6.jar:2.0.6]
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:915) ~[eureka-client-2.0.6.jar:2.0.6]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:453) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:411) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:237) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:200) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:193) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:387) ~[spring-cloud-context-5.0.2.jar:5.0.2]
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:134) ~[spring-cloud-context-5.0.2.jar:5.0.2]
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:209) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:795) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:745) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1507) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:704) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1500) ~[spring-beans-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1246) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1207) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:176) ~[spring-boot-web-server-4.0.7.jar:4.0.7]
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1153) ~[spring-context-7.0.8.jar:7.0.8]
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147) ~[spring-boot-4.0.7.jar:4.0.7]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116) ~[spring-boot-4.0.7.jar:4.0.7]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[na:na]
+
+2026-06-24T19:29:56.039+05:30  INFO 164099 --- [notification-service] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

@@ -13,6 +13,7 @@
         <option value="$PROJECT_DIR$/media-service/pom.xml" />
         <option value="$PROJECT_DIR$/common-events/pom.xml" />
         <option value="$PROJECT_DIR$/ApiGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/chat-service/pom.xml" />
       </list>
     </option>
   </component>
