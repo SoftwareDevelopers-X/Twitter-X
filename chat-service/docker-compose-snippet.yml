@@ -1,0 +1,44 @@
+# =====================================================================
+# REFERENCE ONLY - merge these two services into your EXISTING
+# docker-compose.yml (the one already running eureka-server, auth-service,
+# tweet-service, social-service, notification-service, media-service).
+# =====================================================================
+
+services:
+
+  chat-service-db:
+    image: postgres:16-alpine
+    container_name: chat-service-db
+    environment:
+      POSTGRES_DB: chat_service_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5436:5432"   # pick a port that doesn't clash with your other services' DBs
+    volumes:
+      - chat_service_pgdata:/var/lib/postgresql/data
+    networks:
+      - twitterx-network
+
+  chat-service:
+    build: ./chat-service
+    container_name: chat-service
+    depends_on:
+      - chat-service-db
+      - eureka-server
+    environment:
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://chat-service-db:5432/chat_service_db
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+    ports:
+      - "8086:8086"
+    networks:
+      - twitterx-network
+
+volumes:
+  chat_service_pgdata:
+
+networks:
+  twitterx-network:
+    external: true   # set to match however your existing compose network is defined

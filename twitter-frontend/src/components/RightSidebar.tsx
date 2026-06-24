@@ -232,19 +232,7 @@ const RightSidebar: React.FC = () => {
         </div>
       </form>
 
-      {/* Subscribe to Premium Banner */}
-      <div className="bg-twitter-dark-2 border border-twitter-dark-4 rounded-2xl p-4 flex flex-col gap-2">
-        <div className="flex items-center gap-1.5 text-twitter-blue">
-          <Sparkles className="w-5 h-5" />
-          <h3 className="font-extrabold text-white text-lg">Premium</h3>
-        </div>
-        <p className="text-twitter-gray-1 text-sm leading-tight">
-          Subscribe to unlock new features and if eligible, receive a share of ads revenue.
-        </p>
-        <button className="bg-twitter-blue hover:bg-twitter-blue-hover text-white font-bold py-2 px-4 rounded-full text-sm transition-all duration-200 mt-1 self-start active:scale-95">
-          Subscribe
-        </button>
-      </div>
+
 
       {/* Trends Section */}
       <div className="bg-twitter-dark-2 border border-twitter-dark-4 rounded-2xl p-4 flex flex-col gap-3">

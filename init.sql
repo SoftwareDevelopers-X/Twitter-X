@@ -3,3 +3,5 @@ CREATE DATABASE "tweet-service";
 CREATE DATABASE "social-service";
 CREATE DATABASE "media-service";
 CREATE DATABASE "notification-service";
+CREATE DATABASE "chat-service";
+

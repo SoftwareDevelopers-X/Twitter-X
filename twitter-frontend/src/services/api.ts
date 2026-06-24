@@ -563,4 +563,43 @@ export const mediaService = {
   },
 };
 
+// --- CHAT SERVICE ---
+export const chatService = {
+  listConversations: async () => {
+    const res = await api.get<any[]>('/chat-service/api/v1/conversations');
+    return res.data;
+  },
+
+  createOneToOne: async (otherUserId: number) => {
+    const res = await api.post<any>('/chat-service/api/v1/conversations', {
+      type: 'ONE_TO_ONE',
+      participantIds: [otherUserId],
+    });
+    return res.data;
+  },
+
+  createGroup: async (participantIds: number[], groupName: string) => {
+    const res = await api.post<any>('/chat-service/api/v1/conversations', {
+      type: 'GROUP',
+      participantIds,
+      groupName,
+    });
+    return res.data;
+  },
+
+  getMessages: async (conversationId: number, page = 0, size = 30) => {
+    const res = await api.get<SpringPage<any>>(`/chat-service/api/v1/conversations/${conversationId}/messages`, {
+      params: { page, size }
+    });
+    return res.data;
+  },
+
+  markRead: async (conversationId: number, lastReadMessageId: number) => {
+    const res = await api.post<any>(`/chat-service/api/v1/conversations/${conversationId}/read`, null, {
+      params: { lastReadMessageId }
+    });
+    return res.data;
+  },
+};
+
 export default api;

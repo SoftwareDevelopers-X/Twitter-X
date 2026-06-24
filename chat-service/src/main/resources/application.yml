@@ -1,0 +1,78 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: chat-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/chat-service
+    username: postgres
+    password: Password@2026
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        # ─────────────────────────────────────────────────────────────
+        # SPRING BOOT 4.x CHANGE: dialect auto-detection
+        # ─────────────────────────────────────────────────────────────
+        # In Spring Boot 4 / Hibernate 6.6+, Hibernate detects the
+        # PostgreSQL dialect automatically from the JDBC connection.
+        # Explicitly setting dialect is no longer needed and will
+        # actually cause a deprecation warning in Hibernate 6.6.
+        # If you are still getting dialect-related errors, uncomment:
+        #
+        # dialect: org.hibernate.dialect.PostgreSQLDialect
+        #
+        # But in most cases just leave it out entirely.
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    # ─────────────────────────────────────────────────────────────────
+    # SPRING BOOT 4.x CHANGE: flyway config key prefix
+    # ─────────────────────────────────────────────────────────────────
+    # In Spring Boot 4, Flyway configuration was moved to the
+    # spring-boot-starter-flyway module. The keys themselves are the
+    # same (spring.flyway.*) — no change needed here.
+    # The only change is on the dependency side (see pom.xml notes).
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+services:
+  auth-service:
+    name: auth-service
+  social-service:
+    name: social-service
+
+gateway:
+  user-id-header: X-User-Id
+  user-id-header-required: true
+
+logging:
+  level:
+    com.twitterx.chatservice: DEBUG
+    org.springframework.web.socket: INFO
+    org.springframework.messaging: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
