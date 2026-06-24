@@ -150,7 +150,7 @@ const RightSidebar: React.FC = () => {
     return trendingHashtags.map(h => ({
       hashtag: h.hashtag.startsWith('#') ? h.hashtag : `#${h.hashtag}`,
       posts: h.posts
-    }));
+    })).slice(0, 4);
   }, [trendingHashtags]);
 
   // Fetch dynamic follow suggestions using registered users only
@@ -268,6 +268,14 @@ const RightSidebar: React.FC = () => {
             </div>
           ))}
         </div>
+        {trendingHashtags && trendingHashtags.length > 4 && (
+          <button
+            onClick={() => navigate('/search')}
+            className="text-twitter-blue hover:text-twitter-blue-hover text-sm font-semibold mt-1 text-left hover:underline w-full"
+          >
+            Show more
+          </button>
+        )}
       </div>
 
       {/* Who to follow Section */}
@@ -290,7 +298,6 @@ const RightSidebar: React.FC = () => {
           <a href="#" className="hover:underline">Cookie Policy</a>
           <a href="#" className="hover:underline">Accessibility</a>
         </div>
-        <p>© 2026 X Corp. Built with Antigravity</p>
       </div>
     </div>
   );

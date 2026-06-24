@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { tweetService, socialService } from '../services/api';
 import TweetCard from '../components/TweetCard';
-import { Search as SearchIcon, Loader2, Sparkles, Sliders } from 'lucide-react';
+import { Search as SearchIcon, Loader2, Sparkles, Sliders, TrendingUp } from 'lucide-react';
 
 const Search: React.FC = () => {
   const navigate = useNavigate();
@@ -85,6 +85,12 @@ const Search: React.FC = () => {
       }
     },
     enabled: !!queryParam.trim(),
+  });
+
+  // Query: Trending hashtags (for initial explore view)
+  const { data: trendingHashtags } = useQuery({
+    queryKey: ['trending-hashtags'],
+    queryFn: () => tweetService.getTrendingHashtags(),
   });
 
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -188,15 +194,36 @@ const Search: React.FC = () => {
             </button>
           </div>
         ) : !queryParam.trim() ? (
-          /* Initial Search View */
-          <div className="p-12 text-center text-twitter-gray-1 flex flex-col items-center gap-4">
-            <div className="w-16 h-16 bg-twitter-blue/10 text-twitter-blue rounded-full flex items-center justify-center border border-twitter-blue/20">
-              <SearchIcon className="w-7 h-7" />
+          /* Dedicated Trending Page (When no search query is active) */
+          <div className="flex flex-col text-left">
+            <div className="px-4 py-3 border-b border-twitter-dark-4 bg-twitter-dark-2/10 flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-twitter-blue" />
+              <h3 className="font-black text-white text-lg tracking-tight">Trends for you</h3>
             </div>
-            <h3 className="font-black text-xl text-white tracking-tight">Explore X-Clone</h3>
-            <p className="text-sm max-w-[340px]">
-              Search for posts, topics, or hashtags to find what you are looking for. Try searching for <span className="text-twitter-blue hover:underline cursor-pointer" onClick={() => setSearchParams({ q: '#SpringBoot' })}>#SpringBoot</span>.
-            </p>
+            <div className="divide-y divide-twitter-dark-4">
+              {trendingHashtags && trendingHashtags.map((h, i) => {
+                const hashtagName = h.hashtag.startsWith('#') ? h.hashtag : `#${h.hashtag}`;
+                const cleanedTag = h.hashtag.startsWith('#') ? h.hashtag.slice(1) : h.hashtag;
+                return (
+                  <div
+                    key={i}
+                    className="px-4 py-4 hover:bg-white/5 transition-colors duration-150 cursor-pointer text-left"
+                    onClick={() => {
+                      setSearchParams({ q: hashtagName });
+                    }}
+                  >
+                    <span className="text-twitter-gray-1 text-xs">Trending in Technology</span>
+                    <p className="font-extrabold text-white text-base mt-0.5">{hashtagName}</p>
+                    <span className="text-twitter-gray-1 text-xs block mt-0.5">{h.posts} Posts</span>
+                  </div>
+                );
+              })}
+              {(!trendingHashtags || trendingHashtags.length === 0) && (
+                <div className="p-8 text-center text-twitter-gray-1">
+                  No trends available.
+                </div>
+              )}
+            </div>
           </div>
         ) : (results && results.length === 0) && (userResults && userResults.length === 0) ? (
           /* No Results Found */

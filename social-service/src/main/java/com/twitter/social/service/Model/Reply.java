@@ -28,4 +28,21 @@ public class Reply {
 
     @CreationTimestamp
     private LocalDateTime repliedAt;
+
+    private Long parentReplyId;
+
+    @Builder.Default
+    private Long likeCount = 0L;
+
+    @Builder.Default
+    private Long retweetCount = 0L;
+
+    @Builder.Default
+    private Long replyCount = 0L;
+
+    @Builder.Default
+    private Long viewCount = 0L;
+
+    @Builder.Default
+    private Long bookmarkCount = 0L;
 }
