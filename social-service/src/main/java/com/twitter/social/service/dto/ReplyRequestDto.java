@@ -8,4 +8,5 @@ public class ReplyRequestDto {
     private Long userId;
     private Long tweetId;
     private String content;
+    private Long parentReplyId;
 }

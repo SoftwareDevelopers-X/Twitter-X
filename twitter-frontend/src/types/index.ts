@@ -88,6 +88,15 @@ export interface Reply {
   tweetId: number;
   content: string;
   repliedAt: string;
+  parentReplyId?: number | null;
+  likeCount?: number;
+  retweetCount?: number;
+  replyCount?: number;
+  viewCount?: number;
+  bookmarkCount?: number;
+  isLiked?: boolean;
+  isRetweeted?: boolean;
+  isBookmarked?: boolean;
 }
 
 export interface ReplyDto {
@@ -96,6 +105,7 @@ export interface ReplyDto {
   tweetId: number;
   content: string;
   repliedAt: string;
+  parentReplyId?: number | null;
 }
 
 export interface FeedTweet {

@@ -433,8 +433,8 @@ export const socialService = {
     return res.data;
   },
 
-  addReply: async (tweetId: number, userId: number, content: string) => {
-    const res = await api.post<ApiResponse<string>>('/api/replies', { tweetId, userId, content });
+  addReply: async (tweetId: number, userId: number, content: string, parentReplyId?: number | null) => {
+    const res = await api.post<ApiResponse<string>>('/api/replies', { tweetId, userId, content, parentReplyId });
     return res.data;
   },
 
@@ -450,6 +450,41 @@ export const socialService = {
 
   getRepliesByUser: async (userId: number) => {
     const res = await api.get<Reply[]>(`/api/replies/user/${userId}`);
+    return res.data;
+  },
+
+  likeReply: async (replyId: number) => {
+    const res = await api.post<Reply>(`/api/replies/${replyId}/like`);
+    return res.data;
+  },
+
+  unlikeReply: async (replyId: number) => {
+    const res = await api.post<Reply>(`/api/replies/${replyId}/unlike`);
+    return res.data;
+  },
+
+  retweetReply: async (replyId: number) => {
+    const res = await api.post<Reply>(`/api/replies/${replyId}/retweet`);
+    return res.data;
+  },
+
+  unretweetReply: async (replyId: number) => {
+    const res = await api.post<Reply>(`/api/replies/${replyId}/unretweet`);
+    return res.data;
+  },
+
+  bookmarkReply: async (replyId: number) => {
+    const res = await api.post<Reply>(`/api/replies/${replyId}/bookmark`);
+    return res.data;
+  },
+
+  unbookmarkReply: async (replyId: number) => {
+    const res = await api.post<Reply>(`/api/replies/${replyId}/unbookmark`);
+    return res.data;
+  },
+
+  viewReply: async (replyId: number) => {
+    const res = await api.post<Reply>(`/api/replies/${replyId}/view`);
     return res.data;
   },
 
