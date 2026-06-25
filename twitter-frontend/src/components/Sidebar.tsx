@@ -12,8 +12,7 @@ import {
   Settings, 
   LogOut, 
   PlusSquare,
-  Sparkles,
-  Mail
+  Sparkles
 } from 'lucide-react';
 import { useUser } from '../hooks/useUser';
 
@@ -42,7 +41,6 @@ const Sidebar: React.FC = () => {
     { name: 'Explore', path: '/search', icon: Search },
     { name: 'Notifications', path: '/notifications', icon: Bell, badge: unreadCount },
     { name: 'Bookmarks', path: '/bookmarks', icon: Bookmark },
-    { name: 'Chat', path: '/messages', icon: Mail },
     { name: 'Profile', path: user ? `/profile/${user.userId}` : '#', icon: User },
     { name: 'Settings', path: '/settings', icon: Settings },
   ];

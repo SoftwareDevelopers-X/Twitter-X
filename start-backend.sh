@@ -33,7 +33,7 @@ run_service "tweet-service" "Tweet Service"
 run_service "social-service" "Social Service"
 run_service "media-service" "Media Service"
 run_service "notification-service" "Notification Service"
-run_service "chat-service" "Chat Service"
+
 
 echo "✅ All backend microservices have been triggered to start!"
 echo "ℹ️  Run 'jobs' or check console/logs to monitor startup. Eureka: http://localhost:8761"

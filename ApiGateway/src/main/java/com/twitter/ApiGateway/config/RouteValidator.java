@@ -18,9 +18,11 @@ public class RouteValidator {
             );
 
     public boolean isSecured(String path) {
-
-        return OPEN_API_ENDPOINTS
-                .stream()
-                .noneMatch(path::startsWith);
+        for (String endpoint : OPEN_API_ENDPOINTS) {
+            if (path.startsWith(endpoint)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
