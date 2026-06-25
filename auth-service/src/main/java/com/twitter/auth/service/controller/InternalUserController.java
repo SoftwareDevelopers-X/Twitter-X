@@ -31,20 +31,34 @@ public class InternalUserController {
 
     @GetMapping("/users/search")
     public java.util.List<UserResponse> searchUsers(@org.springframework.web.bind.annotation.RequestParam String query) {
-        String cleanQuery = query.startsWith("@") ? query.substring(1) : query;
+        String cleanQuery;
+        if (query.startsWith("@")) {
+            cleanQuery = query.substring(1);
+        } else {
+            cleanQuery = query;
+        }
+        
         java.util.List<User> users = userRepository.findByUsernameContainingIgnoreCase(cleanQuery);
-        return users.stream()
-                .map(user -> UserResponse.builder()
-                        .userId(user.getUserId())
-                        .username(user.getUsername())
-                        .email(user.getEmail())
-                        .build())
-                .collect(java.util.stream.Collectors.toList());
+        java.util.List<UserResponse> responses = new java.util.ArrayList<>();
+        for (User user : users) {
+            responses.add(UserResponse.builder()
+                    .userId(user.getUserId())
+                    .username(user.getUsername())
+                    .email(user.getEmail())
+                    .build());
+        }
+        return responses;
     }
 
     @GetMapping("/users/username/{username}")
     public UserResponse getUserByUsername(@PathVariable String username) {
-        String cleanUsername = username.startsWith("@") ? username.substring(1) : username;
+        String cleanUsername;
+        if (username.startsWith("@")) {
+            cleanUsername = username.substring(1);
+        } else {
+            cleanUsername = username;
+        }
+        
         User user = userRepository.findByUsernameIgnoreCase(cleanUsername)
                 .orElseThrow(() -> new com.twitter.auth.service.exception.UserNotFoundException("User not found"));
         return UserResponse.builder()

@@ -88,22 +88,22 @@ public class FollowServiceImpl implements FollowService {
 
     @Override
     public List<Long> getFollowers(Long userId) {
-
         List<Follow> followers = followRepository.findByFollowingId(userId);
-
-        return followers.stream()
-                .map(Follow::getFollowerId)
-                .toList();
+        List<Long> followerIds = new java.util.ArrayList<>();
+        for (Follow follow : followers) {
+            followerIds.add(follow.getFollowerId());
+        }
+        return followerIds;
     }
 
     @Override
     public List<Long> getFollowing(Long userId) {
-
         List<Follow> following = followRepository.findByFollowerId(userId);
-
-        return following.stream()
-                .map(Follow::getFollowingId)
-                .toList();
+        List<Long> followingIds = new java.util.ArrayList<>();
+        for (Follow follow : following) {
+            followingIds.add(follow.getFollowingId());
+        }
+        return followingIds;
     }
 
     @Override
@@ -119,16 +119,19 @@ public class FollowServiceImpl implements FollowService {
     @Override
     @Transactional(readOnly = true)
     public List<Long> getFollowSuggestions(Long currentUserId) {
-        List<Long> allUserIds = profileRepository.findAll().stream()
-                .map(com.twitter.social.service.Model.Profile::getUserId)
-                .toList();
-
+        List<com.twitter.social.service.Model.Profile> allProfiles = profileRepository.findAll();
         List<Long> followingIds = getFollowing(currentUserId);
 
-        return allUserIds.stream()
-                .filter(id -> !id.equals(currentUserId))
-                .filter(id -> !followingIds.contains(id))
-                .limit(5)
-                .toList();
+        List<Long> suggestions = new java.util.ArrayList<>();
+        for (com.twitter.social.service.Model.Profile profile : allProfiles) {
+            Long userId = profile.getUserId();
+            if (!userId.equals(currentUserId) && !followingIds.contains(userId)) {
+                suggestions.add(userId);
+                if (suggestions.size() >= 5) {
+                    break;
+                }
+            }
+        }
+        return suggestions;
     }
 }

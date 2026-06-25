@@ -69,7 +69,7 @@ public class TweetServiceImpl implements TweetService {
                 .build();
 
         Tweet savedTweet = tweetRepository.save(tweet);
-        // HANDLE HASHTAGS
+
         if (request.getHashtags() != null && !request.getHashtags().isEmpty()) {
             for (String hashtagName : request.getHashtags()) {
                 String normalizedName = hashtagName.toLowerCase().trim();
@@ -96,7 +96,7 @@ public class TweetServiceImpl implements TweetService {
 
                         redisTemplate.opsForValue().set(redisKey, hashtag);
                     } catch (DataIntegrityViolationException ex) {
-                        // Another request inserted the hashtag first
+
                         hashtag = hashtagRepository.findByName(normalizedName).orElseThrow();
                         redisTemplate.opsForValue().set(redisKey, hashtag);
                     }
@@ -129,6 +129,13 @@ public class TweetServiceImpl implements TweetService {
         UserResponse user = authServiceClient.getUserById(userId);
 
         String username = user.getUsername();
+        List<String> eventMediaUrls = List.of();
+        if (request.getMediaUrls() != null) {
+            eventMediaUrls = request.getMediaUrls().stream()
+                    .map(MediaRequest::getMediaUrl)
+                    .toList();
+        }
+
         // CREATE EVENT
         TweetCreatedEvent event = TweetCreatedEvent.builder()
                 .tweetId(savedTweet.getTweetId())
@@ -141,14 +148,7 @@ public class TweetServiceImpl implements TweetService {
                 .viewCount(savedTweet.getViewCount())
                 .username(username)
                 .createdAt(savedTweet.getCreatedAt())
-                .mediaUrls(
-                        request.getMediaUrls() == null
-                                ? List.of()
-                                : request.getMediaUrls()
-                                .stream()
-                                .map(MediaRequest::getMediaUrl)
-                                .toList()
-                )
+                .mediaUrls(eventMediaUrls)
                 .build();
         tweetProducer.publishTweetCreatedEvent(event);
         return TweetResponseMapper.mapToResponse(savedTweet);
@@ -183,7 +183,7 @@ public class TweetServiceImpl implements TweetService {
         }
         tweet.setContent(request.getContent());
         Tweet updatedTweet = tweetRepository.save(tweet);
-        // Update Redis cache
+
         TweetResponse response = TweetResponseMapper.mapToResponse(updatedTweet);
         redisTemplate.opsForValue().set("tweet:" + updatedTweet.getTweetId(), response);
         TweetUpdatedEvent event = TweetUpdatedEvent.builder()
@@ -212,9 +212,9 @@ public class TweetServiceImpl implements TweetService {
         }
 
         tweetRepository.delete(tweet);
-        // Remove cached tweet
+
         redisTemplate.delete("tweet:" + tweetId);
-        // Remove view counter (optional)
+
         redisTemplate.delete("tweet:view:" + tweetId);
         TweetDeletedEvent event = TweetDeletedEvent.builder()
 
@@ -266,15 +266,17 @@ public class TweetServiceImpl implements TweetService {
         Object cached = redisTemplate.opsForValue().get(redisKey);
         List<TweetResponse> responses = null;
         if (cached instanceof List<?> list) {
-            responses = list.stream()
-                    .map(item -> objectMapper.convertValue(item, TweetResponse.class))
-                    .toList();
+            responses = new java.util.ArrayList<>();
+            for (Object item : list) {
+                responses.add(objectMapper.convertValue(item, TweetResponse.class));
+            }
         }
         if (responses == null) {
             List<Tweet> tweets = trendingService.getTrendingTweets(window);
-            responses = tweets.stream()
-                    .map(TweetResponseMapper::mapToResponse)
-                    .toList();
+            responses = new java.util.ArrayList<>();
+            for (Tweet tweet : tweets) {
+                responses.add(TweetResponseMapper.mapToResponse(tweet));
+            }
             redisTemplate.opsForValue().set(
                     redisKey,
                     responses,
@@ -342,11 +344,13 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public List<com.twitter.tweet.service.dto.response.HashtagResponse> getTrendingHashtags() {
         List<Object[]> results = hashtagRepository.findTrendingHashtags(PageRequest.of(0, 20));
-        return results.stream()
-                .map(row -> com.twitter.tweet.service.dto.response.HashtagResponse.builder()
-                        .hashtag((String) row[0])
-                        .posts((Long) row[1])
-                        .build())
-                .toList();
+        List<com.twitter.tweet.service.dto.response.HashtagResponse> responses = new java.util.ArrayList<>();
+        for (Object[] row : results) {
+            responses.add(com.twitter.tweet.service.dto.response.HashtagResponse.builder()
+                    .hashtag((String) row[0])
+                    .posts((Long) row[1])
+                    .build());
+        }
+        return responses;
     }
 }

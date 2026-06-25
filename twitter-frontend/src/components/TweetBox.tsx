@@ -2,9 +2,10 @@ import React, { useState, useRef } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { tweetService, mediaService } from '../services/api';
-import { Image, Film, Smile, Calendar, MapPin, X, Loader2 } from 'lucide-react';
+import { Image, Film, Smile, MapPin, X, Loader2 } from 'lucide-react';
 import { useUser } from '../hooks/useUser';
 import toast from 'react-hot-toast';
+import EmojiPicker from './EmojiPicker';
 
 interface TweetBoxProps {
   placeholder?: string;
@@ -18,8 +19,11 @@ const TweetBox: React.FC<TweetBoxProps> = ({ placeholder = "What's happening?!",
   const [content, setContent] = useState('');
   const [isUploading, setIsUploading] = useState(false);
   const [attachedMedia, setAttachedMedia] = useState<{ url: string; type: 'IMAGE' | 'VIDEO' | 'GIF' }[]>([]);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const gifInputRef = useRef<HTMLInputElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const createTweetMutation = useMutation({
     mutationFn: (data: any) => tweetService.createTweet(data),
@@ -41,24 +45,48 @@ const TweetBox: React.FC<TweetBoxProps> = ({ placeholder = "What's happening?!",
 
   const handleMediaUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0 || !user) return;
-    const file = e.target.files[0];
     
     setIsUploading(true);
     try {
-      const response = await mediaService.uploadMedia(file, user.userId);
-      const isVideo = file.type.startsWith('video/');
-      const isGif = file.type === 'image/gif';
-      
-      const mediaType: 'IMAGE' | 'VIDEO' | 'GIF' = isVideo ? 'VIDEO' : isGif ? 'GIF' : 'IMAGE';
-      
-      setAttachedMedia(prev => [...prev, { url: response.url, type: mediaType }]);
+      const uploadPromises = Array.from(e.target.files).map(async (file) => {
+        const response = await mediaService.uploadMedia(file, user.userId);
+        const isVideo = file.type.startsWith('video/');
+        const isGif = file.type === 'image/gif';
+        const mediaType: 'IMAGE' | 'VIDEO' | 'GIF' = isVideo ? 'VIDEO' : isGif ? 'GIF' : 'IMAGE';
+        return { url: response.url, type: mediaType };
+      });
+
+      const uploadedFiles = await Promise.all(uploadPromises);
+      setAttachedMedia(prev => [...prev, ...uploadedFiles]);
       toast.success('Media uploaded successfully');
     } catch (err) {
       console.error(err);
       toast.error('Failed to upload media');
     } finally {
       setIsUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+      if (gifInputRef.current) gifInputRef.current.value = '';
     }
+  };
+
+  const insertEmoji = (emoji: string) => {
+    const textarea = textareaRef.current;
+    if (!textarea) {
+      setContent(prev => prev + emoji);
+      return;
+    }
+
+    const startPos = textarea.selectionStart;
+    const endPos = textarea.selectionEnd;
+    const text = textarea.value;
+
+    const newContent = text.substring(0, startPos) + emoji + text.substring(endPos);
+    setContent(newContent);
+
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(startPos + emoji.length, startPos + emoji.length);
+    }, 0);
   };
 
   const removeMedia = (index: number) => {
@@ -104,6 +132,7 @@ const TweetBox: React.FC<TweetBoxProps> = ({ placeholder = "What's happening?!",
       <div className="flex-grow">
         {/* Input Text Area */}
         <textarea
+          ref={textareaRef}
           placeholder={placeholder}
           value={content}
           onChange={(e) => setContent(e.target.value)}
@@ -159,29 +188,42 @@ const TweetBox: React.FC<TweetBoxProps> = ({ placeholder = "What's happening?!",
               onChange={handleMediaUpload}
               accept="image/*,video/*"
               className="hidden"
+              multiple
             />
             <button
               type="button"
+              onClick={() => gifInputRef.current?.click()}
+              disabled={isUploading}
               className="p-2 text-twitter-blue hover:bg-twitter-blue/10 rounded-full transition-colors duration-200"
               title="GIF"
             >
               <Film className="w-5 h-5" />
             </button>
-            <button
-              type="button"
-              className="p-2 text-twitter-blue hover:bg-twitter-blue/10 rounded-full transition-colors duration-200"
-              title="Emoji"
-            >
-              <Smile className="w-5 h-5" />
-            </button>
-            <button
-              type="button"
-              className="p-2 text-twitter-blue hover:bg-twitter-blue/10 rounded-full transition-colors duration-200 opacity-50 cursor-not-allowed"
-              title="Schedule"
-              disabled
-            >
-              <Calendar className="w-5 h-5" />
-            </button>
+            <input
+              type="file"
+              ref={gifInputRef}
+              onChange={handleMediaUpload}
+              accept="image/gif"
+              className="hidden"
+            />
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                className="p-2 text-twitter-blue hover:bg-twitter-blue/10 rounded-full transition-colors duration-200"
+                title="Emoji"
+              >
+                <Smile className="w-5 h-5" />
+              </button>
+              {showEmojiPicker && (
+                <EmojiPicker
+                  onSelect={(emoji) => {
+                    insertEmoji(emoji);
+                  }}
+                  onClose={() => setShowEmojiPicker(false)}
+                />
+              )}
+            </div>
             <button
               type="button"
               className="p-2 text-twitter-blue hover:bg-twitter-blue/10 rounded-full transition-colors duration-200 opacity-50 cursor-not-allowed"

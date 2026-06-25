@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { formatRelativeTime } from '../utils/date';
 import ReplyDialog from './ReplyDialog';
+import ImageViewer from './ImageViewer';
 import toast from 'react-hot-toast';
 import { Tweet } from '../types';
 
@@ -39,6 +40,7 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(tweet.content);
   const [showMenu, setShowMenu] = useState(false);
+  const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
   // --- Likes status & mutation ---
   const { data: isLiked } = useQuery({
@@ -364,13 +366,26 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
         {tweet.mediaUrls && tweet.mediaUrls.length > 0 && !isEditing && (
           <div className="mt-3 rounded-2xl overflow-hidden border border-twitter-dark-4 bg-twitter-dark-2">
             {tweet.mediaUrls.map((url, index) => {
-              const isVideo = url.endsWith('.mp4') || url.includes('/video/') || url.includes('mediaType=VIDEO');
+              const isVideo = /\.(mp4|mov|webm)($|\?)/i.test(url) || url.includes('/video/') || url.includes('mediaType=VIDEO');
+              const imageAndGifUrls = tweet.mediaUrls.filter(u => !(/\.(mp4|mov|webm)($|\?)/i.test(u) || u.includes('/video/') || u.includes('mediaType=VIDEO')));
+              const clickIndex = imageAndGifUrls.indexOf(url);
+              
               return (
                 <div key={index} className="max-h-[500px] overflow-hidden flex justify-center items-center">
                   {isVideo ? (
                     <video src={url} controls className="w-full object-cover max-h-[500px]" onClick={(e) => e.stopPropagation()} />
                   ) : (
-                    <img src={url} alt="Attached Media" className="w-full object-cover max-h-[500px]" />
+                    <img 
+                      src={url} 
+                      alt="Attached Media" 
+                      className="w-full object-cover max-h-[500px] hover:opacity-95 transition-opacity duration-150" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (clickIndex !== -1) {
+                          setViewerIndex(clickIndex);
+                        }
+                      }}
+                    />
                   )}
                 </div>
               );
@@ -442,6 +457,15 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
         isOpen={isReplyOpen}
         onClose={() => setIsReplyOpen(false)}
       />
+
+      {/* Image Viewer Modal */}
+      {viewerIndex !== null && (
+        <ImageViewer
+          urls={tweet.mediaUrls.filter(u => !(/\.(mp4|mov|webm)($|\?)/i.test(u) || u.includes('/video/') || u.includes('mediaType=VIDEO')))}
+          initialIndex={viewerIndex}
+          onClose={() => setViewerIndex(null)}
+        />
+      )}
     </div>
   );
 };
