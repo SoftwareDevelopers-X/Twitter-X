@@ -1,6 +1,5 @@
 package com.twitter.tweet.service.service.Impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.twitter.events.TweetCreatedEvent;
 import com.twitter.events.TweetDeletedEvent;
 import com.twitter.events.TweetUpdatedEvent;
@@ -38,10 +37,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -55,8 +51,6 @@ public class TweetServiceImpl implements TweetService {
     private final TrendingService trendingService;
     private final TweetProducer tweetProducer;
     private final TweetSearchRepository tweetSearchRepository;
-    private final RedisTemplate<String,Object> redisTemplate;
-    private final ObjectMapper objectMapper;
     private final AuthServiceClient authServiceClient;
 
 
@@ -75,33 +69,19 @@ public class TweetServiceImpl implements TweetService {
         if (request.getHashtags() != null && !request.getHashtags().isEmpty()) {
             for (String hashtagName : request.getHashtags()) {
                 String normalizedName = hashtagName.toLowerCase().trim();
-                String redisKey = "hashtag:" + normalizedName;
-                Object cached = redisTemplate.opsForValue().get(redisKey);
-                Hashtag hashtag = null;
-                if (cached instanceof Hashtag h) {
-                    hashtag = h;
-                } else if (cached instanceof Map<?, ?> map) {
-                    hashtag = objectMapper.convertValue(map, Hashtag.class);
-                }
-                if (hashtag == null) {
-                    try {
-                        hashtag = hashtagRepository.findByName(normalizedName)
-                                .orElseGet(() -> {
-                                    Hashtag newHashtag = hashtagRepository.save(
+                Hashtag hashtag;
+                try {
+                    hashtag = hashtagRepository.findByName(normalizedName)
+                            .orElseGet(() ->
+                                    hashtagRepository.save(
                                             Hashtag.builder()
                                                     .name(normalizedName)
                                                     .build()
-                                    );
-                                    redisTemplate.opsForValue().set(redisKey, newHashtag);
-                                    return newHashtag;
-                                });
-
-                        redisTemplate.opsForValue().set(redisKey, hashtag);
-                    } catch (DataIntegrityViolationException ex) {
-
-                        hashtag = hashtagRepository.findByName(normalizedName).orElseThrow();
-                        redisTemplate.opsForValue().set(redisKey, hashtag);
-                    }
+                                    )
+                            );
+                } catch (DataIntegrityViolationException ex) {
+                    log.error("Exception occurred in createTweet method {}", ex.getMessage());
+                    hashtag = hashtagRepository.findByName(normalizedName).orElseThrow();
                 }
 
                 TweetHashtag tweetHashtag = TweetHashtag.builder()
@@ -137,7 +117,12 @@ public class TweetServiceImpl implements TweetService {
                     .toList();
         }
 
-        // CREATE EVENT
+        TweetCreatedEvent event = this.getTweetCreatedEvent(savedTweet, request,username,eventMediaUrls);
+        tweetProducer.publishTweetCreatedEvent(event);
+        return TweetResponseMapper.mapToResponse(savedTweet);
+    }
+
+    private TweetCreatedEvent getTweetCreatedEvent(Tweet savedTweet, TweetRequest request, String username,List<String> eventMediaUrls){
         TweetCreatedEvent event = TweetCreatedEvent.builder()
                 .tweetId(savedTweet.getTweetId())
                 .userId(savedTweet.getUserId())
@@ -151,40 +136,15 @@ public class TweetServiceImpl implements TweetService {
                 .createdAt(savedTweet.getCreatedAt())
                 .mediaUrls(eventMediaUrls)
                 .build();
-        tweetProducer.publishTweetCreatedEvent(event);
-        return TweetResponseMapper.mapToResponse(savedTweet);
+        return event;
     }
 
 
     @Override
     public TweetResponse getTweet(Long tweetId) {
-        Tweet tweet = getTweetOrThrow(tweetId);
-        TweetResponse response = TweetResponseMapper.mapToResponse(tweet);
-        
-        String redisKey = "tweet:" + tweetId;
-        try {
-            redisTemplate.opsForValue().set(redisKey, response);
-        } catch (Exception e) {
-            log.error("Failed to update cache for tweet " + tweetId, e);
-        }
-        
-        redisTemplate.opsForValue().increment("tweet:view:" + tweetId);
-        try {
-            Object viewsObj = redisTemplate.opsForValue().get("tweet:view:" + tweetId);
-            if (viewsObj != null) {
-                if (viewsObj instanceof Number number) {
-                    response.setViewCount(number.longValue());
-                } else {
-                    response.setViewCount(Long.parseLong(viewsObj.toString()));
-                }
-            }
-        } catch (Exception e) {
-            log.error("Failed to fetch view count from Redis for tweet " + tweetId, e);
-        }
-        
-        return response;
+        Tweet tweet = this.getTweetOrThrow(tweetId);
+        return TweetResponseMapper.mapToResponse(tweet);
     }
-
 
 
     @Override
@@ -198,8 +158,6 @@ public class TweetServiceImpl implements TweetService {
         tweet.setContent(request.getContent());
         Tweet updatedTweet = tweetRepository.save(tweet);
 
-        TweetResponse response = TweetResponseMapper.mapToResponse(updatedTweet);
-        redisTemplate.opsForValue().set("tweet:" + updatedTweet.getTweetId(), response);
         TweetUpdatedEvent event = TweetUpdatedEvent.builder()
                 .tweetId(updatedTweet.getTweetId())
                 .content(updatedTweet.getContent())
@@ -219,19 +177,12 @@ public class TweetServiceImpl implements TweetService {
     @Transactional
     public void deleteTweet(Long tweetId, Long userId, String role) {
         log.info("Deleting tweet {} by user {}", tweetId, userId);
-        Tweet tweet = getTweetOrThrow(tweetId);
-
+        Tweet tweet = this.getTweetOrThrow(tweetId);
         if (!tweet.getUserId().equals(userId) && !"ADMIN".equalsIgnoreCase(role)) {
             throw new UnauthorizedTweetAccessException("You are not allowed to delete this tweet");
         }
-
         tweetRepository.delete(tweet);
-
-        redisTemplate.delete("tweet:" + tweetId);
-
-        redisTemplate.delete("tweet:view:" + tweetId);
         TweetDeletedEvent event = TweetDeletedEvent.builder()
-
                 .tweetId(tweetId)
                 .build();
         tweetProducer.publishTweetDeletedEvent(event);
@@ -260,11 +211,12 @@ public class TweetServiceImpl implements TweetService {
     }
 
     private Tweet getTweetOrThrow(Long tweetId) {
-        return tweetRepository.findById(tweetId)
-                .orElseThrow(() -> {
-                    log.error("Tweet not found with id {}", tweetId);
-                    return new TweetNotFoundException("Tweet not found");
-                });
+        Optional<Tweet> optionalTweet = this.tweetRepository.findById(tweetId);
+        if (optionalTweet.isEmpty()) {
+            log.error("Tweet not found with id {}", tweetId);
+            throw new TweetNotFoundException("Tweet not found");
+        }
+        return optionalTweet.get();
     }
 
     @Override
@@ -276,28 +228,10 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public List<TweetResponse> getTrendingTweets(String window) {
-        String redisKey = "trending:cache:" + window;
-        Object cached = redisTemplate.opsForValue().get(redisKey);
-        List<TweetResponse> responses = null;
-        if (cached instanceof List<?> list) {
-            responses = new java.util.ArrayList<>();
-            for (Object item : list) {
-                responses.add(objectMapper.convertValue(item, TweetResponse.class));
-            }
-        }
-        if (responses == null) {
-            List<Tweet> tweets = trendingService.getTrendingTweets(window);
-            responses = new java.util.ArrayList<>();
-            for (Tweet tweet : tweets) {
-                responses.add(TweetResponseMapper.mapToResponse(tweet));
-            }
-            redisTemplate.opsForValue().set(
-                    redisKey,
-                    responses,
-                    Duration.ofMinutes(10)
-            );
-        }
-        return responses;
+        List<Tweet> trendingTweets = trendingService.getTrendingTweets(window);
+        return trendingTweets.stream()
+                .map(TweetResponseMapper::mapToResponse)
+                .toList();
     }
 
     @Override
@@ -329,8 +263,6 @@ public class TweetServiceImpl implements TweetService {
     }
 
 
-
-
     private TweetResponse mapDocumentToResponse(TweetDocument document) {
         return TweetResponse.builder()
                 .tweetId(document.getTweetId())
@@ -358,15 +290,13 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public List<HashtagResponse> getTrendingHashtags() {
         List<Object[]> results = hashtagRepository.findTrendingHashtags(PageRequest.of(0, 20));
-
-        return results.stream()
-                .map(row -> HashtagResponse.builder()
-                        .hashtag((String) row[0])
-                        .posts((Long) row[1])
-                        .build())
-                .toList();
-
+        List<HashtagResponse> responses = new ArrayList<>();
+        for (Object[] row : results) {
+            responses.add(HashtagResponse.builder()
+                    .hashtag((String) row[0])
+                    .posts((Long) row[1])
+                    .build());
+        }
+        return responses;
     }
-
-
 }

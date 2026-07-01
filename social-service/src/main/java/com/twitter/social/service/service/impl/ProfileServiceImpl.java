@@ -22,8 +22,6 @@ import com.twitter.social.service.repository.ReplyRepository;
 import com.twitter.social.service.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -35,7 +33,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 
 @Slf4j
 @Service
@@ -61,7 +58,6 @@ public class ProfileServiceImpl implements ProfileService {
         return cached;
     }
 
-    @Cacheable(value = "profiles", key = "#userId", unless = "#result == null || #result.username == null")
     public ProfileResponse getCachedProfileCore(Long userId) {
         Profile profile = getOrCreateProfile(userId);
         return buildProfileResponse(profile, null);
@@ -69,7 +65,6 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "profiles", key = "#userId")
     public ProfileResponse updateProfile(Long userId, UpdateProfileRequest request) {
         Profile profile = getOrCreateProfile(userId);
 
@@ -94,9 +89,9 @@ public class ProfileServiceImpl implements ProfileService {
         return buildProfileResponse(saved, userId);
     }
 
+
     @Override
     @Transactional
-    @CacheEvict(value = "profiles", key = "#userId")
     public ProfileResponse uploadAvatar(Long userId, MultipartFile file) {
         validateImageFile(file);
         Profile profile = getOrCreateProfile(userId);
@@ -117,7 +112,6 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "profiles", key = "#userId")
     public ProfileResponse updateAvatar(Long userId, MultipartFile file) {
         validateImageFile(file);
         Profile profile = getOrCreateProfile(userId);
@@ -138,7 +132,6 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "profiles", key = "#userId")
     public void deleteAvatar(Long userId) {
         Profile profile = getOrCreateProfile(userId);
 
@@ -153,9 +146,9 @@ public class ProfileServiceImpl implements ProfileService {
         log.info("Avatar deleted for userId={}", userId);
     }
 
+
     @Override
     @Transactional
-    @CacheEvict(value = "profiles", key = "#userId")
     public ProfileResponse uploadBanner(Long userId, MultipartFile file) {
         validateImageFile(file);
         Profile profile = getOrCreateProfile(userId);
@@ -176,13 +169,11 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "profiles", key = "#userId")
     public ProfileResponse updateBanner(Long userId, MultipartFile file) {
         validateImageFile(file);
         Profile profile = getOrCreateProfile(userId);
 
         if (profile.getBannerMediaId() == null) {
-            // No existing banner — treat as first upload
             return uploadBanner(userId, file);
         }
 
@@ -197,7 +188,6 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "profiles", key = "#userId")
     public void deleteBanner(Long userId) {
         Profile profile = getOrCreateProfile(userId);
 
@@ -227,13 +217,12 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
 
-    @Cacheable(value = "profileTabs", key = "'allTweets:' + #userId")
+
     public List<TweetDto> getAllTweetsCached(Long userId) {
         return tweetServiceClient.getAllTweetsByUser(userId);
     }
 
     @Override
-    @Cacheable(value = "profileTabs", key = "'replies:' + #userId + ':' + #page + ':' + #size")
     public PagedResponse<ReplyDto> getReplies(Long userId, int page, int size) {
         Page<Reply> replyPage = replyRepository.findByUserId(
                 userId,
@@ -261,7 +250,6 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public PagedResponse<TweetDto> getLikedTweets(Long userId, int page, int size) {
-
         Page<Like> likePage = likeRepository.findByUserId(
                 userId,
                 PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "likedAt"))
@@ -304,7 +292,6 @@ public class ProfileServiceImpl implements ProfileService {
 
     private ProfileResponse buildProfileResponse(Profile profile, Long currentUserId) {
         UserDto userDto = fetchUserSafely(profile.getUserId());
-
         long followersCount = followRepository.countByFollowingId(profile.getUserId());
         long followingCount = followRepository.countByFollowerId(profile.getUserId());
 
@@ -382,7 +369,7 @@ public class ProfileServiceImpl implements ProfileService {
         if (contentType == null || !contentType.startsWith("image/")) {
             throw new IllegalArgumentException("Only image files are allowed");
         }
-        long maxSizeBytes = 5L * 1024 * 1024;
+        long maxSizeBytes = 5L * 1024 * 1024; // 5MB - adjust to your needs
         if (file.getSize() > maxSizeBytes) {
             throw new IllegalArgumentException("File size must not exceed 5MB");
         }
@@ -390,7 +377,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public List<ProfileResponse> searchProfiles(String query, Long currentUserId) {
-        List<UserDto> userDtos = authServiceClient.searchUsers(query);
+        List<com.twitter.social.service.feignDto.UserDto> userDtos = authServiceClient.searchUsers(query);
         return userDtos.stream()
                 .map(userDto -> {
                     Profile profile = getOrCreateProfile(userDto.getUserId());
