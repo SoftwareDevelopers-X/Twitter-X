@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -83,7 +84,7 @@ public class TrendingServiceImpl implements TrendingService {
             tweets = tweetRepository.findAllById(tweetIds);
         }
 
-        java.util.ArrayList<Tweet> modifiableTweets = new java.util.ArrayList<>(tweets);
+        ArrayList<Tweet> modifiableTweets = new ArrayList<>(tweets);
 
         modifiableTweets.sort((a, b) -> Double.compare(
                         calculateTrendingScore(b),
@@ -100,7 +101,7 @@ public class TrendingServiceImpl implements TrendingService {
                 tweet.getLikeCount()
                         + tweet.getReplyCount() * 2
                         + tweet.getRetweetCount() * 3;
-
+    
         double ageHours =
                 Duration.between(
                                 tweet.getCreatedAt(),

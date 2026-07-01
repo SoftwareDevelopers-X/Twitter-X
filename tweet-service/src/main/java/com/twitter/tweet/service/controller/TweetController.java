@@ -2,6 +2,7 @@ package com.twitter.tweet.service.controller;
 
 import com.twitter.tweet.service.dto.request.TweetRequest;
 import com.twitter.tweet.service.dto.request.UpdateTweetRequest;
+import com.twitter.tweet.service.dto.response.HashtagResponse;
 import com.twitter.tweet.service.dto.response.TweetResponse;
 import com.twitter.tweet.service.service.TweetService;
 import lombok.RequiredArgsConstructor;
@@ -80,7 +81,7 @@ public class TweetController {
     }
 
     @GetMapping("/hashtags/trending")
-    public ResponseEntity<List<com.twitter.tweet.service.dto.response.HashtagResponse>> getTrendingHashtags() {
+    public ResponseEntity<List<HashtagResponse>> getTrendingHashtags() {
         return ResponseEntity.ok(tweetService.getTrendingHashtags());
     }
 }

@@ -52,12 +52,11 @@ public class AuthServiceImpl implements AuthService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
-                .enabled(true)   // IMPORTANT CHANGE
+                .enabled(true)
                 .build();
 
         User saved = userRepository.save(user);
 
-        // TODO: generate verification token (next step)
         auditLogService.log(
                 saved.getEmail(),
                 AuditAction.REGISTER
@@ -73,14 +72,11 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public LoginResponse login(LoginRequest request, HttpServletRequest servletRequest) {
 
-        // 1. RATE LIMIT CHECK
         rateLimitService.validateLoginAttempt(request.getEmail());
 
-        // 2. FETCH USER
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
-        // 3. ACCOUNT LOCK CHECK
         unlockWhenTimeExpired(user);
 
         if (user.isAccountLocked()) {
@@ -91,18 +87,14 @@ public class AuthServiceImpl implements AuthService {
 
         try {
 
-            // 4. AUTHENTICATION
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
-            // 5. RESET FAILED ATTEMPTS (IMPORTANT FIX)
             resetFailedAttempts(user);
 
-            // 6. RESET RATE LIMIT ON SUCCESS (IMPORTANT FIX)
             rateLimitService.resetAttempts(request.getEmail());
 
         } catch (Exception ex) {
 
-            // 7. INCREASE FAILED LOGIN COUNT
             increaseFailedAttempts(user);
 
             auditLogService.log(
@@ -113,13 +105,11 @@ public class AuthServiceImpl implements AuthService {
             throw ex;
         }
 
-        // 8. LOAD USER DETAILS
         UserDetails userDetails =
                 userDetailsService.loadUserByUsername(
                         request.getEmail()
                 );
 
-        // 9. GENERATE JWT
         String accessToken =
                 jwtService.generateAccessToken(
                         userDetails,
@@ -127,20 +117,17 @@ public class AuthServiceImpl implements AuthService {
                         user.getRole().name()
                 );
 
-        // 10. CREATE REFRESH TOKEN
         RefreshToken refreshToken =
                 refreshTokenService.createRefreshToken(
                         request.getEmail()
                 );
 
-        // 11. DEVICE INFO CAPTURE
         String deviceName =
                 servletRequest.getHeader("User-Agent");
 
         String ipAddress =
                 servletRequest.getRemoteAddr();
 
-        // 12. SAVE DEVICE SESSION
         deviceSessionService.createSession(
                 user.getEmail(),
                 refreshToken.getToken(),
@@ -148,13 +135,11 @@ public class AuthServiceImpl implements AuthService {
                 ipAddress
         );
 
-        // 13. AUDIT LOG SUCCESS
         auditLogService.log(
                 user.getEmail(),
                 AuditAction.LOGIN_SUCCESS
         );
 
-//        14. RESPONSE
         return LoginResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken.getToken())

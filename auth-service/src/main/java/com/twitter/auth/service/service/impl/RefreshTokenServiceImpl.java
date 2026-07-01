@@ -24,7 +24,7 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
     private final UserRepository userRepository;
 
     private final long refreshTokenDuration =
-            1000L * 60 * 60 * 24 * 30; // 30 days
+            1000L * 60 * 60 * 24 * 30;
 
     @Override
     public RefreshToken createRefreshToken(String email) {
@@ -51,7 +51,6 @@ public class RefreshTokenServiceImpl implements RefreshTokenService {
                     "Refresh token expired"
             );
         }
-
         return token;
     }
 

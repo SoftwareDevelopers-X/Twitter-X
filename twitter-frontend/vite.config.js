@@ -24,6 +24,15 @@ export default defineConfig({
                 ws: true,
                 changeOrigin: true,
             },
+            '/chat-service/ws': {
+                target: 'ws://localhost:8089',
+                ws: true,
+                changeOrigin: true,
+            },
+            '/chat-service': {
+                target: 'http://localhost:8089',
+                changeOrigin: true,
+            },
         },
     },
 });

@@ -42,14 +42,25 @@ export function getUserDisplay(id: number) {
   };
 }
 
-export function useUserDisplay(id: number) {
+export function useUserDisplay(id: number | undefined) {
   const { data: profile } = useUser(id || undefined);
 
   useEffect(() => {
-    if (profile) {
+    if (profile && id) {
       userCache.set(id, profile);
     }
   }, [id, profile]);
+
+  if (!id) {
+    return {
+      id: 0,
+      name: 'System',
+      username: 'system',
+      avatarUrl: null,
+      color: '#71767b',
+      initial: 'S',
+    };
+  }
 
   if (profile) {
     return {
@@ -62,6 +73,8 @@ export function useUserDisplay(id: number) {
     };
   }
 
+
   // Fallback to cache or default display
   return getUserDisplay(id);
 }
+

@@ -23,6 +23,9 @@ import Settings from './pages/Settings';
 import { Loader2 } from 'lucide-react';
 
 import './App.css';
+import { ChatProvider } from './context/ChatContext';
+import Messages from './pages/Messages';
+
 
 // Create a React Query client
 const queryClient = new QueryClient({
@@ -194,15 +197,17 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <WebSocketListener />
-      <BrowserRouter>
-        <Routes>
-          {/* Public Auth Routes */}
-          <Route element={<AuthRoute />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
+      <ChatProvider>
+        <WebSocketListener />
+        <BrowserRouter>
+          <Routes>
+            {/* Public Auth Routes */}
+            <Route element={<AuthRoute />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
 
+<<<<<<< HEAD
           {/* Protected Routes inside App Layout */}
           <Route element={<PrivateRoute />}>
             <Route element={<Layout />}>
@@ -213,14 +218,37 @@ function App() {
               <Route path="/bookmarks" element={<Bookmarks />} />
               <Route path="/search" element={<Search />} />
               <Route path="/settings" element={<Settings />} />
+=======
+            {/* Protected Routes inside App Layout */}
+            <Route element={<PrivateRoute />}>
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/profile/:id" element={<Profile />} />
+                <Route path="/tweet/:id" element={<TweetDetail />} />
+                <Route path="/notifications" element={<Notifications />} />
+                <Route path="/messages" element={<Messages />} />
+                <Route path="/messages/:conversationId" element={<Messages />} />
+                <Route path="/bookmarks" element={<Bookmarks />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/settings" element={<Settings />} />
+              </Route>
+>>>>>>> 405d85f (resolved bugs on chat-service)
             </Route>
-          </Route>
 
+<<<<<<< HEAD
 
           {/* Fallback route */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
+=======
+            {/* Fallback route */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </ChatProvider>
+
+>>>>>>> 405d85f (resolved bugs on chat-service)
       
       {/* Toast Notifications */}
       <Toaster 

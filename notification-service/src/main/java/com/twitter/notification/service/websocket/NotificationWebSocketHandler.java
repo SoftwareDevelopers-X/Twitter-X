@@ -17,9 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class NotificationWebSocketHandler extends TextWebSocketHandler {
 
-    // Map of userId -> WebSocketSession for private user messaging
     private static final Map<Long, WebSocketSession> sessions = new ConcurrentHashMap<>();
-    // Keep track of all active sessions for global broadcasts
     private static final Map<String, WebSocketSession> allSessions = new ConcurrentHashMap<>();
 
     private final ObjectMapper objectMapper = new ObjectMapper();

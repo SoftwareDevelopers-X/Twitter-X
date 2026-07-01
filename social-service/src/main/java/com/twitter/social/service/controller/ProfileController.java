@@ -13,14 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/profile")
 @RequiredArgsConstructor
 public class ProfileController {
 
     private final ProfileService profileService;
-
-    // ── PROFILE ───────────────────────────────────────────────────────────────
 
     @GetMapping("/{userId}")
     public ResponseEntity<ApiResponse<ProfileResponse>> getProfile(
@@ -95,7 +95,7 @@ public class ProfileController {
         return ResponseEntity.ok(new ApiResponse<>("success", "Banner deleted successfully", null));
     }
 
-    // ── TABS ──────────────────────────────────────────────────────────────────
+
 
     @GetMapping("/{userId}/posts")
     public ResponseEntity<ApiResponse<PagedResponse<TweetDto>>> getPosts(
@@ -138,11 +138,11 @@ public class ProfileController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<ApiResponse<java.util.List<ProfileResponse>>> searchProfiles(
+    public ResponseEntity<ApiResponse<List<ProfileResponse>>> searchProfiles(
             @RequestParam String query,
             @RequestHeader(value = "X-User-Id", required = false) Long currentUserId
     ) {
-        java.util.List<ProfileResponse> responses = profileService.searchProfiles(query, currentUserId);
+        List<ProfileResponse> responses = profileService.searchProfiles(query, currentUserId);
         return ResponseEntity.ok(new ApiResponse<>("success", "Profiles searched successfully", responses));
     }
 }
