@@ -1,113 +1,57 @@
 package com.twitter.tweet.service.service.Impl;
 
-import com.twitter.tweet.service.constants.TrendingConstants;
 import com.twitter.tweet.service.exceptions.customExceptions.InvalidTrendingWindowException;
 import com.twitter.tweet.service.model.Tweet;
 import com.twitter.tweet.service.repository.TweetRepository;
 import com.twitter.tweet.service.service.TrendingService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
+import java.util.PriorityQueue;
 
 @Service
 @RequiredArgsConstructor
 public class TrendingServiceImpl implements TrendingService {
 
-    private final RedisTemplate<String,String> redisTemplate;
     private final TweetRepository tweetRepository;
 
     @Override
-    public void increaseLikeScore(Long tweetId) {
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_6H, tweetId.toString(), 1);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_24H, tweetId.toString(), 1);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_48H, tweetId.toString(), 1);
-    }
-
-    @Override
-    public void increaseReplyScore(Long tweetId) {
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_6H, tweetId.toString(), 2);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_24H, tweetId.toString(), 2);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_48H, tweetId.toString(), 2);
-    }
-
-    @Override
-    public void increaseRetweetScore(Long tweetId) {
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_6H, tweetId.toString(), 3);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_24H, tweetId.toString(), 3);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_48H, tweetId.toString(), 3);
-    }
-
-    @Override
-    public void decreaseLikeScore(Long tweetId) {
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_6H, tweetId.toString(), -1);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_24H, tweetId.toString(), -1);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_48H, tweetId.toString(), -1);
-    }
-
-    @Override
-    public void decreaseReplyScore(Long tweetId) {
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_6H, tweetId.toString(), -2);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_24H, tweetId.toString(), -2);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_48H, tweetId.toString(), -2);
-    }
-
-    @Override
-    public void decreaseRetweetScore(Long tweetId) {
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_6H, tweetId.toString(), -3);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_24H, tweetId.toString(), -3);
-        redisTemplate.opsForZSet().incrementScore(TrendingConstants.TRENDING_48H, tweetId.toString(), -3);
-    }
-
-    @Override
     public List<Tweet> getTrendingTweets(String window) {
-        String key = switch (window) {
-            case "6h" -> TrendingConstants.TRENDING_6H;
-            case "24h" -> TrendingConstants.TRENDING_24H;
-            case "48h" -> TrendingConstants.TRENDING_48H;
-            default -> throw new InvalidTrendingWindowException("Window must be 6h, 24h or 48h");
+        LocalDateTime fromTime = switch (window) {
+            case "6h" -> LocalDateTime.now().minusHours(6);
+            case "24h" -> LocalDateTime.now().minusHours(24);
+            case "48h" -> LocalDateTime.now().minusHours(48);
+            default -> throw new InvalidTrendingWindowException(
+                    "Window must be 6h, 24h or 48h");
         };
+        List<Tweet> tweets = tweetRepository.findByCreatedAtAfter(fromTime);
+        PriorityQueue<Tweet> minHeap = new PriorityQueue<>(
+                Comparator.comparingDouble(this::calculateTrendingScore)
+        );
 
-        Set<String> ids = redisTemplate.opsForZSet().reverseRange(key, 0, 99);
-        List<Tweet> tweets;
-        if (ids == null || ids.isEmpty()) {
-            tweets = tweetRepository.findAll();
-        } else {
-            List<Long> tweetIds = ids.stream()
-                            .map(Long::valueOf)
-                            .toList();
-            tweets = tweetRepository.findAllById(tweetIds);
+        for (Tweet tweet : tweets) {
+            minHeap.offer(tweet);
+            if (minHeap.size() > 20) {
+                minHeap.poll();
+            }
         }
-
-        ArrayList<Tweet> modifiableTweets = new ArrayList<>(tweets);
-
-        modifiableTweets.sort((a, b) -> Double.compare(
-                        calculateTrendingScore(b),
-                        calculateTrendingScore(a)));
-
-        return modifiableTweets.stream()
-                .limit(20)
-                .toList();
+        List<Tweet> trendingTweets = new ArrayList<>(minHeap);
+        trendingTweets.sort((t1, t2) ->
+                Double.compare(
+                        calculateTrendingScore(t2),
+                        calculateTrendingScore(t1)
+                ));
+        return trendingTweets;
     }
 
     private double calculateTrendingScore(Tweet tweet) {
-
-        double engagement =
-                tweet.getLikeCount()
-                        + tweet.getReplyCount() * 2
-                        + tweet.getRetweetCount() * 3;
-    
-        double ageHours =
-                Duration.between(
-                                tweet.getCreatedAt(),
-                                LocalDateTime.now())
-                        .toHours();
-
+        double engagement = tweet.getLikeCount() + tweet.getReplyCount() * 2 + tweet.getRetweetCount() * 3;
+        double ageHours = Duration.between(tweet.getCreatedAt(), LocalDateTime.now()).toHours();
         return engagement / Math.pow(ageHours + 2, 1.5);
     }
 }
