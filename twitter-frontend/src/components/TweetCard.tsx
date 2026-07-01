@@ -158,10 +158,11 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
   const bookmarkMutation = useMutation({
     mutationFn: async () => {
       if (isBookmarked) {
-        const res = await socialService.removeBookmark(tweet.tweetId, currentUserId);
-        return { data: res };
+        await socialService.removeBookmark(tweet.tweetId, currentUserId);
+        return false;
       } else {
-        return socialService.bookmarkTweet(tweet.tweetId, currentUserId);
+        await socialService.bookmarkTweet(tweet.tweetId, currentUserId);
+        return true;
       }
     },
     onMutate: async () => {
@@ -172,6 +173,13 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
 
       queryClient.setQueryData(['bookmark-status', currentUserId, tweet.tweetId], !isBookmarked);
 
+      if (isBookmarked) {
+        queryClient.setQueryData(['bookmarks', currentUserId], (old: any[] | undefined) => {
+          if (!old) return [];
+          return old.filter((t) => t.tweetId !== tweet.tweetId);
+        });
+      }
+
       return { previousBookmarkStatus };
     },
     onError: (_err, _variables, context) => {
@@ -180,14 +188,16 @@ const TweetCard: React.FC<TweetCardProps> = ({ tweet }) => {
       }
       toast.error('Failed to update bookmark status');
     },
+    onSuccess: (newStatus) => {
+      queryClient.setQueryData(['bookmark-status', currentUserId, tweet.tweetId], newStatus);
+      toast.success(newStatus ? 'Saved to Bookmarks' : 'Removed from Bookmarks');
+    },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['bookmark-status', currentUserId, tweet.tweetId] });
       queryClient.invalidateQueries({ queryKey: ['bookmarks', currentUserId] });
-    },
-    onSuccess: () => {
-      toast.success(isBookmarked ? 'Removed from Bookmarks' : 'Saved to Bookmarks');
     }
   });
+
 
   // --- Delete Tweet Mutation ---
   const deleteMutation = useMutation({

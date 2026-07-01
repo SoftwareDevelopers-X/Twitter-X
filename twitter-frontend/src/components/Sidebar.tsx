@@ -15,11 +15,15 @@ import {
   Sparkles
 } from 'lucide-react';
 import { useUser } from '../hooks/useUser';
+import { useChat } from '../context/ChatContext';
 
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();
   const { user, logout, setComposerOpen } = useAuthStore();
   const { data: profile } = useUser(user?.userId);
+  const { conversations } = useChat();
+
+  const chatUnreadCount = conversations.reduce((acc, c) => acc + (c.unreadCount || 0), 0);
 
   // Fetch notifications to display unread badge
   const { data: notifications } = useQuery({
@@ -40,10 +44,12 @@ const Sidebar: React.FC = () => {
     { name: 'Home', path: '/', icon: Home },
     { name: 'Explore', path: '/search', icon: Search },
     { name: 'Notifications', path: '/notifications', icon: Bell, badge: unreadCount },
+    { name: 'Messages', path: '/messages', icon: Mail, badge: chatUnreadCount },
     { name: 'Bookmarks', path: '/bookmarks', icon: Bookmark },
     { name: 'Profile', path: user ? `/profile/${user.userId}` : '#', icon: User },
     { name: 'Settings', path: '/settings', icon: Settings },
   ];
+
 
   return (
     <div className="h-full flex flex-col justify-between py-4 pr-0 xl:pr-4">
@@ -72,8 +78,10 @@ const Sidebar: React.FC = () => {
               }
             >
               <div className="relative">
-                <item.icon className="w-7 h-7 group-hover:scale-105 transition-transform duration-200" />
+                <item.icon className={`w-7 h-7 group-hover:scale-105 transition-transform duration-200 ${item.name === 'Messages' && (item.badge || 0) > 0 ? 'animate-bounce text-twitter-blue' : ''}`} />
                 {item.badge !== undefined && item.badge > 0 && (
+
+
                   <span className="absolute -top-1 -right-1 bg-twitter-blue text-white text-[11px] font-bold rounded-full w-4 h-4 flex items-center justify-center border border-black animate-pulse">
                     {item.badge}
                   </span>

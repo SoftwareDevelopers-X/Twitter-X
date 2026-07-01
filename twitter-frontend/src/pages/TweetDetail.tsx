@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { tweetService, socialService } from '../services/api';
@@ -457,6 +458,69 @@ const TweetDetail: React.FC = () => {
     queryFn: () => tweetService.getTweet(tweetId),
     enabled: !!tweetId,
   });
+
+  // Synchronize detailed tweet view counts and other updates with list queries in the cache
+  useEffect(() => {
+    if (tweet) {
+      const currentViewCount = tweet.viewCount;
+
+      // Update 'tweets' list
+      queryClient.setQueriesData({ queryKey: ['tweets'] }, (old: any) => {
+        if (!old) return old;
+        if (old.pages) {
+          return {
+            ...old,
+            pages: old.pages.map((page: any) => {
+              if (page.content) {
+                return {
+                  ...page,
+                  content: page.content.map((t: any) => t.tweetId === tweet.tweetId ? { ...t, viewCount: currentViewCount } : t)
+                };
+              }
+              if (Array.isArray(page)) {
+                return page.map((t: any) => t.tweetId === tweet.tweetId ? { ...t, viewCount: currentViewCount } : t);
+              }
+              return page;
+            })
+          };
+        }
+        if (Array.isArray(old)) {
+          return old.map((t: any) => t.tweetId === tweet.tweetId ? { ...t, viewCount: currentViewCount } : t);
+        }
+        return old;
+      });
+
+      // Update other list queries: 'feed-tweets', 'user-posts', 'liked-posts', 'bookmarks'
+      const listKeys = ['feed-tweets', 'user-posts', 'liked-posts', 'bookmarks'];
+      listKeys.forEach((key) => {
+        queryClient.setQueriesData({ queryKey: [key] }, (old: any) => {
+          if (!old) return old;
+          if (old.pages) {
+            return {
+              ...old,
+              pages: old.pages.map((page: any) => {
+                if (page.content) {
+                  return {
+                    ...page,
+                    content: page.content.map((t: any) => t.tweetId === tweet.tweetId ? { ...t, viewCount: currentViewCount } : t)
+                  };
+                }
+                if (Array.isArray(page)) {
+                  return page.map((t: any) => t.tweetId === tweet.tweetId ? { ...t, viewCount: currentViewCount } : t);
+                }
+                return page;
+              })
+            };
+          }
+          if (Array.isArray(old)) {
+            return old.map((t: any) => t.tweetId === tweet.tweetId ? { ...t, viewCount: currentViewCount } : t);
+          }
+          return old;
+        });
+      });
+    }
+  }, [tweet, queryClient]);
+
 
   // 2. Fetch Replies List
   const { data: replies, isLoading: isRepliesLoading } = useQuery({

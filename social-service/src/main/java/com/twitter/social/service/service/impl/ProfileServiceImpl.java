@@ -36,13 +36,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/**
- * !!! DEPENDS ON FollowRepository and LikeRepository which I'm assuming exist
- * already (you have Follow.java and Like.java models in your Model package,
- * but didn't show me their repositories). If your existing repositories have
- * different method names than findByUserId / findByFollowerId etc, adjust
- * the calls below to match. I've documented exactly what each call assumes.
- */
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -99,8 +93,6 @@ public class ProfileServiceImpl implements ProfileService {
         log.info("Profile updated for userId={}", userId);
         return buildProfileResponse(saved, userId);
     }
-
-    // ── AVATAR ──────────────────────────────────────────────────────────────────
 
     @Override
     @Transactional
@@ -160,8 +152,6 @@ public class ProfileServiceImpl implements ProfileService {
         profileRepository.save(profile);
         log.info("Avatar deleted for userId={}", userId);
     }
-
-// ── BANNER ───────────────────────────────────────────────────────────────────
 
     @Override
     @Transactional
@@ -236,13 +226,6 @@ public class ProfileServiceImpl implements ProfileService {
         return paginate(mediaOnly, page, size);
     }
 
-    /**
-     * Single cached fetch of a user's FULL tweet list (tweet-service has no
-     * pagination/media-filter support, see TweetController — no page/size
-     * params on GET /api/tweets/user/{userId}). Cached so that flipping
-     * through Posts/Media pages doesn't re-hit tweet-service every time —
-     * only paginate()/the media filter run on each call, both in-memory.
-     */
 
     @Cacheable(value = "profileTabs", key = "'allTweets:' + #userId")
     public List<TweetDto> getAllTweetsCached(Long userId) {
@@ -278,18 +261,12 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public PagedResponse<TweetDto> getLikedTweets(Long userId, int page, int size) {
-        // Likes live in social-service's own table -> paginate locally first,
-        // then fetch each liked tweet's content from tweet-service.
-        // ASSUMES LikeRepository has findByUserId(Long, Pageable) returning
-        // Page<Like>, ordered by likedAt.
+
         Page<Like> likePage = likeRepository.findByUserId(
                 userId,
                 PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "likedAt"))
         );
 
-        // No batch-by-ids endpoint on tweet-service, so we call getTweetById
-        // per liked tweet. Fine for normal page sizes (10-20); if this tab
-        // gets slow, ask for a GET /api/tweets/batch?ids=... on tweet-service.
         List<TweetDto> tweets = likePage.getContent().stream()
                 .map(like -> {
                     try {
@@ -311,17 +288,7 @@ public class ProfileServiceImpl implements ProfileService {
                 .build();
     }
 
-    // ---------- helpers ----------
 
-    /**
-     * Lazy-creation fallback: if no profile row exists yet for this userId
-     * (e.g. the Kafka user-registered event hasn't been processed yet, or
-     * was missed), create an empty one on the fly instead of 404-ing. This
-     * makes profile existence self-healing. We deliberately do NOT verify
-     * userId actually exists in auth-service here (no security/gateway yet
-     * per your current setup) — once auth is wired in, you may want to
-     * validate userId via AuthServiceClient before creating.
-     */
     private Profile getOrCreateProfile(Long userId) {
         return profileRepository.findByUserId(userId)
                 .orElseGet(() -> {
@@ -338,10 +305,6 @@ public class ProfileServiceImpl implements ProfileService {
     private ProfileResponse buildProfileResponse(Profile profile, Long currentUserId) {
         UserDto userDto = fetchUserSafely(profile.getUserId());
 
-        // ASSUMES FollowRepository has countByFollowingId / countByFollowerId
-        // (matching whatever Follow.java's actual field names are — I'm
-        // guessing followerId/followingId since that's the standard pattern;
-        // adjust to your real field names).
         long followersCount = followRepository.countByFollowingId(profile.getUserId());
         long followingCount = followRepository.countByFollowerId(profile.getUserId());
 
@@ -372,11 +335,7 @@ public class ProfileServiceImpl implements ProfileService {
                 .build();
     }
 
-    /**
-     * auth-service being briefly down shouldn't take down profile viewing
-     * entirely (graceful degradation) — log and return null, frontend can
-     * show a blank/fallback name. Tighten this if you'd rather fail loudly.
-     */
+
     private UserDto fetchUserSafely(Long userId) {
         try {
             return authServiceClient.getUserById(userId);
@@ -386,12 +345,7 @@ public class ProfileServiceImpl implements ProfileService {
         }
     }
 
-    /**
-     * tweet-service has no dedicated count endpoint (see TweetController —
-     * no GET /api/tweets/count/user/{userId}). Deriving the count from the
-     * same cached full-list fetch used by getPosts/getMedia avoids a second
-     * network call entirely.
-     */
+
     private Long fetchPostCountSafely(Long userId) {
         try {
             return (long) getAllTweetsCached(userId).size();
@@ -428,7 +382,7 @@ public class ProfileServiceImpl implements ProfileService {
         if (contentType == null || !contentType.startsWith("image/")) {
             throw new IllegalArgumentException("Only image files are allowed");
         }
-        long maxSizeBytes = 5L * 1024 * 1024; // 5MB - adjust to your needs
+        long maxSizeBytes = 5L * 1024 * 1024;
         if (file.getSize() > maxSizeBytes) {
             throw new IllegalArgumentException("File size must not exceed 5MB");
         }
@@ -436,7 +390,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public List<ProfileResponse> searchProfiles(String query, Long currentUserId) {
-        List<com.twitter.social.service.feignDto.UserDto> userDtos = authServiceClient.searchUsers(query);
+        List<UserDto> userDtos = authServiceClient.searchUsers(query);
         return userDtos.stream()
                 .map(userDto -> {
                     Profile profile = getOrCreateProfile(userDto.getUserId());

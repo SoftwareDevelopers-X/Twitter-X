@@ -8,6 +8,7 @@ import com.twitter.tweet.service.client.AuthServiceClient;
 import com.twitter.tweet.service.dto.request.MediaRequest;
 import com.twitter.tweet.service.dto.request.TweetRequest;
 import com.twitter.tweet.service.dto.request.UpdateTweetRequest;
+import com.twitter.tweet.service.dto.response.HashtagResponse;
 import com.twitter.tweet.service.dto.response.TweetResponse;
 import com.twitter.tweet.service.dto.response.UserResponse;
 import com.twitter.tweet.service.events.producer.TweetProducer;
@@ -33,6 +34,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -112,7 +114,6 @@ public class TweetServiceImpl implements TweetService {
             }
         }
 
-        // HANDLE MEDIA
         if (request.getMediaUrls() != null) {
             for (MediaRequest mediaRequest : request.getMediaUrls()) {
                 TweetMedia media = TweetMedia.builder()
@@ -157,20 +158,33 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public TweetResponse getTweet(Long tweetId) {
+        Tweet tweet = getTweetOrThrow(tweetId);
+        TweetResponse response = TweetResponseMapper.mapToResponse(tweet);
+        
         String redisKey = "tweet:" + tweetId;
-        Object cached = redisTemplate.opsForValue().get(redisKey);
-        Tweet tweet = null;
-        if (cached instanceof Map<?, ?> map) {
-            tweet = objectMapper.convertValue(map, Tweet.class);
-        }
-        if (tweet == null) {
-            tweet = getTweetOrThrow(tweetId);
-            TweetResponse response = TweetResponseMapper.mapToResponse(tweet);
+        try {
             redisTemplate.opsForValue().set(redisKey, response);
+        } catch (Exception e) {
+            log.error("Failed to update cache for tweet " + tweetId, e);
         }
+        
         redisTemplate.opsForValue().increment("tweet:view:" + tweetId);
-        return TweetResponseMapper.mapToResponse(tweet);
+        try {
+            Object viewsObj = redisTemplate.opsForValue().get("tweet:view:" + tweetId);
+            if (viewsObj != null) {
+                if (viewsObj instanceof Number number) {
+                    response.setViewCount(number.longValue());
+                } else {
+                    response.setViewCount(Long.parseLong(viewsObj.toString()));
+                }
+            }
+        } catch (Exception e) {
+            log.error("Failed to fetch view count from Redis for tweet " + tweetId, e);
+        }
+        
+        return response;
     }
+
 
 
     @Override
@@ -255,7 +269,7 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public Page<TweetResponse> getAllTweets(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, org.springframework.data.domain.Sort.by(org.springframework.data.domain.Sort.Direction.DESC, "createdAt"));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "createdAt"));
         return tweetRepository.findAll(pageable).map(TweetResponseMapper::mapToResponse);
     }
 
@@ -342,15 +356,17 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    public List<com.twitter.tweet.service.dto.response.HashtagResponse> getTrendingHashtags() {
+    public List<HashtagResponse> getTrendingHashtags() {
         List<Object[]> results = hashtagRepository.findTrendingHashtags(PageRequest.of(0, 20));
-        List<com.twitter.tweet.service.dto.response.HashtagResponse> responses = new java.util.ArrayList<>();
-        for (Object[] row : results) {
-            responses.add(com.twitter.tweet.service.dto.response.HashtagResponse.builder()
-                    .hashtag((String) row[0])
-                    .posts((Long) row[1])
-                    .build());
-        }
-        return responses;
+
+        return results.stream()
+                .map(row -> HashtagResponse.builder()
+                        .hashtag((String) row[0])
+                        .posts((Long) row[1])
+                        .build())
+                .toList();
+
     }
+
+
 }

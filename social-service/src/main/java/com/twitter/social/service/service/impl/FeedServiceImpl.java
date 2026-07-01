@@ -22,7 +22,6 @@ public class FeedServiceImpl implements FeedService {
     private final RedisService redisService;
     private final ObjectMapper objectMapper;
 
-    @CircuitBreaker(name = "tweetService", fallbackMethod = "fallbackFeed")
     @Override
     public List<FeedTweetDto> getFeed(Long userId, int page, int size) {
 
@@ -60,31 +59,6 @@ public class FeedServiceImpl implements FeedService {
         }
     }
 
-    public List<FeedTweetDto> fallbackFeed(Long userId, int page, int size, Exception ex) {
-
-        String cacheKey = "feed::" + userId;
-
-        if (redisService.exists(cacheKey)) {
-
-            String cachedJson = (String) redisService.get(cacheKey);
-
-            try {
-                List<FeedTweetDto> cached =
-                        objectMapper.readValue(
-                                cachedJson,
-                                objectMapper.getTypeFactory()
-                                        .constructCollectionType(List.class, FeedTweetDto.class)
-                        );
-
-                return paginate(cached, page, size);
-
-            } catch (Exception e) {
-                return new ArrayList<>();
-            }
-        }
-
-        return new ArrayList<>();
-    }
 
     private double calculateScore(FeedTweetDto tweet) {
 

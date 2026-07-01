@@ -5,3 +5,5 @@ CREATE DATABASE "media-service";
 CREATE DATABASE "notification-service";
 
 
+
+

@@ -3,6 +3,7 @@ package com.twitter.social.service.service.impl;
 import com.twitter.events.commonEvents.NotificationEventDto;
 import com.twitter.events.commonEvents.NotificationType;
 import com.twitter.social.service.Model.Follow;
+import com.twitter.social.service.Model.Profile;
 import com.twitter.social.service.cache.RedisService;
 import com.twitter.social.service.dto.FollowRequestDto;
 import com.twitter.social.service.exception.SocialException;
@@ -119,7 +120,14 @@ public class FollowServiceImpl implements FollowService {
     @Override
     @Transactional(readOnly = true)
     public List<Long> getFollowSuggestions(Long currentUserId) {
+<<<<<<< HEAD
         List<com.twitter.social.service.Model.Profile> allProfiles = profileRepository.findAll();
+=======
+        List<Long> allUserIds = profileRepository.findAll().stream()
+                .map(Profile::getUserId)
+                .toList();
+
+>>>>>>> 405d85f (resolved bugs on chat-service)
         List<Long> followingIds = getFollowing(currentUserId);
 
         List<Long> suggestions = new java.util.ArrayList<>();
