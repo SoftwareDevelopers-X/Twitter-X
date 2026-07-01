@@ -12,7 +12,8 @@ import {
   Settings, 
   LogOut, 
   PlusSquare,
-  Sparkles
+  Sparkles,
+  Mail
 } from 'lucide-react';
 import { useUser } from '../hooks/useUser';
 import { useChat } from '../context/ChatContext';

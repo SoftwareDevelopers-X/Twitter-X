@@ -207,18 +207,6 @@ function App() {
               <Route path="/register" element={<Register />} />
             </Route>
 
-<<<<<<< HEAD
-          {/* Protected Routes inside App Layout */}
-          <Route element={<PrivateRoute />}>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/profile/:id" element={<Profile />} />
-              <Route path="/tweet/:id" element={<TweetDetail />} />
-              <Route path="/notifications" element={<Notifications />} />
-              <Route path="/bookmarks" element={<Bookmarks />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/settings" element={<Settings />} />
-=======
             {/* Protected Routes inside App Layout */}
             <Route element={<PrivateRoute />}>
               <Route element={<Layout />}>
@@ -232,24 +220,14 @@ function App() {
                 <Route path="/search" element={<Search />} />
                 <Route path="/settings" element={<Settings />} />
               </Route>
->>>>>>> 405d85f (resolved bugs on chat-service)
             </Route>
 
-<<<<<<< HEAD
-
-          {/* Fallback route */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </BrowserRouter>
-=======
             {/* Fallback route */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </BrowserRouter>
       </ChatProvider>
 
->>>>>>> 405d85f (resolved bugs on chat-service)
-      
       {/* Toast Notifications */}
       <Toaster 
         position="bottom-center"

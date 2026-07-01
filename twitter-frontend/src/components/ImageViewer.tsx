@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
 
-<<<<<<< HEAD
-=======
 const isVideoUrl = (url: string) => {
   if (!url) return false;
   return url.toLowerCase().match(/\.(mp4|webm|ogg|mov|m4v|3gp|avi|mkv)($|\?)/i) || 
@@ -11,7 +9,6 @@ const isVideoUrl = (url: string) => {
          url.startsWith('data:video');
 };
 
->>>>>>> 405d85f (resolved bugs on chat-service)
 interface ImageViewerProps {
   urls: string[];
   initialIndex: number;
@@ -21,10 +18,7 @@ interface ImageViewerProps {
 const ImageViewer: React.FC<ImageViewerProps> = ({ urls, initialIndex, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [isZoomed, setIsZoomed] = useState(false);
-<<<<<<< HEAD
-=======
   const isCurrentVideo = isVideoUrl(urls[currentIndex]);
->>>>>>> 405d85f (resolved bugs on chat-service)
 
   // Handle keyboard events
   useEffect(() => {
@@ -38,13 +32,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ urls, initialIndex, onClose }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    // Disable body scroll when modal is open
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
-    };
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex, urls]);
 
   const handlePrev = () => {
@@ -57,19 +45,17 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ urls, initialIndex, onClose }
     setCurrentIndex((prev) => (prev === urls.length - 1 ? 0 : prev + 1));
   };
 
-  const toggleZoom = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsZoomed(!isZoomed);
+  const toggleZoom = () => {
+    setIsZoomed((prev) => !prev);
   };
 
   return (
     <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 select-none backdrop-blur-sm transition-all duration-300"
+      className="fixed inset-0 bg-black/95 z-[9999] flex items-center justify-center select-none"
       onClick={onClose}
     >
-      {/* Top Bar Controls */}
-      <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-[110] pointer-events-none">
-        {/* Close Button */}
+      {/* Top Toolbar */}
+      <div className="absolute top-0 left-0 right-0 p-4 flex items-center justify-between z-[110] bg-gradient-to-b from-black/60 to-transparent pointer-events-none">
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -83,15 +69,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ urls, initialIndex, onClose }
 
         {/* Zoom & External Link controls */}
         <div className="flex gap-2 pointer-events-auto">
-<<<<<<< HEAD
-          <button
-            onClick={toggleZoom}
-            className="p-2 bg-black/50 hover:bg-neutral-800 text-white rounded-full transition-colors duration-200"
-            title={isZoomed ? "Zoom Out" : "Zoom In"}
-          >
-            {isZoomed ? <ZoomOut className="w-5 h-5" /> : <ZoomIn className="w-5 h-5" />}
-          </button>
-=======
           {!isCurrentVideo && (
             <button
               onClick={toggleZoom}
@@ -102,7 +79,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ urls, initialIndex, onClose }
             </button>
           )}
 
->>>>>>> 405d85f (resolved bugs on chat-service)
           <a
             href={urls[currentIndex]}
             target="_blank"
@@ -131,23 +107,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ urls, initialIndex, onClose }
 
       {/* Image Container */}
       <div 
-<<<<<<< HEAD
-        className={`w-full h-full flex items-center justify-center overflow-auto ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
-        onClick={onClose}
-      >
-        <img
-          src={urls[currentIndex]}
-          alt={`Viewer Media ${currentIndex + 1}`}
-          onClick={toggleZoom}
-          className={`transition-transform duration-200 object-contain max-w-full max-h-full ${
-            isZoomed 
-              ? 'scale-150 md:scale-200 max-w-none max-h-none my-auto' 
-              : 'max-w-[90vw] max-h-[90vh]'
-          }`}
-        />
-      </div>
-
-=======
         className={`w-full h-full flex items-center justify-center overflow-auto ${
           isCurrentVideo ? '' : (isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in')
         }`}
@@ -175,8 +134,6 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ urls, initialIndex, onClose }
         )}
       </div>
 
-
->>>>>>> 405d85f (resolved bugs on chat-service)
       {/* Next Arrow */}
       {urls.length > 1 && (
         <button

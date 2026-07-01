@@ -3,6 +3,8 @@ package com.twitter.social.service.service.impl;
 import com.twitter.events.commonEvents.NotificationEventDto;
 import com.twitter.events.commonEvents.NotificationType;
 import com.twitter.social.service.Model.Follow;
+import com.twitter.social.service.Model.Profile;
+import com.twitter.social.service.cache.RedisService;
 import com.twitter.social.service.dto.FollowRequestDto;
 import com.twitter.social.service.exception.SocialException;
 import com.twitter.social.service.kafkaProducer.NotificationProducer;
@@ -13,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,19 +25,30 @@ public class FollowServiceImpl implements FollowService {
 
     private final FollowRepository followRepository;
     private final NotificationProducer notificationProducer;
+    private final RedisService redisService;
     private final ProfileRepository profileRepository;
 
 
     @Override
     public String followUser(FollowRequestDto request) {
-        if(request.getFollowerId().equals(request.getFollowingId())) {
-            throw new SocialException("User cannot follow himself");
+
+        if(request.getFollowerId()
+                .equals(request.getFollowingId())) {
+
+            throw new SocialException(
+                    "User cannot follow himself");
         }
 
-        boolean alreadyFollowing = followRepository.existsByFollowerIdAndFollowingId(request.getFollowerId(), request.getFollowingId());
+        boolean alreadyFollowing =
+                followRepository
+                        .existsByFollowerIdAndFollowingId(
+                                request.getFollowerId(),
+                                request.getFollowingId());
 
         if(alreadyFollowing) {
-            throw new SocialException("Already following this user");
+
+            throw new SocialException(
+                    "Already following this user");
         }
 
         Follow follow = Follow.builder()
@@ -43,6 +57,7 @@ public class FollowServiceImpl implements FollowService {
                 .build();
 
         followRepository.save(follow);
+        redisService.delete("feed::" + request.getFollowerId());
 
         NotificationEventDto event = new NotificationEventDto(
                 request.getFollowerId(),
@@ -68,6 +83,8 @@ public class FollowServiceImpl implements FollowService {
                         new SocialException("Follow relationship not found"));
 
         followRepository.delete(follow);
+        redisService.delete("feed::" + request.getFollowerId());
+
         return "User Unfollowed Successfully";
     }
 
@@ -104,12 +121,14 @@ public class FollowServiceImpl implements FollowService {
     @Override
     @Transactional(readOnly = true)
     public List<Long> getFollowSuggestions(Long currentUserId) {
-        List<com.twitter.social.service.Model.Profile> allProfiles = profileRepository.findAll();
+        List<Long> allUserIds = profileRepository.findAll().stream()
+                .map(Profile::getUserId)
+                .toList();
+
         List<Long> followingIds = getFollowing(currentUserId);
 
-        List<Long> suggestions = new java.util.ArrayList<>();
-        for (com.twitter.social.service.Model.Profile profile : allProfiles) {
-            Long userId = profile.getUserId();
+        List<Long> suggestions = new ArrayList<>();
+        for (Long userId : allUserIds) {
             if (!userId.equals(currentUserId) && !followingIds.contains(userId)) {
                 suggestions.add(userId);
                 if (suggestions.size() >= 5) {

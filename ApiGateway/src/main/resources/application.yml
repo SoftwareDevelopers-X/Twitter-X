@@ -14,55 +14,44 @@ spring:
         webflux:
           routes:
 
-            # AUTH SERVICE
             - id: auth-service
               uri: lb://AUTH-SERVICE
               predicates:
                 - Path=/api/auth/**,/api/admin/**,/api/internal/**,/api/test/**
 
-            # TWEET SERVICE
             - id: tweet-service
               uri: lb://TWEET-SERVICE
               predicates:
                 - Path=/api/tweets/**
 
-            # SOCIAL SERVICE
             - id: social-service
               uri: lb://SOCIAL-SERVICE
               predicates:
                 - Path=/api/bookmarks/**,/api/feed/**,/api/follows/**,/api/likes/**,/api/replies/**,/api/retweets/**,/social
 
-            # NOTIFICATION SERVICE
             - id: notification-service
               uri: lb://NOTIFICATION-SERVICE
               predicates:
                 - Path=/api/notification/**
 
-            # NOTIFICATION WEBSOCKET
             - id: notification-websocket
               uri: lb:ws://NOTIFICATION-SERVICE
               predicates:
                 - Path=/ws/notifications**
 
-            # MEDIA SERVICE
             - id: media-service
               uri: lb://MEDIA-SERVICE
               predicates:
                 - Path=/media/**
 
-<<<<<<< HEAD
 
-=======
-            # CHAT SERVICE REST
             - id: chat-service-rest
               uri: lb://CHAT-SERVICE
               predicates:
                 - Path=/chat-service/api/**
               filters:
                 - StripPrefix=1
->>>>>>> 405d85f (resolved bugs on chat-service)
 
-            # CHAT SERVICE WEBSOCKET
             - id: chat-service-websocket
               uri: lb:ws://CHAT-SERVICE
               predicates:

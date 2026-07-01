@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-=======
 import { Outlet, useLocation } from 'react-router-dom';
->>>>>>> 405d85f (resolved bugs on chat-service)
 import Sidebar from './Sidebar';
 import RightSidebar from './RightSidebar';
 import { useAuthStore } from '../store/authStore';
@@ -12,12 +8,9 @@ import { X } from 'lucide-react';
 
 const Layout: React.FC = () => {
   const { isComposerOpen, setComposerOpen } = useAuthStore();
-<<<<<<< HEAD
-=======
   const location = useLocation();
 
   const isMessagesPage = location.pathname.startsWith('/messages');
->>>>>>> 405d85f (resolved bugs on chat-service)
 
   return (
     <div className="min-h-screen bg-black text-white flex justify-center selection:bg-twitter-blue/30">
@@ -29,20 +22,18 @@ const Layout: React.FC = () => {
         </header>
 
         {/* Center Main Content Scroll */}
-<<<<<<< HEAD
-        <main className="flex-grow border-r border-l border-twitter-dark-4 pb-20 sm:pb-0 max-w-[600px] min-h-screen">
-=======
         <main className={`flex-grow border-r border-l border-twitter-dark-4 pb-20 sm:pb-0 min-h-screen ${
           isMessagesPage ? 'max-w-none' : 'max-w-[600px]'
         }`}>
->>>>>>> 405d85f (resolved bugs on chat-service)
           <Outlet />
         </main>
 
         {/* Right Info Sidebar (Trends, search) */}
-        <aside className="hidden lg:block w-[290px] xl:w-[350px] h-screen sticky top-0 pl-6 flex-shrink-0 z-30 overflow-y-auto">
-          <RightSidebar />
-        </aside>
+        {!isMessagesPage && (
+          <aside className="hidden lg:block w-[290px] xl:w-[350px] h-screen sticky top-0 pl-6 flex-shrink-0 z-30 overflow-y-auto">
+            <RightSidebar />
+          </aside>
+        )}
 
       </div>
 
